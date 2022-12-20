@@ -1,10 +1,30 @@
-# Getting Started with Create React App
+# Front-end Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
+![https://img.shields.io/badge/React-v.18-blue](React)
+![https://img.shields.io/badge/Redux-v.1.9-purple](Redux toolkit)
+![https://img.shields.io/badge/TypeScript-v.4.9-green](TypeScript)
+![https://img.shields.io/badge/SASS-v.4.9-hotpink](SASS)
 
-## Available Scripts
+## Requirement
+
+1. Use the API endpoint [https://fakeapi.platzi.com/](https://fakeapi.platzi.com/) to create an e-commerce website. Read the documentation and learn how to use the different endpoints.
+2. Create at lease 4 pages (can be more if you want): Home page, product page,
+profile page (only available if user logins), and cart page (cart could be a page or a modal)
+3. Use context API to create a button to switch themes of the web app
+4. Create Redux store for following features:
+    - product reducer: get all products, find a single products, sort products by
+    categories, sort products by price, update and delete a product (enable update & delete features only for admin of the webapp. For example, you can check if user is your admin account before let them delete product)
+    - user reducer: get all users, find a single user, create new user (delete user is not allowed in this api), authenticate user
+    - cart reducer: add product to cart, remove products, update products's quantity in cart
+5. When adding routers to your application, programatically set certain routes to be private. For example, route to user profile page should not be accessible if user has not logged in.
+
+## Instruction to start the project
 
 In the project directory, you can run:
+
+### `npm install`
+
+Install all the dependencies
 
 ### `npm start`
 
@@ -16,31 +36,9 @@ You will also see any lint errors in the console.
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Launches the test runner in the interactive watch mode
 
 ### `npm run build`
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
