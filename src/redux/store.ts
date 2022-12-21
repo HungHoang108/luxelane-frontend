@@ -12,3 +12,7 @@ export type AppThunk<ReturnType = void> = ThunkAction<
   unknown,
   Action<string>
 >;
+
+// export type Test = {
+//   test: number
+// }
