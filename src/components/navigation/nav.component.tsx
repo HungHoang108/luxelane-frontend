@@ -5,13 +5,13 @@ import "./nav.component.style.scss";
 
 const Navigation = () => {
   return (
-    <div>
+    <div className="nav">
       <div>
         <Link to="">Home</Link>
         <Link to="productlist">Products</Link>
         <Link to="about">About</Link>
       </div>
-      <div>
+      <div className="nav-icon">
         <div>search</div>
         <div>light</div>
         <div>cart</div>

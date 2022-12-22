@@ -1,0 +1,13 @@
+.categories {
+    display: flex;
+    justify-content: space-around;
+    // width: 100vh;
+
+
+    .categories-category {
+        margin-right: 2rem;
+        img {
+            width: 110%;
+        }
+    }
+}

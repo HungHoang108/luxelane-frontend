@@ -1,0 +1,13 @@
+.nav {
+    display: flex;
+    justify-content: space-between;
+    
+
+    .nav-icon {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        div {
+            margin-right: 1rem;
+        }
+    }
+}
