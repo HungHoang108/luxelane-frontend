@@ -3,11 +3,11 @@ import { Routes, Route } from "react-router-dom";
 import { useAppDispatch } from "./hooks/reduxHook";
 import { fetchAllProducts } from "./redux/products-reducer";
 
-import Home from "./components/home/home";
+import Home from "./components/routes/home/home";
 import Root from "./components/root/root.component";
 import NotFound from "./components/not-found/notfound.component";
-import ProductList from "./components/product-list/product-list.component";
-import About from "./components/about/about.component";
+import ProductList from "./components/routes/product-list/product-list.component";
+import CartPage from "./components/routes/cart-page/cart-page.routes";
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -20,7 +20,7 @@ const App = () => {
       <Route path="" element={<Root />}>
         <Route path="" element={<Home />} />
         <Route path="productlist" element={<ProductList />} />
-        <Route path="about" element={<About />} />
+        <Route path="/cartpage" element={<CartPage />} />
         <Route path="/*" element={<NotFound />} />
       </Route>
     </Routes>

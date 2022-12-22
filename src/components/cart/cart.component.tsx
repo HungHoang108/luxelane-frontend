@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import { useAppSelector } from "../../hooks/reduxHook";
 
@@ -27,6 +28,7 @@ const Cart = () => {
           ))}
         </div>
         <div className="cartBox-button">
+        <Link to="cartpage">GO TO CART</Link>
           <button>GO TO CART</button>
         </div>
       </div>

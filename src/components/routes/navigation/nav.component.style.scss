@@ -1,5 +1,4 @@
 .navBox {
- 
   .navBox-nav {
     display: flex;
     justify-content: space-between;
@@ -12,5 +11,11 @@
       }
     }
   }
-
+//   .nav-icon_cart:hover .navBox-cart {
+//     // color: red;
+//     display: block;
+//   }
+  .navBox-cart {
+    display: block;
+  }
 }

@@ -22,7 +22,6 @@ const CartItemSlice = createSlice({
       } else {
         state.push(action.payload);
       }
-      console.log(condition());
     },
   },
 });
