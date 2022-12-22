@@ -1,0 +1,19 @@
+.cartpage-box {
+  padding: 2rem;
+  width: 100%;
+
+  .cartpage-box-item {
+    display: flex;
+
+    justify-content: space-around;
+    .cartpage-box-item_amount {
+      display: flex;
+      justify-content: space-evenly;
+      gap: 1rem;
+    }
+  }
+  img {
+    width: 3rem;
+    height: 3rem;
+  }
+}

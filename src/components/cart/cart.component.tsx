@@ -28,8 +28,7 @@ const Cart = () => {
           ))}
         </div>
         <div className="cartBox-button">
-        <Link to="cartpage">GO TO CART</Link>
-          <button>GO TO CART</button>
+          <Link to="cartpage">GO TO CART</Link>
         </div>
       </div>
     </>
