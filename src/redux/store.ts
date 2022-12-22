@@ -1,7 +1,10 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import { categoriesReducer } from './categories-reducer.redux';
 
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    categoriesReducer
+  },
 });
 
 export type AppDispatch = typeof store.dispatch;
@@ -13,6 +16,3 @@ export type AppThunk<ReturnType = void> = ThunkAction<
   Action<string>
 >;
 
-// export type Test = {
-//   test: number
-// }
