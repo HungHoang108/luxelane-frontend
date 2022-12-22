@@ -1,8 +1,27 @@
-.cartBox{
-    position: absolute;
-    width: 14rem;
-    height: 17rem;
-    background-color: aqua;
-    right: .1rem;
-    top: 2rem;
+.cartBox {
+  padding: 2rem;
+  position: absolute;
+  width: 20rem;
+  height: 17rem;
+  background-color: white;
+  right: 0.1rem;
+  top: 2rem;
+  overflow: scroll;
+  border: 1px solid black;
+  .cartBox-items {
+    .cartBox-item {
+      display: flex;
+      justify-content: space-between;
+      justify-items: center;
+    }
+    img {
+      width: 3rem;
+      height: 3rem;
+    }
+  }
+
+  .cartBox-button {
+    position: relative;
+    top: 5rem;
+  }
 }

@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { act } from "@testing-library/react";
+import { isTemplateExpression } from "typescript";
 import { CartItemType } from "../types/cart-items.types";
-
 
 const initialState: CartItemType[] = [];
 
@@ -9,12 +10,23 @@ const CartItemSlice = createSlice({
   initialState: initialState,
   reducers: {
     cartItemId: (state, action) => {
-        state.push(action.payload)
-       
-    }
+      const condition = (): boolean => {
+        if (state.find((item) => item.id === action.payload.id)) {
+          return true;
+        }
+        return false;
+      };
+
+      if (condition()) {
+        state.find((item) => item.id === action.payload.id && item.amount++);
+      } else {
+        state.push(action.payload);
+      }
+      console.log(condition());
+    },
   },
 });
 
-export const CartItemReducer = CartItemSlice.reducer
-export const {cartItemId} = CartItemSlice.actions
+export const CartItemReducer = CartItemSlice.reducer;
+export const { cartItemId } = CartItemSlice.actions;
 export default CartItemSlice;

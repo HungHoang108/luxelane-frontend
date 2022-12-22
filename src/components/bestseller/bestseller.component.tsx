@@ -5,7 +5,7 @@ import Button from '../button/button.component'
 const Bestseller = () => {
   return (
     <div>
-      <ProductCard title='Bestseller' productsDisplayed={12}/>
+      <ProductCard title='Bestseller' productsDisplayed={13}/>
     
     </div>
   )

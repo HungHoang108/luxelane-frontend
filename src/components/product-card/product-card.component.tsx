@@ -12,15 +12,17 @@ const ProductCard = ({ title, productsDisplayed }: ProductCardList) => {
     <>
       <h1>{title}</h1>
       <div className="products">
-        {products.slice(0, productsDisplayed).map((product) => (
+        {products.slice(1, productsDisplayed).map((product) => (
           <div key={product.id} className="products-card">
             <img src={product.images[0]} alt="" />
             <h4>{product.title}</h4>
             <h4>{product.price} $</h4>
             <Button
-              // name="Add to cart"
               id={product.id}
               itemName={product.title}
+              image={product.images[0]}
+              price={product.price}
+              amount={1}
             />
           </div>
         ))}
