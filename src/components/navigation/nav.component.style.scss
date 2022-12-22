@@ -1,13 +1,24 @@
-.nav {
+.navBox {
+  position: relative;
+  .navBox-nav {
     display: flex;
     justify-content: space-between;
-    
 
     .nav-icon {
-        display: grid;
-        grid-template-columns: auto auto auto auto;
-        div {
-            margin-right: 1rem;
-        }
+      display: grid;
+      grid-template-columns: auto auto auto auto;
+      div {
+        margin-right: 1rem;
+      }
     }
+  }
+//   .nav-cart {
+//     position: absolute;
+//     width: 5rem;
+//     height: 7rem;
+//     background-color: blue;
+//   }
+Cart {
+    position: absolute;
+}
 }
