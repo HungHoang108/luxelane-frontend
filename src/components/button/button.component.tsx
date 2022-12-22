@@ -5,7 +5,6 @@ import { CartItemType } from "../../types/cart-items.types";
 import { Product } from "../../types/product.type";
 
 import "./button.component.styles.scss";
-// { name, id }: ButtonType,
 const Button = ({ id, itemName, price, image, amount }: CartItemType) => {
   const dispatch = useAppDispatch();
 

@@ -2,24 +2,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import { useAppSelector, useAppDispatch } from "../../../hooks/reduxHook";
-import { CartItemType } from "../../../types/cart-items.types";
+import {
+  increaseItem,
+  decreaseItem,
+  cartItemId,
+} from "../../../redux/carttems-reducer.redux";
 
 import "./cart-page.routes.styles.scss";
 
-const CartPage = ({ id }: CartItemType) => {
+const CartPage = () => {
   const cartItem = useAppSelector((state) => state.CartItemReducer);
   const dispatch = useAppDispatch();
-
-  const increase = () => {
-    const increment = {
-      id: id,
-      ...rest
-    };
-  };
-
-  const decrease = () => {
-    const decrement = {};
-  };
 
   return (
     <div className="cartpage-box">
@@ -32,9 +25,25 @@ const CartPage = ({ id }: CartItemType) => {
             <p>{item.itemName}</p>
           </div>
           <div className="cartpage-box-item_amount">
-            <div onClick={increase}> - </div>
+            <div>
+              <button
+                onClick={() => {
+                  dispatch(decreaseItem({ id: item.id }));
+                }}
+              >
+                -
+              </button>
+            </div>
             <div>{item.amount} </div>
-            <div onClick={decrease}> + </div>
+            <div>
+              <button
+                onClick={() => {
+                  dispatch(increaseItem({ id: item.id }));
+                }}
+              >
+                +
+              </button>
+            </div>
           </div>
           <div>
             <p>{item.price} $</p>
