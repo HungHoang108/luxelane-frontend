@@ -5,7 +5,7 @@ import { useAppSelector, useAppDispatch } from "../../../hooks/reduxHook";
 import {
   increaseItem,
   decreaseItem,
-  cartItemId,
+  removeItem,
 } from "../../../redux/carttems-reducer.redux";
 
 import "./cart-page.routes.styles.scss";
@@ -49,7 +49,13 @@ const CartPage = () => {
             <p>{item.price} $</p>
           </div>
           <div>
-            <p>x</p>
+            <button
+              onClick={() => {
+                dispatch(removeItem({ id: item.id }));
+              }}
+            >
+              x
+            </button>
           </div>
         </div>
       ))}
