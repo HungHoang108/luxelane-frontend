@@ -31,7 +31,6 @@ const ProductsSlice = createSlice({
         return state;
       }
       return action.payload;
-     
     });
   },
 });

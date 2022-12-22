@@ -1,6 +1,5 @@
-import React from "react";
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import axios, { AxiosResponse } from "axios";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 import { Category } from "../types/category.types";
 
 const initialState: Category[] = [];
@@ -32,7 +31,6 @@ const CategoriesSlice = createSlice({
       }
       return action.payload;
       //setState(action.payload)
-     
     });
   },
 });

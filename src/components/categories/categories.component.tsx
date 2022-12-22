@@ -17,7 +17,7 @@ const Categories = () => {
     <h1>Categories</h1>
     <div className="categories">
     {categories.slice(0, 5).map(category => (
-      <div className="categories-category">
+      <div key={category.id} className="categories-category">
         <img src= {category.image} alt="" />
         <h4>{category.name}</h4>
       </div>
