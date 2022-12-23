@@ -8,6 +8,7 @@ import Root from "./components/root/root.component";
 import NotFound from "./components/not-found/notfound.component";
 import ProductList from "./components/routes/product-list/product-list.component";
 import CartPage from "./components/routes/cart-page/cart-page.routes";
+import Login from "./components/routes/login/login.routes";
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="" element={<Home />} />
         <Route path="productlist" element={<ProductList />} />
         <Route path="/cartpage" element={<CartPage />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/*" element={<NotFound />} />
       </Route>
     </Routes>
