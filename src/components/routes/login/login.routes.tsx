@@ -9,15 +9,13 @@ const Login = () => {
     password: "",
   });
   const [user, setUser] = useState<UserType>({
-    id: 0,
     email: "",
     password: "",
     name: "",
-    role: "customer",
-    avatar: "",
+    avatar: null,
   });
 
-  const { id, email, password, name, role, avatar } = user;
+  const { email, password, name, avatar } = user;
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -45,11 +43,18 @@ const Login = () => {
       };
     });
   };
+
+  //changing avatar type in usertype to FileList | null
+  const handleRegisterFile = (e: ChangeEvent<HTMLInputElement>) => {
+    setUser({
+      ...user,
+      avatar: e.target.files,
+    });
+  };
   const json = {
     email: email,
     password: password,
     name: name,
-    role: role,
     avatar: avatar,
   };
   const submitRegister = async () => {
@@ -112,7 +117,12 @@ const Login = () => {
           />
         </div>
         <div>
-          <input type="file" name="avatar" onChange={handleRegister} />
+          <input
+            type="file"
+            name="avatar"
+            onChange={handleRegisterFile}
+            multiple
+          />
         </div>
         <div>
           <button onClick={submitRegister}>submit</button>
