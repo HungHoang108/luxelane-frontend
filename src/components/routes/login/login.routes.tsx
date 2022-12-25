@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useState, useEffect } from "react";
 import axios from "axios";
 import { LoginType } from "../../../types/login.types";
 import { UserType } from "../../../types/user.types";
@@ -8,11 +8,14 @@ const Login = () => {
     email: "",
     password: "",
   });
+  const [file, setFile] = useState<FileList | null>(null);
+  const [imgString, setImgString] = useState("");
+
   const [user, setUser] = useState<UserType>({
     email: "",
     password: "",
     name: "",
-    avatar: null,
+    avatar: imgString,
   });
 
   const { email, password, name, avatar } = user;
@@ -44,12 +47,10 @@ const Login = () => {
     });
   };
 
-  //changing avatar type in usertype to FileList | null
   const handleRegisterFile = (e: ChangeEvent<HTMLInputElement>) => {
-    setUser({
-      ...user,
-      avatar: e.target.files,
-    });
+    setFile(e.target.files);
+
+    console.log(file);
   };
   const json = {
     email: email,
@@ -58,11 +59,50 @@ const Login = () => {
     avatar: avatar,
   };
   const submitRegister = async () => {
-    const res = await axios.post(
-      "https://api.escuelajs.co/api/v1/users/",
-      json
-    );
+    const test1 = axios
+      .post(
+        "https://api.escuelajs.co/api/v1/files/upload",
+        { file: file && file[0] },
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      )
+      .then((res) =>
+        setUser((prev) => {
+          return {
+            ...user,
+            avatar: res.data.location,
+          };
+        })
+      );
+
+    // const createUser = axios.post(
+    //   "https://api.escuelajs.co/api/v1/users/",
+    //   json
+    // );
   };
+
+  const createUser = async () => {
+    await axios
+      .post("https://api.escuelajs.co/api/v1/users/", json)
+      .then((res) => console.log(res.data));
+  };
+
+  useEffect(() => {
+    createUser();
+  }, [file]);
+  //   .then((res) =>
+  //   setUser((prev) => {
+  //     return {
+  //       ...prev,
+  //       avatar: res.data.location,
+  //     };
+  //   })
+  // );
+
+  // .then(res=> console.log(res.data))
 
   return (
     <div>
