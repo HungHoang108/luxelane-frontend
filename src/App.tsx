@@ -8,7 +8,7 @@ import Root from "./components/root/root.component";
 import NotFound from "./components/not-found/notfound.component";
 import ProductList from "./components/routes/product-list/product-list.component";
 import CartPage from "./components/routes/cart-page/cart-page.routes";
-import Login from "./components/routes/login/login.routes";
+import Login from "./components/routes/login-logout/login.routes";
 
 const App = () => {
   const dispatch = useAppDispatch();

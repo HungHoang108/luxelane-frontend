@@ -9,14 +9,13 @@ const Login = () => {
     password: "",
   });
   const [file, setFile] = useState<FileList | null>(null);
-  const [imgString, setImgString] = useState("");
-
   const [user, setUser] = useState<UserType>({
     email: "",
     password: "",
     name: "",
-    avatar: imgString,
+    avatar: "",
   });
+  const [loginStatus, setLoginStatus] = useState(false);
 
   const { email, password, name, avatar } = user;
 
@@ -31,10 +30,19 @@ const Login = () => {
   };
 
   const handleSubmit = async () => {
-    await axios.post("https://api.escuelajs.co/api/v1/auth/login", {
-      email: login.email,
-      password: login.password,
-    });
+    try {
+      await axios
+        .post("https://api.escuelajs.co/api/v1/auth/login", {
+          email: login.email,
+          password: login.password,
+        })
+        .then((res) => {
+          console.log(res.data);
+          res.data && setLoginStatus(true);
+        });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleRegister = (e: ChangeEvent<HTMLInputElement>) => {
@@ -59,7 +67,7 @@ const Login = () => {
     avatar: avatar,
   };
   const submitRegister = async () => {
-    const test1 = axios
+    await axios
       .post(
         "https://api.escuelajs.co/api/v1/files/upload",
         { file: file && file[0] },
@@ -80,9 +88,17 @@ const Login = () => {
   };
 
   const createUser = async () => {
-    await axios
-      .post("https://api.escuelajs.co/api/v1/users/", json)
-      .then((res) => console.log(res.data));
+    try {
+      await axios
+        .post("https://api.escuelajs.co/api/v1/users/", json)
+        .then((res) => {
+          console.log(res.data);
+          res.data && setLoginStatus(true);
+          console.log(loginStatus);
+        });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
