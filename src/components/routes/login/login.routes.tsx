@@ -31,7 +31,7 @@ const Login = () => {
   };
 
   const handleSubmit = async () => {
-    const res = await axios.post("https://api.escuelajs.co/api/v1/auth/login", {
+    await axios.post("https://api.escuelajs.co/api/v1/auth/login", {
       email: login.email,
       password: login.password,
     });
@@ -77,11 +77,6 @@ const Login = () => {
           };
         })
       );
-
-    // const createUser = axios.post(
-    //   "https://api.escuelajs.co/api/v1/users/",
-    //   json
-    // );
   };
 
   const createUser = async () => {
@@ -93,16 +88,6 @@ const Login = () => {
   useEffect(() => {
     createUser();
   }, [file]);
-  //   .then((res) =>
-  //   setUser((prev) => {
-  //     return {
-  //       ...prev,
-  //       avatar: res.data.location,
-  //     };
-  //   })
-  // );
-
-  // .then(res=> console.log(res.data))
 
   return (
     <div>

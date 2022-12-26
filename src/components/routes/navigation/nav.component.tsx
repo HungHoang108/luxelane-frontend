@@ -23,12 +23,13 @@ const Navigation = () => {
           <div onClick={cartStatus} className="nav-icon_cart">
             cart
           </div>
+          <div className="navBox-cart"><Cart /></div>
+
           <div>
             <Link to="login">LOG IN</Link>
           </div>
         </div>
       </div>
-      <div className="navBox-cart">{status && <Cart />}</div>
     </div>
   );
 };

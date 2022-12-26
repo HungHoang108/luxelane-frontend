@@ -9,13 +9,26 @@
       div {
         margin-right: 1rem;
       }
+      .navBox-cart {
+        display: none;
+        &:hover {
+          display: block;
+        }
+      }
+
+      .nav-icon_cart {
+        &:hover {
+          + {
+            .navBox-cart {
+              display: block;
+            }
+          }
+        }
+      }
     }
   }
-//   .nav-icon_cart:hover .navBox-cart {
-//     // color: red;
-//     display: block;
-//   }
-  .navBox-cart {
-    display: block;
-  }
+  //   .nav-icon_cart:hover .navBox-cart {
+  //     // color: red;
+  //     display: block;
+  //   }
 }
