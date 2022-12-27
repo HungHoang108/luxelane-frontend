@@ -3,8 +3,11 @@ import axios from "axios";
 import { LoginType } from "../../../types/login.types";
 import { UserType } from "../../../types/user.types";
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../../hooks/reduxHook";
+import { isLogIn } from "../../../redux/loginStatus-reducer";
 
 const Login = () => {
+  const dispatch = useAppDispatch();
   const [login, setLogin] = useState<LoginType>({
     email: "",
     password: "",
@@ -16,7 +19,6 @@ const Login = () => {
     name: "",
     avatar: "",
   });
-  const [loginStatus, setLoginStatus] = useState(false);
   const { email, password, name, avatar } = user;
   const nav = useNavigate();
 
@@ -40,8 +42,8 @@ const Login = () => {
         })
         .then((res) => {
           if (res.data) {
-            setLoginStatus(true);
             nav("/");
+            dispatch(isLogIn(true));
           }
         });
     } catch (error) {
@@ -100,9 +102,7 @@ const Login = () => {
         await axios
           .post("https://api.escuelajs.co/api/v1/users/", json)
           .then((res) => {
-            console.log(res.data);
-            res.data && setLoginStatus(true);
-            console.log(loginStatus);
+            nav("/");
           });
       } catch (error) {
         console.log(error);

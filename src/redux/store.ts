@@ -1,13 +1,15 @@
-import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import { categoriesReducer } from './categories-reducer.redux';
-import { productReducer } from './products-reducer';
-import { CartItemReducer } from './carttems-reducer.redux';
+import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
+import { categoriesReducer } from "./categories-reducer.redux";
+import { productReducer } from "./products-reducer";
+import { CartItemReducer } from "./carttems-reducer.redux";
+import { LoginReducer } from "./loginStatus-reducer";
 
 export const store = configureStore({
   reducer: {
     categoriesReducer,
     productReducer,
-    CartItemReducer
+    CartItemReducer,
+    LoginReducer,
   },
 });
 
@@ -19,4 +21,3 @@ export type AppThunk<ReturnType = void> = ThunkAction<
   unknown,
   Action<string>
 >;
-

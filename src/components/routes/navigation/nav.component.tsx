@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import Cart from "../../cart/cart.component";
+
+import { useAppSelector, useAppDispatch } from "../../../hooks/reduxHook";
+import { isLogIn } from "../../../redux/loginStatus-reducer";
 
 import "./nav.component.style.scss";
 
 const Navigation = () => {
   const [status, setStatus] = useState(false);
-
+  const loginStatus = useAppSelector((state) => state.LoginReducer);
+  const dispatch = useAppDispatch();
   const cartStatus = () => {
     setStatus(!status);
   };
@@ -23,10 +27,18 @@ const Navigation = () => {
           <div onClick={cartStatus} className="nav-icon_cart">
             cart
           </div>
-          <div className="navBox-cart"><Cart /></div>
+          <div className="navBox-cart">
+            <Cart />
+          </div>
 
           <div>
-            <Link to="login">LOG IN</Link>
+            {loginStatus ? (
+              <Link onClick={() => dispatch(isLogIn(false))} to="">
+                LOG OUT
+              </Link>
+            ) : (
+              <Link to="login">LOG IN</Link>
+            )}
           </div>
         </div>
       </div>
