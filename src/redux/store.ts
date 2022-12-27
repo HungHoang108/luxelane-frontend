@@ -3,6 +3,7 @@ import { categoriesReducer } from "./categories-reducer.redux";
 import { productReducer } from "./products-reducer";
 import { CartItemReducer } from "./carttems-reducer.redux";
 import { LoginReducer } from "./loginStatus-reducer";
+import { SearchTagReducer } from "./search-tag-reducer";
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     productReducer,
     CartItemReducer,
     LoginReducer,
+    SearchTagReducer
   },
 });
 

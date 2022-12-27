@@ -9,6 +9,7 @@ import NotFound from "./components/not-found/notfound.component";
 import ProductList from "./components/routes/product-list/product-list.component";
 import CartPage from "./components/routes/cart-page/cart-page.routes";
 import Login from "./components/routes/login-logout/login.routes";
+import SearchResult from "./components/routes/searchResult/searchResult.route";
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -23,6 +24,7 @@ const App = () => {
         <Route path="productlist" element={<ProductList />} />
         <Route path="/cartpage" element={<CartPage />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/searchresult" element={<SearchResult />} />
         <Route path="/*" element={<NotFound />} />
       </Route>
     </Routes>
