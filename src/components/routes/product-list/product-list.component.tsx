@@ -1,9 +1,15 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState, useEffect } from "react";
 import ProductCard from "../../product-card/product-card.component";
+import { useAppDispatch } from "../../../hooks/reduxHook";
+import { sortByPrice } from "../../../redux/products-reducer";
 
 const ProductList = () => {
-  const [sortOption, setSortOption] = useState("");
+  const dispatch = useAppDispatch();
 
+  const [sortOption, setSortOption] = useState("");
+  useEffect(() => {
+    dispatch(sortByPrice(sortOption));
+  }, [sortOption]);
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setSortOption(e.target.value);
   };
