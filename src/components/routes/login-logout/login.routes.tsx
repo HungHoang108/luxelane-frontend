@@ -2,6 +2,7 @@ import React, { ChangeEvent, useState, useEffect } from "react";
 import axios from "axios";
 import { LoginType } from "../../../types/login.types";
 import { UserType } from "../../../types/user.types";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [login, setLogin] = useState<LoginType>({
@@ -16,9 +17,10 @@ const Login = () => {
     avatar: "",
   });
   const [loginStatus, setLoginStatus] = useState(false);
-
   const { email, password, name, avatar } = user;
+  const nav = useNavigate();
 
+  //Login
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setLogin((prev) => {
@@ -37,14 +39,17 @@ const Login = () => {
           password: login.password,
         })
         .then((res) => {
-          console.log(res.data);
-          res.data && setLoginStatus(true);
+          if (res.data) {
+            setLoginStatus(true);
+            nav("/");
+          }
         });
     } catch (error) {
       console.log(error);
     }
   };
 
+  //Create user
   const handleRegister = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setUser((prev) => {
@@ -57,8 +62,6 @@ const Login = () => {
 
   const handleRegisterFile = (e: ChangeEvent<HTMLInputElement>) => {
     setFile(e.target.files);
-
-    console.log(file);
   };
   const json = {
     email: email,
@@ -67,37 +70,43 @@ const Login = () => {
     avatar: avatar,
   };
   const submitRegister = async () => {
-    await axios
-      .post(
-        "https://api.escuelajs.co/api/v1/files/upload",
-        { file: file && file[0] },
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      )
-      .then((res) =>
-        setUser((prev) => {
-          return {
-            ...user,
-            avatar: res.data.location,
-          };
-        })
-      );
+    try {
+      await axios
+        .post(
+          "https://api.escuelajs.co/api/v1/files/upload",
+          { file: file && file[0] },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        )
+        .then((res) =>
+          setUser((prev) => {
+            return {
+              ...user,
+              avatar: res.data.location,
+            };
+          })
+        );
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const createUser = async () => {
-    try {
-      await axios
-        .post("https://api.escuelajs.co/api/v1/users/", json)
-        .then((res) => {
-          console.log(res.data);
-          res.data && setLoginStatus(true);
-          console.log(loginStatus);
-        });
-    } catch (error) {
-      console.log(error);
+    if (file) {
+      try {
+        await axios
+          .post("https://api.escuelajs.co/api/v1/users/", json)
+          .then((res) => {
+            console.log(res.data);
+            res.data && setLoginStatus(true);
+            console.log(loginStatus);
+          });
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
