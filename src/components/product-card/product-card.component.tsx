@@ -7,12 +7,21 @@ import "./product-card.component.styles.scss";
 
 const ProductCard = ({ title, productsDisplayed }: ProductCardList) => {
   const products = useAppSelector((state) => state.productReducer);
+  const sort = useAppSelector(state => state.SortReducer)
+  console.log(sort)
+  const sortByCategoryArray = ()=>{
+    if(!sort){
+      return products
+    }
+
+    return products.filter(item => item.category.name === sort)
+  }
 
   return (
     <>
       <h1>{title}</h1>
       <div className="products">
-        {products.slice(1, productsDisplayed).map((product) => (
+        {sortByCategoryArray().slice(1, productsDisplayed).map((product) => (
           <div key={product.id} className="products-card">
             <img src={product.images[0]} alt="" />
             <h4>{product.title}</h4>
