@@ -17,7 +17,6 @@ const ProductCard = ({ title, productsDisplayed }: ProductCardList) => {
     return products.filter((item) => item.category.name === sortCategory);
   };
   const test = sortByCategoryArray();
-  console.log(sortByCategoryArray());
   const sortByPrice = () => {
     if (sortPrice === "price-up") {
       console.log("sort through");
@@ -27,8 +26,6 @@ const ProductCard = ({ title, productsDisplayed }: ProductCardList) => {
     }
   };
   sortByPrice();
-
-  console.log("sorted", test);
 
   return (
     <>

@@ -9,6 +9,7 @@ import { searchTagAction } from "../../../redux/search-tag-reducer";
 
 
 import "./nav.component.style.scss";
+import { log } from "console";
 
 const Navigation = () => {
   const [status, setStatus] = useState(false);
@@ -62,6 +63,7 @@ const Navigation = () => {
               <Link to="login">LOG IN</Link>
             )}
           </div>
+          <div>{loginStatus && <Link to="newproduct">New Product</Link> }</div>
         </div>
       </div>
     </div>

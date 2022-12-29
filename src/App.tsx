@@ -10,6 +10,7 @@ import ProductList from "./components/routes/product-list/product-list.component
 import CartPage from "./components/routes/cart-page/cart-page.routes";
 import Login from "./components/routes/login-logout/login.routes";
 import SearchResult from "./components/routes/searchResult/searchResult.route";
+import NewProduct from "./components/routes/new-product/new-product.component";
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -25,6 +26,8 @@ const App = () => {
         <Route path="/cartpage" element={<CartPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/searchresult" element={<SearchResult />} />
+        <Route path="/newproduct" element={<NewProduct />} />
+
         <Route path="/*" element={<NotFound />} />
       </Route>
     </Routes>
