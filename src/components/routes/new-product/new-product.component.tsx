@@ -1,6 +1,86 @@
-import React from "react";
+import axios from "axios";
+import { ChangeEvent, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { NewProductType } from "../../../types/new-product.type";
 
 const NewProduct = () => {
+  // const nav = useNavigate();
+  const [file, setFile] = useState<FileList | null>(null);
+  const [product, setProduct] = useState<NewProductType>({
+    title: "",
+    price: 0,
+    description: "",
+    categoryId: 0,
+    images: [],
+  });
+
+  const { title, price, description, categoryId, images } = product;
+
+  const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setProduct((prev) => {
+      return {
+        ...prev,
+        [name]: value,
+      };
+    });
+  };
+
+  const handleImageFile = (e: ChangeEvent<HTMLInputElement>) => {
+    setFile(e.target.files);
+  };
+  const newItem = {
+    title: title,
+    price: price,
+    description: description,
+    categoryId: categoryId,
+    images: images,
+  };
+  const submitProductImages = async () => {
+    try {
+      await axios
+        .post(
+          "https://api.escuelajs.co/api/v1/files/upload",
+          { file: file && file[0] },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        )
+        .then((res) =>
+          setProduct((prev) => {
+            return {
+              ...product,
+              images: [res.data.location],
+            };
+          })
+        );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const createProduct = async () => {
+    if (file) {
+      try {
+        await axios
+          .post("https://api.escuelajs.co/api/v1/products/", newItem)
+          .then((res) => {
+            console.log(res);
+            // nav("/");
+          });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
+  useEffect(() => {
+    createProduct();
+  }, [file]);
+
   return (
     <div>
       <div>
@@ -9,7 +89,7 @@ const NewProduct = () => {
           <input
             type="text"
             name="title"
-            // onChange={handleRegister}
+            onChange={handleChangeInput}
             placeholder="title"
           />
         </div>
@@ -18,7 +98,7 @@ const NewProduct = () => {
             type="number"
             name="price"
             placeholder="price"
-            // onChange={handleRegister}
+            onChange={handleChangeInput}
           />
         </div>
         <div>
@@ -26,7 +106,7 @@ const NewProduct = () => {
             type="text"
             name="description"
             placeholder="description"
-            // onChange={handleRegister}
+            onChange={handleChangeInput}
           />
         </div>
         <div>
@@ -34,19 +114,14 @@ const NewProduct = () => {
             type="number"
             name="categoryId"
             placeholder="categoryId"
-            // onChange={handleRegister}
+            onChange={handleChangeInput}
           />
         </div>
         <div>
-          <input
-            type="file"
-            name="image"
-            // onChange={handleRegisterFile}
-            multiple
-          />
+          <input type="file" name="image" onChange={handleImageFile} multiple />
         </div>
         <div>
-          <button>submit</button>
+          <button onClick={submitProductImages}>submit</button>
         </div>
       </div>
     </div>
