@@ -4,7 +4,9 @@ import { productReducer } from "./products-reducer";
 import { CartItemReducer } from "./carttems-reducer.redux";
 import { LoginReducer } from "./loginStatus-reducer";
 import { SearchTagReducer } from "./search-tag-reducer";
-import { SortReducer } from "./sort-reducer";
+import { SortReducer } from "./sort-category-reducer";
+import {SortPriceReducer} from "./sort-price-reducer";
+
 
 export const store = configureStore({
   reducer: {
@@ -13,7 +15,8 @@ export const store = configureStore({
     CartItemReducer,
     LoginReducer,
     SearchTagReducer,
-    SortReducer
+    SortReducer,
+    SortPriceReducer
   },
 });
 

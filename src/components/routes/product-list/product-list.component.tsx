@@ -1,33 +1,19 @@
-import { ChangeEvent, useState, useEffect } from "react";
+import { ChangeEvent } from "react";
 import ProductCard from "../../product-card/product-card.component";
 import { useAppDispatch } from "../../../hooks/reduxHook";
-import { sortByPrice, sortByCategory } from "../../../redux/sort-reducer";
-import { useAppSelector } from "../../../hooks/reduxHook";
+import {
+  sortByCategory,
+} from "../../../redux/sort-category-reducer";
+import { sortByPrice } from "../../../redux/sort-price-reducer";
 
 const ProductList = () => {
   const dispatch = useAppDispatch();
-  // const products = useAppSelector((state) => state.productReducer);
-
-  // const [sortOption, setSortOption] = useState("");
-  // const [sortCategory, setSortCategory] = useState("");
-
-  // useEffect(() => {
-  //   dispatch(sortByPrice(sortOption));
-  //   dispatch(sortByCategory(sortCategory));
-  // }, [sortOption || sortCategory]);
-
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    // console.log(e.target.value);
-    // setSortOption(e.target.value);
-    dispatch(sortByPrice(e.target.value))
+    dispatch(sortByPrice(e.target.value));
   };
-
   const handleCategory = (e: ChangeEvent<HTMLSelectElement>) => {
-    // setSortCategory(e.target.value);
-    dispatch(sortByCategory(e.target.value))
-
+    dispatch(sortByCategory(e.target.value));
   };
-
   return (
     <div>
       <div>

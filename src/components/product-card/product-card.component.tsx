@@ -7,21 +7,34 @@ import "./product-card.component.styles.scss";
 
 const ProductCard = ({ title, productsDisplayed }: ProductCardList) => {
   const products = useAppSelector((state) => state.productReducer);
-  const sort = useAppSelector(state => state.SortReducer)
-  console.log(sort)
-  const sortByCategoryArray = ()=>{
-    if(!sort){
-      return products
-    }
+  const sortCategory = useAppSelector((state) => state.SortReducer);
+  const sortPrice = useAppSelector((state) => state.SortPriceReducer);
 
-    return products.filter(item => item.category.name === sort)
-  }
+  const sortByCategoryArray = () => {
+    if (!sortCategory) {
+      return products;
+    }
+    return products.filter((item) => item.category.name === sortCategory);
+  };
+  const test = sortByCategoryArray();
+  console.log(sortByCategoryArray());
+  const sortByPrice = () => {
+    if (sortPrice === "price-up") {
+      console.log("sort through");
+      return test.sort((a, b) => a.price - b.price);
+    } else if (sortPrice === "price-down") {
+      return test.sort((a, b) => b.price - a.price);
+    }
+  };
+  sortByPrice();
+
+  console.log("sorted", test);
 
   return (
     <>
       <h1>{title}</h1>
       <div className="products">
-        {sortByCategoryArray().slice(1, productsDisplayed).map((product) => (
+        {test.slice(1, productsDisplayed).map((product) => (
           <div key={product.id} className="products-card">
             <img src={product.images[0]} alt="" />
             <h4>{product.title}</h4>

@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const SortSlice = createSlice({
-  name: "searchTagSlice",
+  name: "SortSlice",
   initialState: "",
   reducers: {
     sortByPrice: (state, action) => {
+      
        return state = action.payload
 
     },
