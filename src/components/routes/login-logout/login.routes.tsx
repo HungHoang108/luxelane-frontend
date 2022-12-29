@@ -13,6 +13,7 @@ const Login = () => {
     password: "",
   });
   const [file, setFile] = useState<FileList | null>(null);
+  const [status, setStatus] = useState(false);
   const [user, setUser] = useState<UserType>({
     email: "",
     password: "",
@@ -65,12 +66,7 @@ const Login = () => {
   const handleRegisterFile = (e: ChangeEvent<HTMLInputElement>) => {
     setFile(e.target.files);
   };
-  const json = {
-    email: email,
-    password: password,
-    name: name,
-    avatar: avatar,
-  };
+
   const submitRegister = async () => {
     try {
       await axios
@@ -86,14 +82,21 @@ const Login = () => {
         .then((res) =>
           setUser((prev) => {
             return {
-              ...user,
+              ...prev,
               avatar: res.data.location,
             };
           })
         );
+      setStatus(!status);
     } catch (error) {
       console.log(error);
     }
+  };
+  const json = {
+    email: email,
+    password: password,
+    name: name,
+    avatar: avatar,
   };
 
   const createUser = async () => {
@@ -102,6 +105,7 @@ const Login = () => {
         await axios
           .post("https://api.escuelajs.co/api/v1/users/", json)
           .then((res) => {
+            res.data && dispatch(isLogIn(true));
             nav("/");
           });
       } catch (error) {
@@ -112,7 +116,7 @@ const Login = () => {
 
   useEffect(() => {
     createUser();
-  }, [file]);
+  }, [status]);
 
   return (
     <div>

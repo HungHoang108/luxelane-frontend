@@ -1,12 +1,12 @@
 import axios from "axios";
 import { ChangeEvent, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import { NewProductType } from "../../../types/new-product.type";
 
 const NewProduct = () => {
-  // const nav = useNavigate();
   const [file, setFile] = useState<FileList | null>(null);
+  const [status, setStatus] = useState(false);
+
   const [product, setProduct] = useState<NewProductType>({
     title: "",
     price: 0,
@@ -37,7 +37,7 @@ const NewProduct = () => {
     categoryId: categoryId,
     images: images,
   };
-  const submitProductImages = async () => {
+  const submitProduct = async () => {
     try {
       await axios
         .post(
@@ -57,6 +57,7 @@ const NewProduct = () => {
             };
           })
         );
+      setStatus(!status);
     } catch (error) {
       console.log(error);
     }
@@ -68,8 +69,7 @@ const NewProduct = () => {
         await axios
           .post("https://api.escuelajs.co/api/v1/products/", newItem)
           .then((res) => {
-            console.log(res);
-            // nav("/");
+            console.log(res.data);
           });
       } catch (error) {
         console.log(error);
@@ -79,7 +79,7 @@ const NewProduct = () => {
 
   useEffect(() => {
     createProduct();
-  }, [file]);
+  }, [status]);
 
   return (
     <div>
@@ -121,7 +121,7 @@ const NewProduct = () => {
           <input type="file" name="image" onChange={handleImageFile} multiple />
         </div>
         <div>
-          <button onClick={submitProductImages}>submit</button>
+          <button onClick={submitProduct}>submit</button>
         </div>
       </div>
     </div>

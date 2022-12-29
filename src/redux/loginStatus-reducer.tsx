@@ -7,7 +7,6 @@ const LoginStatusSlice = createSlice({
   initialState: false,
   reducers: {
     isLogIn: (state, action) => {
-      console.log(action.payload);
       return state = action.payload;
     },
   },

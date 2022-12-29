@@ -14,7 +14,15 @@ const ProductCard = ({ title, productsDisplayed }: ProductCardList) => {
     if (!sortCategory) {
       return products;
     }
-    return products.filter((item) => item.category.name === sortCategory);
+
+    const isCategoryExist = products.find(
+      (item) => item.category.name === sortCategory
+    );
+    if (isCategoryExist) {
+      return products.filter((item) => item.category.name === sortCategory);
+    } else {
+      return products;
+    }
   };
   const test = sortByCategoryArray();
   const sortByPrice = () => {
