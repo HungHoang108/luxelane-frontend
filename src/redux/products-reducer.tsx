@@ -2,7 +2,6 @@ import React from "react";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios, { AxiosResponse } from "axios";
 import { Product } from "../types/product.type";
-import { access } from "fs";
 
 const initialState: Product[] = [];
 
@@ -23,7 +22,19 @@ export const fetchAllProducts = createAsyncThunk(
 const ProductsSlice = createSlice({
   name: "productSlice",
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    deleteItem: (
+      state: Product[],
+      action: {
+        payload: any;
+      }
+    ): Product[] | undefined => {
+      console.log(action.payload.product.id);
+      if (action.payload) {
+        return state.filter((item) => item.id !== action.payload.product.id);
+      }
+    },
+  },
   extraReducers: (build) => {
     build.addCase(fetchAllProducts.fulfilled, (state, action) => {
       if (action.payload && "message" in action.payload) {
@@ -36,4 +47,5 @@ const ProductsSlice = createSlice({
   },
 });
 export const productReducer = ProductsSlice.reducer;
+export const { deleteItem } = ProductsSlice.actions;
 export default ProductsSlice;

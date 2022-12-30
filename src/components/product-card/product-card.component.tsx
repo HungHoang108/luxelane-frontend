@@ -1,11 +1,14 @@
 import { useAppSelector } from "../../hooks/reduxHook";
 
+import { useAppDispatch } from "../../hooks/reduxHook";
 import { ProductCardList } from "../../types/product-cardlist";
 import Button from "../button/button.component";
+import { deleteItem } from "../../redux/products-reducer";
 
 import "./product-card.component.styles.scss";
 
 const ProductCard = ({ title, productsDisplayed }: ProductCardList) => {
+  const dispatch = useAppDispatch();
   const products = useAppSelector((state) => state.productReducer);
   const sortCategory = useAppSelector((state) => state.SortReducer);
   const sortPrice = useAppSelector((state) => state.SortPriceReducer);
@@ -51,6 +54,7 @@ const ProductCard = ({ title, productsDisplayed }: ProductCardList) => {
               price={product.price}
               amount={1}
             />
+            <button onClick={()=>{dispatch(deleteItem({product}))}}>delete</button>
           </div>
         ))}
       </div>
