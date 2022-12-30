@@ -4,13 +4,8 @@ import { LoginType } from "../../../types/login.types";
 import { UserType } from "../../../types/user.types";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../../hooks/reduxHook";
-import { isLogIn } from "../../../redux/loginStatus-reducer";
-import { accessToken } from "../../../redux/access-token-reducer";
-
-import { useAppSelector } from "../../../hooks/reduxHook";
 
 const Login = () => {
-  const userAccessToken = useAppSelector((state) => state.AccessTokenReducer);
   const dispatch = useAppDispatch();
   const [login, setLogin] = useState<LoginType>({
     email: "",
@@ -18,8 +13,6 @@ const Login = () => {
   });
   const [file, setFile] = useState<FileList | null>(null);
   const [status, setStatus] = useState(false);
-  const [sessionStatus, setSessionStatus] = useState(false);
-  const [tokenCode, setTokenCode] = useState("");
   const [user, setUser] = useState<UserType>({
     email: "",
     password: "",
@@ -42,21 +35,17 @@ const Login = () => {
 
   const handleSubmit = async () => {
     try {
-      const test1 = await axios
-        .post("https://api.escuelajs.co/api/v1/auth/login", {
+      const response = await axios.post(
+        "https://api.escuelajs.co/api/v1/auth/login",
+        {
           email: login.email,
           password: login.password,
-        })
-        .then((res) => {
-          const test = res.data.access_token;
-          dispatch(accessToken(test));
-          setTokenCode(test);
-          if (res.data) {
-            setSessionStatus(true);
-            nav("/");
-            dispatch(isLogIn(true));
-          }
-        });
+        }
+      );
+
+      const data = response.data.access_token;
+      localStorage.setItem("user", data);
+      nav("/");
     } catch (error) {
       console.log(error);
     }
@@ -115,7 +104,6 @@ const Login = () => {
         await axios
           .post("https://api.escuelajs.co/api/v1/users/", json)
           .then((res) => {
-            res.data && dispatch(isLogIn(true));
             nav("/");
           });
       } catch (error) {
@@ -128,19 +116,17 @@ const Login = () => {
     createUser();
   }, [status]);
 
-  //Get user session
-  // const accessToken = tokenCode.access_token;
   useEffect(() => {
     userSession();
-  });
+  }, []);
 
   const userSession = async () => {
-    if (userAccessToken) {
-      console.log("hello");
+    const loggedInUser = localStorage.getItem("user");
+    if (loggedInUser) {
       await axios
         .get("https://api.escuelajs.co/api/v1/auth/profile", {
           headers: {
-            Authorization: `Bearer ${userAccessToken}`,
+            Authorization: `Bearer ${loggedInUser}`,
           },
         })
         .then((res) => {

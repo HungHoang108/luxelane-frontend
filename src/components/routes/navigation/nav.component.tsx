@@ -4,21 +4,18 @@ import { useNavigate } from "react-router-dom";
 
 import Cart from "../../cart/cart.component";
 import { useAppSelector, useAppDispatch } from "../../../hooks/reduxHook";
-import { isLogIn } from "../../../redux/loginStatus-reducer";
 import { searchTagAction } from "../../../redux/search-tag-reducer";
 
-
 import "./nav.component.style.scss";
-import { log } from "console";
 
 const Navigation = () => {
   const [status, setStatus] = useState(false);
   const [searchTag, setSearchTag] = useState("");
 
   const nav = useNavigate();
-  const loginStatus = useAppSelector((state) => state.LoginReducer);
   const dispatch = useAppDispatch();
 
+  const loginStatus = localStorage.getItem("user");
   const cartStatus = () => {
     setStatus(!status);
   };
@@ -56,7 +53,7 @@ const Navigation = () => {
           </div>
           <div>
             {loginStatus ? (
-              <Link onClick={() => dispatch(isLogIn(false))} to="">
+              <Link onClick={() => localStorage.removeItem("user") } to="">
                 LOG OUT
               </Link>
             ) : (
