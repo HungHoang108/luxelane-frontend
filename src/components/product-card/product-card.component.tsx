@@ -1,5 +1,7 @@
-import { useAppSelector } from "../../hooks/reduxHook";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
+import { useAppSelector } from "../../hooks/reduxHook";
 import { useAppDispatch } from "../../hooks/reduxHook";
 import { ProductCardList } from "../../types/product-cardlist";
 import Button from "../button/button.component";
@@ -12,6 +14,13 @@ const ProductCard = ({ title, productsDisplayed }: ProductCardList) => {
   const products = useAppSelector((state) => state.productReducer);
   const sortCategory = useAppSelector((state) => state.SortReducer);
   const sortPrice = useAppSelector((state) => state.SortPriceReducer);
+  const [role, setRole] = useState("");
+  const nav = useNavigate();
+
+  useEffect(() => {
+    const userRole = localStorage.getItem("role");
+    userRole && setRole(userRole);
+  }, []);
 
   const sortByCategoryArray = () => {
     if (!sortCategory) {
@@ -54,7 +63,24 @@ const ProductCard = ({ title, productsDisplayed }: ProductCardList) => {
               price={product.price}
               amount={1}
             />
-            <button onClick={()=>{dispatch(deleteItem({product}))}}>delete</button>
+            {role && (
+              <button
+                onClick={() => {
+                  dispatch(deleteItem({ product }));
+                }}
+              >
+                delete
+              </button>
+            )}
+            {role && (
+              <button
+                onClick={() => {
+                  nav("/editproduct");
+                }}
+              >
+                Edit
+              </button>
+            )}
           </div>
         ))}
       </div>
