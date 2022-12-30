@@ -2,7 +2,6 @@ import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import { categoriesReducer } from "./categories-reducer.redux";
 import { productReducer } from "./products-reducer";
 import { CartItemReducer } from "./carttems-reducer.redux";
-import { LoginReducer } from "./loginStatus-reducer";
 import { SearchTagReducer } from "./search-tag-reducer";
 import { SortReducer } from "./sort-category-reducer";
 import { SortPriceReducer } from "./sort-price-reducer";
@@ -13,7 +12,7 @@ export const store = configureStore({
     categoriesReducer,
     productReducer,
     CartItemReducer,
-    LoginReducer,
+
     SearchTagReducer,
     SortReducer,
     SortPriceReducer,

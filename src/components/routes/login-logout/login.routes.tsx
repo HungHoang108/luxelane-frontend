@@ -4,13 +4,15 @@ import { LoginType } from "../../../types/login.types";
 import { UserType } from "../../../types/user.types";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../../hooks/reduxHook";
-import { isLogIn } from "../../../redux/loginStatus-reducer";
-import { accessToken } from "../../../redux/access-token-reducer";
+import { accessTokenn } from "../../../redux/access-token-reducer";
 
 import { useAppSelector } from "../../../hooks/reduxHook";
 
 const Login = () => {
+  // no idea why whenever i delete the line of code below, the user session is not being added to localstorage.
+  // it obviously says that userAccessToken is not being used
   const userAccessToken = useAppSelector((state) => state.AccessTokenReducer);
+
   const dispatch = useAppDispatch();
   const [login, setLogin] = useState<LoginType>({
     email: "",
@@ -46,11 +48,10 @@ const Login = () => {
           password: login.password,
         })
         .then((res) => {
-          dispatch(accessToken(res.data.access_token));
+          dispatch(accessTokenn(res.data.access_token));
           localStorage.setItem("userToken", res.data.access_token);
           if (res.data) {
             nav("/");
-            dispatch(isLogIn(true));
           }
         });
     } catch (error) {
@@ -111,7 +112,6 @@ const Login = () => {
         await axios
           .post("https://api.escuelajs.co/api/v1/users/", json)
           .then((res) => {
-            res.data && dispatch(isLogIn(true));
             nav("/");
           });
       } catch (error) {
@@ -147,7 +147,6 @@ const Login = () => {
   return (
     <div>
       <h2>Login</h2>
-
       <div>
         <div>
           <input
@@ -169,7 +168,6 @@ const Login = () => {
           <button onClick={handleSubmit}>submit</button>
         </div>
       </div>
-
       <div>
         <h2>Register</h2>
         <div>
