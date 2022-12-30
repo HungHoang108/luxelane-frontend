@@ -4,8 +4,13 @@ import { LoginType } from "../../../types/login.types";
 import { UserType } from "../../../types/user.types";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../../hooks/reduxHook";
+import { isLogIn } from "../../../redux/loginStatus-reducer";
+import { accessToken } from "../../../redux/access-token-reducer";
+
+import { useAppSelector } from "../../../hooks/reduxHook";
 
 const Login = () => {
+  const userAccessToken = useAppSelector((state) => state.AccessTokenReducer);
   const dispatch = useAppDispatch();
   const [login, setLogin] = useState<LoginType>({
     email: "",
@@ -35,17 +40,19 @@ const Login = () => {
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.post(
-        "https://api.escuelajs.co/api/v1/auth/login",
-        {
+      await axios
+        .post("https://api.escuelajs.co/api/v1/auth/login", {
           email: login.email,
           password: login.password,
-        }
-      );
-
-      const data = response.data.access_token;
-      localStorage.setItem("user", data);
-      nav("/");
+        })
+        .then((res) => {
+          dispatch(accessToken(res.data.access_token));
+          localStorage.setItem("userToken", res.data.access_token);
+          if (res.data) {
+            nav("/");
+            dispatch(isLogIn(true));
+          }
+        });
     } catch (error) {
       console.log(error);
     }
@@ -104,6 +111,7 @@ const Login = () => {
         await axios
           .post("https://api.escuelajs.co/api/v1/users/", json)
           .then((res) => {
+            res.data && dispatch(isLogIn(true));
             nav("/");
           });
       } catch (error) {
@@ -118,18 +126,19 @@ const Login = () => {
 
   useEffect(() => {
     userSession();
-  }, []);
+  });
 
   const userSession = async () => {
-    const loggedInUser = localStorage.getItem("user");
-    if (loggedInUser) {
+    const loginToken = localStorage.getItem("userToken");
+    if (loginToken) {
       await axios
         .get("https://api.escuelajs.co/api/v1/auth/profile", {
           headers: {
-            Authorization: `Bearer ${loggedInUser}`,
+            Authorization: `Bearer ${loginToken}`,
           },
         })
         .then((res) => {
+          localStorage.setItem("role", res.data.role);
           console.log(res.data);
         });
     }
