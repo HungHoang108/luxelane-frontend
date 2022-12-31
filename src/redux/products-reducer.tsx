@@ -33,6 +33,9 @@ const ProductsSlice = createSlice({
         return state.filter((item) => item.id !== action.payload.product.id);
       }
     },
+    editItem: (state, action) =>{
+
+    }
   },
   extraReducers: (build) => {
     build.addCase(fetchAllProducts.fulfilled, (state, action) => {
@@ -46,5 +49,5 @@ const ProductsSlice = createSlice({
   },
 });
 export const productReducer = ProductsSlice.reducer;
-export const { deleteItem } = ProductsSlice.actions;
+export const { deleteItem, editItem } = ProductsSlice.actions;
 export default ProductsSlice;

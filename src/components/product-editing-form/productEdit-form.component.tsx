@@ -1,5 +1,8 @@
-import React, { ChangeEvent, ChangeEventHandler, useState } from "react";
+import axios from "axios";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import "./productEdit.component.styles.scss";
+import { useAppDispatch } from "../../hooks/reduxHook";
+import { editItem } from "../../redux/products-reducer";
 
 interface status {
   open: boolean;
@@ -16,12 +19,15 @@ const ProductEditForm = ({
   price,
   description,
 }: status) => {
+  const dispatch = useAppDispatch();
   const [editProduct, setEditProduct] = useState({
     title: title,
     price: price,
     description: description,
     image: [],
   });
+  const [file, setFile] = useState<FileList | null>(null);
+  const [status, setStatus] = useState(false);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -32,7 +38,6 @@ const ProductEditForm = ({
       };
     });
   };
-
   const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setEditProduct((prev) => {
       return {
@@ -41,6 +46,45 @@ const ProductEditForm = ({
       };
     });
   };
+
+  //adding image file
+  const handleImageFile = (e: ChangeEvent<HTMLInputElement>) => {
+    setFile(e.target.files);
+  };
+
+  const submitProduct = async () => {
+    try {
+      await axios
+        .post(
+          "https://api.escuelajs.co/api/v1/files/upload",
+          { file: file && file[0] },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        )
+        .then((res) =>
+          setEditProduct((prev) => {
+            return {
+              ...prev,
+              images: [res.data.location],
+            };
+          })
+        );
+      setStatus(!status);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const sendUpdate = async () => {
+    dispatch(editItem(editProduct));
+  };
+
+  useEffect(() => {
+    sendUpdate();
+  }, [status]);
 
   if (!open) return null;
   return (
@@ -62,7 +106,7 @@ const ProductEditForm = ({
             <div>
               <input
                 type="text"
-                name="text"
+                name="title"
                 placeholder="title"
                 onChange={handleInputChange}
                 value={editProduct.title}
@@ -90,11 +134,18 @@ const ProductEditForm = ({
 
             <div>
               <h4>image</h4>
-              <input type="file" />
+              <input
+                type="file"
+                name="image"
+                onChange={handleImageFile}
+                multiple
+              />
             </div>
           </div>
           <div className="btnContainer">
-            <button className="btnPrimary">Submit Changes</button>
+            <button className="btnPrimary" onClick={submitProduct}>
+              Submit Changes
+            </button>
           </div>
         </div>
       </div>
