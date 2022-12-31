@@ -11,8 +11,6 @@ const ProductEditingForm = () => {
         <h4>image</h4>
         <input type="file"  /></div>
     
-
-
   </div>;
 };
 

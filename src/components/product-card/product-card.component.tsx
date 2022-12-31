@@ -6,15 +6,19 @@ import { useAppDispatch } from "../../hooks/reduxHook";
 import { ProductCardList } from "../../types/product-cardlist";
 import Button from "../button/button.component";
 import { deleteItem } from "../../redux/products-reducer";
+import ProductEditForm from "../product-editing-form/productEdit-form.component";
 
 import "./product-card.component.styles.scss";
+import { privateDecrypt } from "crypto";
 
 const ProductCard = ({ title, productsDisplayed }: ProductCardList) => {
   const dispatch = useAppDispatch();
   const products = useAppSelector((state) => state.productReducer);
   const sortCategory = useAppSelector((state) => state.SortReducer);
   const sortPrice = useAppSelector((state) => state.SortPriceReducer);
+
   const [role, setRole] = useState("");
+  const [popup, setPopup] = useState(false);
   const nav = useNavigate();
 
   useEffect(() => {
@@ -75,11 +79,21 @@ const ProductCard = ({ title, productsDisplayed }: ProductCardList) => {
             {role && (
               <button
                 onClick={() => {
-                  nav("/editproduct");
+                  setPopup(true);
+                  // nav("/editproduct");
                 }}
               >
                 Edit
               </button>
+            )}
+            {popup && (
+              <ProductEditForm
+                open={popup}
+                onClose={() => setPopup(false)}
+                title={product.title}
+                price={product.price}
+                description={product.description}
+              />
             )}
           </div>
         ))}
