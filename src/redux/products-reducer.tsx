@@ -33,9 +33,16 @@ const ProductsSlice = createSlice({
         return state.filter((item) => item.id !== action.payload.product.id);
       }
     },
-    editItem: (state, action) =>{
-
-    }
+    editItem: (state, action) => {
+      state.map((item) => {
+        if (item.id === action.payload.id) {
+          item.title = action.payload.title;
+          item.price = action.payload.price;
+          item.description = action.payload.description;
+          item.images = action.payload.images;
+        }
+      });
+    },
   },
   extraReducers: (build) => {
     build.addCase(fetchAllProducts.fulfilled, (state, action) => {

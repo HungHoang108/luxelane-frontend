@@ -10,6 +10,8 @@ interface status {
   title: string;
   price: number;
   description: string;
+  id: number;
+  images: string[];
 }
 
 const ProductEditForm = ({
@@ -18,25 +20,35 @@ const ProductEditForm = ({
   title,
   price,
   description,
+  id,
+  images,
 }: status) => {
   const dispatch = useAppDispatch();
   const [editProduct, setEditProduct] = useState({
+    id: id,
     title: title,
     price: price,
     description: description,
-    image: [],
+    images: images,
   });
   const [file, setFile] = useState<FileList | null>(null);
   const [status, setStatus] = useState(false);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setEditProduct((prev) => {
-      return {
-        ...prev,
-        [name]: value,
-      };
-    });
+    if (name === "price") {
+      setEditProduct({
+        ...editProduct,
+        price: Number(value),
+      });
+    } else {
+      setEditProduct((prev) => {
+        return {
+          ...prev,
+          [name]: value,
+        };
+      });
+    }
   };
   const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setEditProduct((prev) => {
@@ -52,8 +64,8 @@ const ProductEditForm = ({
     setFile(e.target.files);
   };
 
-  const submitProduct = async () => {
-    try {
+  const submitChanges = async () => {
+    if (file) {
       await axios
         .post(
           "https://api.escuelajs.co/api/v1/files/upload",
@@ -72,10 +84,9 @@ const ProductEditForm = ({
             };
           })
         );
-      setStatus(!status);
-    } catch (error) {
-      console.log(error);
     }
+    setStatus(!status);
+    onClose();
   };
 
   const sendUpdate = async () => {
@@ -143,7 +154,7 @@ const ProductEditForm = ({
             </div>
           </div>
           <div className="btnContainer">
-            <button className="btnPrimary" onClick={submitProduct}>
+            <button className="btnPrimary" onClick={submitChanges}>
               Submit Changes
             </button>
           </div>

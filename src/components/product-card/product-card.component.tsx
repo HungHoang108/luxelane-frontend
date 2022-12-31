@@ -9,7 +9,6 @@ import { deleteItem } from "../../redux/products-reducer";
 import ProductEditForm from "../product-editing-form/productEdit-form.component";
 
 import "./product-card.component.styles.scss";
-import { privateDecrypt } from "crypto";
 
 const ProductCard = ({ title, productsDisplayed }: ProductCardList) => {
   const dispatch = useAppDispatch();
@@ -19,6 +18,8 @@ const ProductCard = ({ title, productsDisplayed }: ProductCardList) => {
 
   const [role, setRole] = useState("");
   const [popup, setPopup] = useState(false);
+  const [popupId, setPopupId] = useState(0);
+
   const nav = useNavigate();
 
   useEffect(() => {
@@ -80,19 +81,22 @@ const ProductCard = ({ title, productsDisplayed }: ProductCardList) => {
               <button
                 onClick={() => {
                   setPopup(true);
+                  setPopupId(product.id)
                   // nav("/editproduct");
                 }}
               >
                 Edit
               </button>
             )}
-            {popup && (
+            {popupId === product.id && (
               <ProductEditForm
                 open={popup}
                 onClose={() => setPopup(false)}
                 title={product.title}
                 price={product.price}
                 description={product.description}
+                id={product.id}
+                images={product.images}
               />
             )}
           </div>
