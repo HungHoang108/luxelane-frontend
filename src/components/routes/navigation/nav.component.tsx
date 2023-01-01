@@ -30,8 +30,8 @@ const Navigation = () => {
   };
 
   const removeUserData = () => {
-    localStorage.removeItem("userToken");
     localStorage.removeItem("role");
+    localStorage.removeItem("userToken");
   };
 
   return (
