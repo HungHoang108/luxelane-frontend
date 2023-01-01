@@ -1,7 +1,23 @@
 .navBox {
+  font-size: 1.2rem;
+  font-weight: 400;
+  padding: 0;
+  width: 100%;
+
+  .navBox-img {
+    img {
+      width: 100%;
+    }
+  }
+
   .navBox-nav {
     display: flex;
     justify-content: space-between;
+    padding: 1rem 2rem;
+
+    .navBox-nav_home {
+      margin-right: 1rem;
+    }
 
     .nav-icon {
       display: grid;
@@ -26,9 +42,14 @@
         }
       }
     }
+    .link {
+      text-decoration: none;
+
+    }
+    .btn {
+      padding: 0.4rem 1rem;
+      background-color: #ffb300a6;
+      border-radius: 10px;
+    }
   }
-  //   .nav-icon_cart:hover .navBox-cart {
-  //     // color: red;
-  //     display: block;
-  //   }
 }

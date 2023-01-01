@@ -5,7 +5,6 @@ import { UserType } from "../../../types/user.types";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../../hooks/reduxHook";
 import { accessTokenn } from "../../../redux/access-token-reducer";
-import { userLoginToken } from "../../../redux/user-reducer";
 
 import { useAppSelector } from "../../../hooks/reduxHook";
 
@@ -40,30 +39,24 @@ const Login = () => {
       };
     });
   };
-  
-const obj =   {
-  email: login.email,
-  password: login.password,
-}
 
   const handleSubmit = async () => {
-    dispatch(userLoginToken(obj))
-    // try {
-    //   await axios
-    //     .post("https://api.escuelajs.co/api/v1/auth/login", {
-    //       email: login.email,
-    //       password: login.password,
-    //     })
-    //     .then((res) => {
-    //       dispatch(accessTokenn(res.data.access_token));
-          
-    //       if (res.data) {
-    //         nav("/");
-    //       }
-    //     });
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    try {
+      await axios
+        .post("https://api.escuelajs.co/api/v1/auth/login", {
+          email: login.email,
+          password: login.password,
+        })
+        .then((res) => {
+          dispatch(accessTokenn(res.data.access_token));
+          localStorage.setItem("userToken", res.data.access_token);
+          if (res.data) {
+            nav("/");
+          }
+        });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   //Create user
