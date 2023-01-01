@@ -22,20 +22,24 @@ const Login = () => {
   const [file, setFile] = useState<FileList | null>(null);
   const [status, setStatus] = useState(false);
   const [sessionStatus, setSessionStatus] = useState(false);
-
   const [user, setUser] = useState<UserType>({
     email: "",
     password: "",
     name: "",
     avatar: "",
   });
+  const [token, setToken] = useState<string | null>(null);
   const { email, password, name, avatar } = user;
   const nav = useNavigate();
 
   useEffect(() => {
-    dispatch(userSessionInfo());
-    console.log("call");
+    const tokenId = localStorage.getItem("userToken")
+   setToken(tokenId)
   });
+
+  useEffect(() => {
+    dispatch(userSessionInfo());
+  }, [token]);
 
   //Login
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
