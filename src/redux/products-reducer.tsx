@@ -10,8 +10,9 @@ export const fetchAllProducts = createAsyncThunk(
   async () => {
     try {
       const products = await axios.get(
-        "https://api.escuelajs.co/api/v1/products"
+        "https://fakestoreapi.com/products"
       );
+      console.log(products.data.image)
       return products.data;
     } catch (error) {
       console.log(error);
@@ -39,7 +40,9 @@ const ProductsSlice = createSlice({
           item.title = action.payload.title;
           item.price = action.payload.price;
           item.description = action.payload.description;
-          item.images = action.payload.images;
+          // item.images = action.payload.images;
+          item.image = action.payload.images;
+
         }
       });
     },

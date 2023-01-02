@@ -11,7 +11,8 @@ interface status {
   price: number;
   description: string;
   id: number;
-  images: string[];
+  //   images: string[];
+  images: string;
 }
 
 const ProductEditForm = ({
@@ -80,7 +81,8 @@ const ProductEditForm = ({
           setEditProduct((prev) => {
             return {
               ...prev,
-              images: [res.data.location],
+              //   images: [res.data.location],
+              images: res.data.location,
             };
           })
         );

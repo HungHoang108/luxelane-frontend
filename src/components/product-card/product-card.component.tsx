@@ -58,13 +58,16 @@ const ProductCard = ({ title, productsDisplayed }: ProductCardList) => {
       <div className="products">
         {test.slice(1, productsDisplayed).map((product) => (
           <div key={product.id} className="products-card">
-            <img src={product.images[0]} alt="" />
+            {/* <img src={product.images[0]} alt="" /> */}
+            <img src={product.image} />
+
             <h4>{product.title}</h4>
             <h4>{product.price} $</h4>
             <Button
               id={product.id}
               itemName={product.title}
-              image={product.images[0]}
+              // image={product.images[0]}
+              image={product.image}
               price={product.price}
               amount={1}
             />
@@ -81,7 +84,7 @@ const ProductCard = ({ title, productsDisplayed }: ProductCardList) => {
               <button
                 onClick={() => {
                   setPopup(true);
-                  setPopupId(product.id)
+                  setPopupId(product.id);
                   // nav("/editproduct");
                 }}
               >
@@ -96,7 +99,9 @@ const ProductCard = ({ title, productsDisplayed }: ProductCardList) => {
                 price={product.price}
                 description={product.description}
                 id={product.id}
-                images={product.images}
+                // images={product.images}
+                images={product.image}
+
               />
             )}
           </div>

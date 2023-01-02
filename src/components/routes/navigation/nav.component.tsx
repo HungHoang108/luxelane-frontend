@@ -8,8 +8,6 @@ import { searchTagAction } from "../../../redux/search-tag-reducer";
 import LightModeSharpIcon from "@mui/icons-material/LightModeSharp";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
-import AddSharpIcon from '@mui/icons-material/AddSharp';
 
 import "./nav.component.style.scss";
 
@@ -72,8 +70,8 @@ const Navigation = () => {
                 Log out
               </Link>
             ) : (
-              <Link className="link" to="login">
-                <PersonRoundedIcon />
+              <Link className="link btn" to="login">
+                Log in
               </Link>
             )}
           </div>
@@ -86,12 +84,12 @@ const Navigation = () => {
           </div>
         </div>
       </div>
-      <div className="navBox-img">
+      {/* <div className="navBox-img">
         <img
           src="https://burst.shopifycdn.com/photos/kitty-cat-helps-at-work.jpg"
           alt=""
         />
-      </div>
+      </div> */}
     </div>
   );
 };
