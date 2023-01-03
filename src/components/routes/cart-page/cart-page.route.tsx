@@ -12,8 +12,9 @@ import "./cart-page.routes.styles.scss";
 
 const CartPage = () => {
   const cartItem = useAppSelector((state) => state.CartItemReducer);
-  localStorage.setItem("cartItemArray", JSON.stringify(cartItem));
   const dispatch = useAppDispatch();
+
+const totalCost = localStorage.getItem("totalCost")
 
   return (
     <div className="cartpage-box">
@@ -39,14 +40,13 @@ const CartPage = () => {
           <div>
             <img src={item.image} />
           </div>
-
           <div>
             <p>{item.itemName}</p>
           </div>
-
           <div className="cartpage-box-item_amount">
             <div>
               <button
+                className="itemAmount"
                 onClick={() => {
                   dispatch(decreaseItem({ id: item.id }));
                 }}
@@ -57,6 +57,7 @@ const CartPage = () => {
             <div>{item.amount} </div>
             <div>
               <button
+                className="itemAmount"
                 onClick={() => {
                   dispatch(increaseItem({ id: item.id }));
                 }}
@@ -65,13 +66,12 @@ const CartPage = () => {
               </button>
             </div>
           </div>
-
           <div>
             <p>{item.price} $</p>
           </div>
-
           <div>
             <button
+              className="itemAmount"
               onClick={() => {
                 dispatch(removeItem({ id: item.id }));
               }}
@@ -81,6 +81,7 @@ const CartPage = () => {
           </div>
         </div>
       ))}
+      <span className="total">Total: {totalCost} $</span>
     </div>
   );
 };

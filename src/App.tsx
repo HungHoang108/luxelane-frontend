@@ -8,7 +8,7 @@ import Root from "./components/root/root.component";
 import NotFound from "./components/not-found/notfound.component";
 import ProductList from "./components/routes/product-list/product-list.component";
 import CartPage from "./components/routes/cart-page/cart-page.route";
-import Login from "./components/routes/login-logout/login.routes";
+import Login from "./components/routes/login-logout/login.route";
 import SearchResult from "./components/routes/searchResult/searchResult.route";
 import NewProduct from "./components/routes/new-product/new-product.component";
 import ProductEditingForm from "./components/routes/product-editting/product-editing-form.component";

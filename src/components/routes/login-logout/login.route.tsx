@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState, useEffect } from "react";
+import { ChangeEvent, useState, useEffect } from "react";
 import axios from "axios";
 import { LoginType } from "../../../types/login.types";
 import { UserType } from "../../../types/user.types";
@@ -7,6 +7,8 @@ import { useAppDispatch } from "../../../hooks/reduxHook";
 import { accessTokenn } from "../../../redux/access-token-reducer";
 
 import { useAppSelector } from "../../../hooks/reduxHook";
+
+import "./login-logout.style.scss"
 
 const Login = () => {
   // no idea why whenever i delete the line of code below, the user session is not being added to localstorage.
