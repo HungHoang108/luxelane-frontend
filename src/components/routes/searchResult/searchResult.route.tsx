@@ -21,8 +21,8 @@ const SearchResult = () => {
                 <Button
                   id={product.id}
                   itemName={product.title}
-                  // image={product.images[0]}
-                  image={product.image}
+                  image={product.images[0]}
+                  // image={product.image}
 
                   price={product.price}
                   amount={1}

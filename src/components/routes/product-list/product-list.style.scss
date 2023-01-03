@@ -1,0 +1,17 @@
+.productList-box {
+    padding: 4rem 2rem;
+    .productList-box-head {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        padding-bottom: 2rem;
+        .productList-box-head_sort{
+            span {
+                padding-right: 0.5rem;
+                padding-left: 1rem;
+
+            }
+
+        }
+    }
+}

@@ -2,8 +2,8 @@ import { ChangeEvent, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-import Cart from "../../cart/cart.component";
-import { useAppDispatch } from "../../../hooks/reduxHook";
+import Cart from "../../cart-dropdown/cart-dropdown.component";
+import { useAppDispatch, useAppSelector } from "../../../hooks/reduxHook";
 import { searchTagAction } from "../../../redux/search-tag-reducer";
 import LightModeSharpIcon from "@mui/icons-material/LightModeSharp";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
@@ -18,6 +18,12 @@ const Navigation = () => {
   const nav = useNavigate();
   const loginStatus = localStorage.getItem("userToken");
   const dispatch = useAppDispatch();
+  const cartItem = useAppSelector((state) => state.CartItemReducer);
+
+  let counter = 0;
+  cartItem.map((item) => (counter += item.amount));
+  // localStorage.setItem("totalCartItem", counter.toString());
+  // const allCartItem = localStorage.getItem("totalCartItem")
 
   const cartStatus = () => {
     setStatus(!status);
@@ -49,21 +55,27 @@ const Navigation = () => {
           </Link>
         </div>
         <div className="nav-icon">
-          <div>
+          <div className="nav-icon_search">
             <input type="text" placeholder="search" onChange={handleSearch} />
             <button onClick={searchForProduct}>
               <SearchOutlinedIcon fontSize="inherit" />
             </button>
           </div>
+
           <div>
             <LightModeSharpIcon fontSize="small" />
           </div>
-          <div onClick={cartStatus} className="nav-icon_cart">
-            <ShoppingCartOutlinedIcon fontSize="small" />
+
+          <div>
+            <div onClick={cartStatus} className="nav-icon_cart">
+              <ShoppingCartOutlinedIcon fontSize="small" />
+              <span>{counter}</span>
+            </div>
+            <div className="navBox-cart">
+              <Cart />
+            </div>
           </div>
-          <div className="navBox-cart">
-            <Cart />
-          </div>
+
           <div>
             {loginStatus ? (
               <Link className="link btn" onClick={removeUserData} to="">
@@ -84,12 +96,6 @@ const Navigation = () => {
           </div>
         </div>
       </div>
-      {/* <div className="navBox-img">
-        <img
-          src="https://burst.shopifycdn.com/photos/kitty-cat-helps-at-work.jpg"
-          alt=""
-        />
-      </div> */}
     </div>
   );
 };

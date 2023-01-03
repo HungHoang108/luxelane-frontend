@@ -1,12 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-
 const SearchTagSlice = createSlice({
   name: "searchTagSlice",
   initialState: "",
   reducers: {
     searchTagAction: (state, action) => {
-      return state = action.payload;
+      return (state = action.payload);
     },
   },
 });

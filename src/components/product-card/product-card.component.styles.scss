@@ -6,6 +6,14 @@
 
   .products-card {
     margin-right: 2rem;
+    .products-title-price {
+      display: flex;
+      padding: 1rem 0;
+      span {
+        padding-left: 1rem;
+      }
+     
+    }
     img {
       width: 110%;
     }

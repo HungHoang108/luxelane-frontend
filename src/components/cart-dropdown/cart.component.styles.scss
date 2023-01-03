@@ -1,0 +1,45 @@
+.cartBox {
+  padding: 2rem;
+  position: absolute;
+  width: 30rem;
+  height: 25rem;
+  background-color: white;
+  right: 9rem;
+  top: 2.5rem;
+  border: 1px solid black;
+
+  display: flex;
+  flex-direction: column;
+  .cartBox-items {
+    height: 17rem;
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+    .cartBox-item {
+      display: grid;
+      grid-template-columns: auto auto auto;
+      justify-content: space-between;
+    }
+    img {
+      width: 3rem;
+      height: 3rem;
+    }
+  }
+
+  .cartBox-cost {
+    padding: 1rem 0 2rem;
+  }
+  .cartBox-button {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    .link {
+      text-decoration: none;
+      padding: 0.4rem 1rem;
+      background-color: #ffb300a6;
+      border-radius: 10px;
+      color: white;
+    }
+  }
+}

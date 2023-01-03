@@ -1,0 +1,28 @@
+.footer-box {
+    padding-top: 10rem;
+    .footer {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        font-size: 1.2rem;
+        padding: 3rem;
+        background-color: hsla(250, 55%, 22%, 0.808);
+      
+        .footer-social-link {
+          padding-top: 3rem;
+      
+          .footer-link {
+            text-decoration: none;
+            padding: 1rem;
+            color: white;
+          }
+        }
+        .footer-copyright {
+          color: white;
+          text-align: center;
+          padding-top: 2rem;
+          width: 20rem;
+        }
+      }
+      
+}

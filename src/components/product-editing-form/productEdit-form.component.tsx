@@ -11,8 +11,8 @@ interface status {
   price: number;
   description: string;
   id: number;
-  //   images: string[];
-  images: string;
+  images: string[];
+  // images: string;
 }
 
 const ProductEditForm = ({

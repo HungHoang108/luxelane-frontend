@@ -7,6 +7,7 @@
   .navBox-nav {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     padding: 1rem 2rem;
 
     .navBox-nav_home {
@@ -15,7 +16,24 @@
 
     .nav-icon {
       display: grid;
-      grid-template-columns: auto auto auto auto auto auto;
+      grid-template-columns: auto auto auto auto auto;
+      
+      .nav-icon_search {
+        input {
+          outline: none;
+          width: 12rem;
+          height: 2rem;
+          border: #FFB26B solid 1px;
+        }
+        button {
+          width: 2rem;
+          height: 2rem;
+          background-color: hsla(29, 100%, 71%, 0.856);
+          border: none;
+          color: white;
+        }
+      }
+      
       div {
         margin-right: 1rem;
       }
@@ -25,7 +43,6 @@
           display: block;
         }
       }
-
       .nav-icon_cart {
         &:hover {
           + {
@@ -33,6 +50,15 @@
               display: block;
             }
           }
+        }
+        span {
+          position: relative;
+          bottom: 0.57em;
+          background-color: #FFB26B;
+          padding: 0 0.5rem;
+          border-radius: 10px;
+          color: white;
+          font-size: medium;
         }
       }
     }

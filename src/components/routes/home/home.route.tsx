@@ -14,7 +14,7 @@ const Home = () => {
 
       <div className="home">
         <Categories />
-        <Bestseller />
+        {/* <Bestseller /> */}
       </div>
     </div>
   );

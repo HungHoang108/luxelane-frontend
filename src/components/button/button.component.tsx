@@ -1,10 +1,8 @@
-import { ButtonType } from "../../types/button.types";
 import { useAppDispatch } from "../../hooks/reduxHook";
 import { cartItemId } from "../../redux/carttems-reducer.redux";
 import { CartItemType } from "../../types/cart-items.types";
-import { Product } from "../../types/product.type";
 
-import "./button.component.styles.scss";
+import "./button.styles.scss";
 const Button = ({ id, itemName, price, image, amount }: CartItemType) => {
   const dispatch = useAppDispatch();
 
@@ -20,7 +18,7 @@ const Button = ({ id, itemName, price, image, amount }: CartItemType) => {
   };
   return (
     <div>
-      <button onClick={addProduct}>Add to Cart</button>
+      <button className="addtocart-button" onClick={addProduct}>Add to Cart</button>
     </div>
   );
 };

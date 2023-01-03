@@ -6,7 +6,6 @@ const Bestseller = () => {
   return (
     <div>
       <ProductCard title='Bestseller' productsDisplayed={7}/>
-    
     </div>
   )
 }

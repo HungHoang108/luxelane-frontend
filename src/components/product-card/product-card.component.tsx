@@ -54,20 +54,21 @@ const ProductCard = ({ title, productsDisplayed }: ProductCardList) => {
 
   return (
     <>
-      <h1>{title}</h1>
       <div className="products">
         {test.slice(1, productsDisplayed).map((product) => (
           <div key={product.id} className="products-card">
-            {/* <img src={product.images[0]} alt="" /> */}
-            <img src={product.image} />
+            <img src={product.images[0]} alt="" />
+            {/* <img src={product.image} /> */}
+            <div className="products-title-price">
+              <h4>{product.title}</h4>
+              <span>{product.price} $</span>
+            </div>
 
-            <h4>{product.title}</h4>
-            <h4>{product.price} $</h4>
             <Button
               id={product.id}
               itemName={product.title}
-              // image={product.images[0]}
-              image={product.image}
+              image={product.images[0]}
+              // image={product.image}
               price={product.price}
               amount={1}
             />
@@ -99,9 +100,8 @@ const ProductCard = ({ title, productsDisplayed }: ProductCardList) => {
                 price={product.price}
                 description={product.description}
                 id={product.id}
-                // images={product.images}
-                images={product.image}
-
+                images={product.images}
+                // images={product.image}
               />
             )}
           </div>

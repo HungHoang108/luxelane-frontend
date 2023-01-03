@@ -3,11 +3,11 @@ import { Routes, Route } from "react-router-dom";
 import { useAppDispatch } from "./hooks/reduxHook";
 import { fetchAllProducts } from "./redux/products-reducer";
 
-import Home from "./components/routes/home/home";
+import Home from "./components/routes/home/home.route";
 import Root from "./components/root/root.component";
 import NotFound from "./components/not-found/notfound.component";
 import ProductList from "./components/routes/product-list/product-list.component";
-import CartPage from "./components/routes/cart-page/cart-page.routes";
+import CartPage from "./components/routes/cart-page/cart-page.route";
 import Login from "./components/routes/login-logout/login.routes";
 import SearchResult from "./components/routes/searchResult/searchResult.route";
 import NewProduct from "./components/routes/new-product/new-product.component";
