@@ -1,0 +1,30 @@
+.authentication-container {
+  display: flex;
+  width: 900px;
+  justify-content: space-between;
+  margin: 10rem auto 20rem;
+  .sign-in-container {
+    display: flex;
+    flex-direction: column;
+    width: 380px;
+
+    h2 {
+      margin: 10px 0;
+    }
+  }
+
+  .authen-input {
+    margin: 1rem 0;
+  }
+
+  .authen-button {
+    padding: 0.6rem 1rem;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    border: none;
+    &:hover {
+      background-color: hsla(0, 0%, 0%, 0.719);
+    }
+  }
+}

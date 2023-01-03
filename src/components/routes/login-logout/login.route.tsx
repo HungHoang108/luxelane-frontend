@@ -8,7 +8,7 @@ import { accessTokenn } from "../../../redux/access-token-reducer";
 
 import { useAppSelector } from "../../../hooks/reduxHook";
 
-import "./login-logout.style.scss"
+import "./login-logout.style.scss";
 
 const Login = () => {
   // no idea why whenever i delete the line of code below, the user session is not being added to localstorage.
@@ -147,66 +147,74 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <div>
-        <div>
-          <input
-            type="email"
-            name="email"
-            onChange={handleChange}
-            placeholder="Email"
-          />
-        </div>
-        <div>
-          <input
-            type="password"
-            name="password"
-            onChange={handleChange}
-            placeholder="Password"
-          />
-        </div>
-        <div>
-          <button onClick={handleSubmit}>submit</button>
-        </div>
+    <div className="authentication-container">
+      <div className="sign-in-container">
+        <h2>Already have an account?</h2>
+        <span>Sign in with your email and password</span>
+        <form>
+          <div className="authen-input">
+            <input
+              type="email"
+              name="email"
+              onChange={handleChange}
+              placeholder="Email"
+            />
+          </div>
+          <div className="authen-input">
+            <input
+              type="password"
+              name="password"
+              onChange={handleChange}
+              placeholder="Password"
+            />
+          </div>
+          <button className="authen-button" onClick={handleSubmit}>
+            Sign In
+          </button>
+        </form>
       </div>
+
       <div>
-        <h2>Register</h2>
-        <div>
-          <input
-            type="email"
-            name="email"
-            onChange={handleRegister}
-            placeholder="email"
-          />
-        </div>
-        <div>
-          <input
-            type="password"
-            name="password"
-            placeholder="password"
-            onChange={handleRegister}
-          />
-        </div>
-        <div>
-          <input
-            type="text"
-            name="name"
-            placeholder="name"
-            onChange={handleRegister}
-          />
-        </div>
-        <div>
-          <input
-            type="file"
-            name="avatar"
-            onChange={handleRegisterFile}
-            multiple
-          />
-        </div>
-        <div>
-          <button onClick={submitRegister}>submit</button>
-        </div>
+        <h2>Don't have an account?</h2>
+        <span>Sign up with your email and password</span>
+        <form>
+          <div className="authen-input">
+            <input
+              type="email"
+              name="email"
+              onChange={handleRegister}
+              placeholder="email"
+            />
+          </div>
+          <div className="authen-input">
+            <input
+              type="password"
+              name="password"
+              placeholder="password"
+              onChange={handleRegister}
+            />
+          </div>
+          <div className="authen-input">
+            <input
+              type="text"
+              name="name"
+              placeholder="name"
+              onChange={handleRegister}
+            />
+          </div>
+          <div className="authen-input">
+            <input
+              type="file"
+              name="avatar"
+              onChange={handleRegisterFile}
+              multiple
+            />
+          </div>
+
+          <button className="authen-button" onClick={submitRegister}>
+            Register
+          </button>
+        </form>
       </div>
     </div>
   );

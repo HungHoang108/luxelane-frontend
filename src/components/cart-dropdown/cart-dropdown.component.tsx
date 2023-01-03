@@ -24,8 +24,8 @@ const itemMap = ()=> {
               <p>{item.itemName}</p>
             </div>
             <div>
-              <p>{item.amount} x</p>
-              <p>{item.price} $</p>
+              <span>{item.amount} x </span>
+              <span>{item.price} $</span>
             </div>
           </div>
         ))}
