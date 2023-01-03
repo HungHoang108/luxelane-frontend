@@ -1,13 +1,14 @@
 import Bestseller from "../../bestseller/bestseller.component";
 import Categories from "../../categories/categories.component";
 import "./home.component.styles.scss";
+import pic from "./kitty-cat.jpg"
 
 const Home = () => {
   return (
     <div>
       <div className="navBox-img">
         <img
-          src="https://burst.shopifycdn.com/photos/kitty-cat-helps-at-work.jpg"
+          src={pic}
           alt=""
         />
       </div>

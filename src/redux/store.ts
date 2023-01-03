@@ -7,17 +7,29 @@ import { SortReducer } from "./sort-category-reducer";
 import { SortPriceReducer } from "./sort-price-reducer";
 import { AccessTokenReducer } from "./access-token-reducer";
 
-export const store = configureStore({
-  reducer: {
-    categoriesReducer,
-    productReducer,
-    CartItemReducer,
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage' 
+import { combineReducers } from "redux";
 
-    SearchTagReducer,
-    SortReducer,
-    SortPriceReducer,
-    AccessTokenReducer,
-  },
+const reducers = combineReducers({
+  categoriesReducer: categoriesReducer,
+  productReducer: productReducer,
+  CartItemReducer: CartItemReducer,
+  SearchTagReducer: SearchTagReducer,
+  SortReducer: SortReducer,
+  SortPriceReducer: SortPriceReducer,
+  AccessTokenReducer: AccessTokenReducer,
+})
+
+const persistConfig = {
+  key: 'root',
+  storage,
+}
+
+const persistedReducer = persistReducer(persistConfig, reducers)
+
+export const store = configureStore({
+  reducer: persistedReducer,
 });
 
 export type AppDispatch = typeof store.dispatch;

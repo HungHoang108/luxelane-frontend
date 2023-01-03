@@ -151,70 +151,68 @@ const Login = () => {
       <div className="sign-in-container">
         <h2>Already have an account?</h2>
         <span>Sign in with your email and password</span>
-        <form>
-          <div className="authen-input">
-            <input
-              type="email"
-              name="email"
-              onChange={handleChange}
-              placeholder="Email"
-            />
-          </div>
-          <div className="authen-input">
-            <input
-              type="password"
-              name="password"
-              onChange={handleChange}
-              placeholder="Password"
-            />
-          </div>
-          <button className="authen-button" onClick={handleSubmit}>
-            Sign In
-          </button>
-        </form>
+
+        <div className="authen-input">
+          <input
+            type="email"
+            name="email"
+            onChange={handleChange}
+            placeholder="Email"
+          />
+        </div>
+        <div className="authen-input">
+          <input
+            type="password"
+            name="password"
+            onChange={handleChange}
+            placeholder="Password"
+          />
+        </div>
+        <button className="authen-button" onClick={handleSubmit}>
+          Sign In
+        </button>
       </div>
 
       <div>
         <h2>Don't have an account?</h2>
         <span>Sign up with your email and password</span>
-        <form>
-          <div className="authen-input">
-            <input
-              type="email"
-              name="email"
-              onChange={handleRegister}
-              placeholder="email"
-            />
-          </div>
-          <div className="authen-input">
-            <input
-              type="password"
-              name="password"
-              placeholder="password"
-              onChange={handleRegister}
-            />
-          </div>
-          <div className="authen-input">
-            <input
-              type="text"
-              name="name"
-              placeholder="name"
-              onChange={handleRegister}
-            />
-          </div>
-          <div className="authen-input">
-            <input
-              type="file"
-              name="avatar"
-              onChange={handleRegisterFile}
-              multiple
-            />
-          </div>
 
-          <button className="authen-button" onClick={submitRegister}>
-            Register
-          </button>
-        </form>
+        <div className="authen-input">
+          <input
+            type="email"
+            name="email"
+            onChange={handleRegister}
+            placeholder="email"
+          />
+        </div>
+        <div className="authen-input">
+          <input
+            type="password"
+            name="password"
+            placeholder="password"
+            onChange={handleRegister}
+          />
+        </div>
+        <div className="authen-input">
+          <input
+            type="text"
+            name="name"
+            placeholder="name"
+            onChange={handleRegister}
+          />
+        </div>
+        <div className="authen-input">
+          <input
+            type="file"
+            name="avatar"
+            onChange={handleRegisterFile}
+            multiple
+          />
+        </div>
+
+        <button className="authen-button" onClick={submitRegister}>
+          Register
+        </button>
       </div>
     </div>
   );
