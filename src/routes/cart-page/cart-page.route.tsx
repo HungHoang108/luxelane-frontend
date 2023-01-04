@@ -1,12 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
-import { useAppSelector, useAppDispatch } from "../../../hooks/reduxHook";
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHook";
+
 import {
   increaseItem,
   decreaseItem,
   removeItem,
-} from "../../../redux/carttems-reducer.redux";
+} from "../../redux/carttems-reducer.redux";
 
 import "./cart-page.routes.styles.scss";
 
@@ -14,7 +14,7 @@ const CartPage = () => {
   const cartItem = useAppSelector((state) => state.CartItemReducer);
   const dispatch = useAppDispatch();
 
-const totalCost = localStorage.getItem("totalCost")
+  const totalCost = localStorage.getItem("totalCost");
 
   return (
     <div className="cartpage-box">

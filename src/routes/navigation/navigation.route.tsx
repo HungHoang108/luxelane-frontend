@@ -2,9 +2,9 @@ import { ChangeEvent, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-import Cart from "../../cart-dropdown/cart-dropdown.component";
-import { useAppDispatch, useAppSelector } from "../../../hooks/reduxHook";
-import { searchTagAction } from "../../../redux/search-tag-reducer";
+import Cart from "../../components/cart-dropdown/cart-dropdown.component";
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHook";
+import { searchTagAction } from "../../redux/search-tag-reducer";
 import LightModeSharpIcon from "@mui/icons-material/LightModeSharp";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";

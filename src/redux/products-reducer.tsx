@@ -9,7 +9,7 @@ export const fetchAllProducts = createAsyncThunk(
   "fetchAllProducts",
   async () => {
     try {
-      const products = await axios.get("https://api.escuelajs.co/api/v1/products?offset=3&limit=500"
+      const products = await axios.get("https://api.escuelajs.co/api/v1/products"
         // "https://fakestoreapi.com/products"
         // "https://api.escuelajs.co/api/v1/products"
       );

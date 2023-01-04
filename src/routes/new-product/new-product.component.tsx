@@ -1,7 +1,7 @@
 import axios from "axios";
 import { ChangeEvent, useEffect, useState } from "react";
 
-import { NewProductType } from "../../../types/new-product.type";
+import { NewProductType } from "../../types/new-product.type";
 
 const NewProduct = () => {
   const [file, setFile] = useState<FileList | null>(null);

@@ -3,15 +3,16 @@ import { Routes, Route } from "react-router-dom";
 import { useAppDispatch } from "./hooks/reduxHook";
 import { fetchAllProducts } from "./redux/products-reducer";
 
-import Home from "./components/routes/home/home.route";
+
+import Home from "./routes/home/home.route";
 import Root from "./components/root/root.component";
 import NotFound from "./components/not-found/notfound.component";
-import ProductList from "./components/routes/product-list/product-list.component";
-import CartPage from "./components/routes/cart-page/cart-page.route";
-import Login from "./components/routes/login-logout/login.route";
-import SearchResult from "./components/routes/searchResult/searchResult.route";
-import NewProduct from "./components/routes/new-product/new-product.component";
-import ProductEditingForm from "./components/routes/product-editting/product-editing-form.component";
+import ProductList from "./routes/product-list/product-list.component";
+import CartPage from "./routes/cart-page/cart-page.route";
+import Login from "./routes/login-logout/login.route";
+import SearchResult from "./routes/searchResult/searchResult.route";
+import NewProduct from "./routes/new-product/new-product.component";
+import ProductEditingForm from "./routes/product-editting/product-editing-form.component";
 
 const App = () => {
   const dispatch = useAppDispatch();

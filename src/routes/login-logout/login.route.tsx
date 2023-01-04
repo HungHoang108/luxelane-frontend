@@ -1,12 +1,11 @@
 import { ChangeEvent, useState, useEffect } from "react";
 import axios from "axios";
-import { LoginType } from "../../../types/login.types";
-import { UserType } from "../../../types/user.types";
-import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../../hooks/reduxHook";
-import { accessTokenn } from "../../../redux/access-token-reducer";
 
-import { useAppSelector } from "../../../hooks/reduxHook";
+import { useNavigate } from "react-router-dom";
+import { LoginType } from "../../types/login.types";
+import { UserType } from "../../types/user.types";
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHook";
+import { accessTokenn } from "../../redux/access-token-reducer";
 
 import "./login-logout.style.scss";
 
