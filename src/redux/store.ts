@@ -12,18 +12,26 @@ import storage from "redux-persist/lib/storage";
 import { combineReducers } from "redux";
 
 const reducers = combineReducers({
-  categoriesReducer: categoriesReducer,
-  productReducer: productReducer,
-  CartItemReducer: CartItemReducer,
-  SearchTagReducer: SearchTagReducer,
-  SortReducer: SortReducer,
-  SortPriceReducer: SortPriceReducer,
-  AccessTokenReducer: AccessTokenReducer,
+  categoriesReducer,
+  productReducer,
+  CartItemReducer,
+  SearchTagReducer,
+  SortReducer,
+  SortPriceReducer,
+  AccessTokenReducer,
 });
 
 const persistConfig = {
   key: "root",
   storage,
+  blacklist: [
+    "categoriesReducer",
+    "productReducer",
+    "SearchTagReducer",
+    "SortReducer",
+    "SortPriceReducer",
+    "AccessTokenReducer",
+  ],
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);

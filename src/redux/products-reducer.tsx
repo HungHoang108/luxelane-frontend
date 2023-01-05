@@ -12,8 +12,21 @@ export const fetchAllProducts = createAsyncThunk(
       const products = await axios.get(
         "https://api.escuelajs.co/api/v1/products"
       );
-      console.log(products.data.image);
       return products.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+export const deleteProduct = createAsyncThunk(
+  "deleteProduct",
+  async (product: any) => {
+    try {
+      await axios.delete(
+        `https://api.escuelajs.co/api/v1/products/${product.product.id}`
+      );
+      
     } catch (error) {
       console.log(error);
     }
@@ -31,7 +44,6 @@ const ProductsSlice = createSlice({
       }
     ): Product[] | undefined => {
       if (action.payload) {
-        console.log(action.payload)
         return state.filter((item) => item.id !== action.payload.product.id);
       }
     },
@@ -42,7 +54,6 @@ const ProductsSlice = createSlice({
           item.price = action.payload.price;
           item.description = action.payload.description;
           item.images = action.payload.images;
-          // item.image = action.payload.images;
         }
       });
     },
@@ -55,14 +66,16 @@ const ProductsSlice = createSlice({
     },
   },
   extraReducers: (build) => {
-    build.addCase(fetchAllProducts.fulfilled, (state, action) => {
-      if (action.payload && "message" in action.payload) {
-        return state;
-      } else if (!action.payload) {
-        return state;
-      }
-      return action.payload;
-    });
+    build
+      .addCase(fetchAllProducts.fulfilled, (state, action) => {
+        if (action.payload && "message" in action.payload) {
+          return state;
+        } else if (!action.payload) {
+          return state;
+        }
+        return action.payload;
+      })
+      // .addCase(deleteProduct.fulfilled, (state, action) => {});
   },
 });
 export const productReducer = ProductsSlice.reducer;
