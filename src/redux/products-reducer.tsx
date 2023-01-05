@@ -31,6 +31,7 @@ const ProductsSlice = createSlice({
       }
     ): Product[] | undefined => {
       if (action.payload) {
+        console.log(action.payload)
         return state.filter((item) => item.id !== action.payload.product.id);
       }
     },

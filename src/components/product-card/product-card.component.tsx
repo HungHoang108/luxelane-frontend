@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import { useAppSelector } from "../../hooks/reduxHook";
 import { useAppDispatch } from "../../hooks/reduxHook";
@@ -14,13 +13,10 @@ const ProductCard = ({ title, productsDisplayed }: ProductCardList) => {
   const dispatch = useAppDispatch();
   const products = useAppSelector((state) => state.productReducer);
   const sortCategory = useAppSelector((state) => state.SortReducer);
-  const sortPrice = useAppSelector((state) => state.SortPriceReducer);
 
   const [role, setRole] = useState("");
   const [popup, setPopup] = useState(false);
   const [popupId, setPopupId] = useState(0);
-
-  const nav = useNavigate();
 
   useEffect(() => {
     const userRole = localStorage.getItem("role");
@@ -41,16 +37,6 @@ const ProductCard = ({ title, productsDisplayed }: ProductCardList) => {
       return products;
     }
   };
-  // const test = sortByCategoryArray();
-  // const sortByPrice = () => {
-  //   if (sortPrice === "price-up") {
-  //     console.log("sort through");
-  //     return test.sort((a, b) => a.price - b.price);
-  //   } else if (sortPrice === "price-down") {
-  //     return test.sort((a, b) => b.price - a.price);
-  //   }
-  // };
-  // sortByPrice();
 
   return (
     <>
