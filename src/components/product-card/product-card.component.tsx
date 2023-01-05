@@ -41,21 +41,21 @@ const ProductCard = ({ title, productsDisplayed }: ProductCardList) => {
       return products;
     }
   };
-  const test = sortByCategoryArray();
-  const sortByPrice = () => {
-    if (sortPrice === "price-up") {
-      console.log("sort through");
-      return test.sort((a, b) => a.price - b.price);
-    } else if (sortPrice === "price-down") {
-      return test.sort((a, b) => b.price - a.price);
-    }
-  };
-  sortByPrice();
+  // const test = sortByCategoryArray();
+  // const sortByPrice = () => {
+  //   if (sortPrice === "price-up") {
+  //     console.log("sort through");
+  //     return test.sort((a, b) => a.price - b.price);
+  //   } else if (sortPrice === "price-down") {
+  //     return test.sort((a, b) => b.price - a.price);
+  //   }
+  // };
+  // sortByPrice();
 
   return (
     <>
       <div className="products">
-        {test.slice(1, productsDisplayed).map((product) => (
+        {sortByCategoryArray().slice(1, productsDisplayed).map((product) => (
           <div key={product.id} className="products-card">
             <img src={product.images[0]} alt="" />
             {/* <img src={product.image} /> */}

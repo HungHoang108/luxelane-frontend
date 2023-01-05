@@ -3,7 +3,7 @@ import { ChangeEvent } from "react";
 import ProductCard from "../../components/product-card/product-card.component";
 import { useAppDispatch } from "../../hooks/reduxHook";
 import { sortByCategory } from "../../redux/sort-category-reducer";
-import { sortByPrice } from "../../redux/sort-category-reducer";
+import { sortByPrice } from "../../redux/products-reducer";
 
 import "./product-list.style.scss";
 

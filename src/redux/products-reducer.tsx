@@ -9,9 +9,8 @@ export const fetchAllProducts = createAsyncThunk(
   "fetchAllProducts",
   async () => {
     try {
-      const products = await axios.get("https://api.escuelajs.co/api/v1/products"
-        // "https://fakestoreapi.com/products"
-        // "https://api.escuelajs.co/api/v1/products"
+      const products = await axios.get(
+        "https://api.escuelajs.co/api/v1/products"
       );
       console.log(products.data.image);
       return products.data;
@@ -46,6 +45,13 @@ const ProductsSlice = createSlice({
         }
       });
     },
+    sortByPrice: (state, action) => {
+      if (action.payload === "price-up") {
+        state.sort((a, b) => a.price - b.price);
+      } else if (action.payload === "price-down") {
+        state.sort((a, b) => b.price - a.price);
+      }
+    },
   },
   extraReducers: (build) => {
     build.addCase(fetchAllProducts.fulfilled, (state, action) => {
@@ -59,5 +65,5 @@ const ProductsSlice = createSlice({
   },
 });
 export const productReducer = ProductsSlice.reducer;
-export const { deleteItem, editItem } = ProductsSlice.actions;
+export const { deleteItem, editItem, sortByPrice } = ProductsSlice.actions;
 export default ProductsSlice;
