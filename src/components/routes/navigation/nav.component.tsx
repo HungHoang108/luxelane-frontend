@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
@@ -11,10 +11,17 @@ import "./nav.component.style.scss";
 const Navigation = () => {
   const [status, setStatus] = useState(false);
   const [searchTag, setSearchTag] = useState("");
+  const [userTock, setUserTock] = useState<string | null>(null);
 
   const nav = useNavigate();
-  const loginStatus = localStorage.getItem("userToken");
+  // const loginStatus = localStorage.getItem("userToken");
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const userLoginToc = localStorage.getItem("userReducerLogin");
+    console.log("toc", userLoginToc);
+    setUserTock(userLoginToc);
+  });
 
   const cartStatus = () => {
     setStatus(!status);
@@ -31,7 +38,7 @@ const Navigation = () => {
 
   const removeUserData = () => {
     localStorage.removeItem("role");
-    localStorage.removeItem("userToken");
+    localStorage.removeItem("userReducerLogin");
   };
 
   return (
@@ -57,7 +64,7 @@ const Navigation = () => {
             <Cart />
           </div>
           <div>
-            {loginStatus ? (
+            {userTock ? (
               <Link onClick={removeUserData} to="">
                 LOG OUT
               </Link>
@@ -65,7 +72,7 @@ const Navigation = () => {
               <Link to="login">LOG IN</Link>
             )}
           </div>
-          <div>{loginStatus && <Link to="newproduct">New Product</Link>}</div>
+          <div>{userTock && <Link to="newproduct">New Product</Link>}</div>
         </div>
       </div>
     </div>

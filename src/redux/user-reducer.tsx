@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 interface loginData {
   email: string;
@@ -16,10 +15,8 @@ export const userLoginToken = createAsyncThunk(
         userEmailAndPassword
       );
       const data = loginResponse.data.access_token;
-      // const nav = useNavigate();
-      // data && nav("/");
+      localStorage.setItem("userReducerLogin", data);
       console.log(data);
-      localStorage.setItem("userToken", data);
       return data;
     } catch (error) {
       console.log(error);
@@ -42,7 +39,7 @@ export const userSessionInfo = createAsyncThunk("userSessionInfo", async () => {
     const data = sessionResponse.data.role;
     // const nav = useNavigate();
     // data && nav("/");
-    console.log("call-1");
+    // console.log("call-1");
 
     localStorage.setItem("role", data);
     // return data;

@@ -33,8 +33,10 @@ const Login = () => {
   const nav = useNavigate();
 
   useEffect(() => {
-    const tokenId = localStorage.getItem("userToken")
-   setToken(tokenId)
+    const tokenId = localStorage.getItem("userToken");
+    setToken(tokenId);
+    const userLoginToc = localStorage.getItem("userReducerLogin");
+    userLoginToc && nav("/");
   });
 
   useEffect(() => {
@@ -60,6 +62,7 @@ const Login = () => {
   const handleSubmit = async () => {
     dispatch(userLoginToken(obj));
     setSessionStatus(!sessionStatus);
+
     // try {
     //   await axios
     //     .post("https://api.escuelajs.co/api/v1/auth/login", {
