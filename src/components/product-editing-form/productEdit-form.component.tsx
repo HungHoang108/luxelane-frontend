@@ -2,7 +2,8 @@ import axios from "axios";
 import React, { ChangeEvent, useEffect, useState } from "react";
 import "./productEdit.component.styles.scss";
 import { useAppDispatch } from "../../hooks/reduxHook";
-import { editItem } from "../../redux/products-reducer";
+
+import { editProductThunk } from "../../redux/products-reducer";
 
 interface status {
   open: boolean;
@@ -12,7 +13,6 @@ interface status {
   description: string;
   id: number;
   images: string[];
-  // images: string;
 }
 
 const ProductEditForm = ({
@@ -66,38 +66,38 @@ const ProductEditForm = ({
   };
 
   const submitChanges = async () => {
-    if (file) {
-      await axios
-        .post(
-          "https://api.escuelajs.co/api/v1/files/upload",
-          { file: file && file[0] },
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        )
-        .then((res) =>
-          setEditProduct((prev) => {
-            return {
-              ...prev,
-              //   images: [res.data.location],
-              images: res.data.location,
-            };
-          })
-        );
-    }
+    dispatch(editProductThunk(editProduct))
+    // if (file) {
+    //   await axios
+    //     .post(
+    //       "https://api.escuelajs.co/api/v1/files/upload",
+    //       { file: file && file[0] },
+    //       {
+    //         headers: {
+    //           "Content-Type": "multipart/form-data",
+    //         },
+    //       }
+    //     )
+    //     .then((res) =>
+    //       setEditProduct((prev) => {
+    //         return {
+    //           ...prev,
+    //           images: res.data.location,
+    //         };
+    //       })
+    //     );
+    // }
     setStatus(!status);
     onClose();
   };
 
-  const sendUpdate = async () => {
-    dispatch(editItem(editProduct));
-  };
+  // const sendUpdate = async () => {
+  //   dispatch(editItem(editProduct));
+  // };
 
-  useEffect(() => {
-    sendUpdate();
-  }, [status]);
+  // useEffect(() => {
+  //   sendUpdate();
+  // }, [status]);
 
   if (!open) return null;
   return (

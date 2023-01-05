@@ -7,7 +7,7 @@ import { SortReducer } from "./sort-category-reducer";
 import { SortPriceReducer } from "./sort-price-reducer";
 import { AccessTokenReducer } from "./access-token-reducer";
 
-import { persistStore, persistReducer } from "redux-persist";
+import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { combineReducers } from "redux";
 

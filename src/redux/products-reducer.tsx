@@ -21,12 +21,29 @@ export const fetchAllProducts = createAsyncThunk(
 
 export const deleteProduct = createAsyncThunk(
   "deleteProduct",
-  async (product: any) => {
+  async (product: number) => {
     try {
-      await axios.delete(
-        `https://api.escuelajs.co/api/v1/products/${product.product.id}`
+      await axios.delete(`https://api.escuelajs.co/api/v1/products/${product}`);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+export const editProductThunk = createAsyncThunk(
+  "editProduct",
+  async (product: Partial<Product>) => {
+    try {
+      const response = await axios.put(
+        `https://api.escuelajs.co/api/v1/products/${product.id}`,
+        {
+          title: product.title,
+          price: product.price,
+          description: product.description,
+        }
       );
-      
+      const data = response.data;
+      return data;
     } catch (error) {
       console.log(error);
     }
@@ -44,19 +61,19 @@ const ProductsSlice = createSlice({
       }
     ): Product[] | undefined => {
       if (action.payload) {
-        return state.filter((item) => item.id !== action.payload.product.id);
+        return state.filter((item) => item.id !== action.payload);
       }
     },
-    editItem: (state, action) => {
-      state.map((item) => {
-        if (item.id === action.payload.id) {
-          item.title = action.payload.title;
-          item.price = action.payload.price;
-          item.description = action.payload.description;
-          item.images = action.payload.images;
-        }
-      });
-    },
+    // editItem: (state, action) => {
+    //   state.map((item) => {
+    //     if (item.id === action.payload.id) {
+    //       item.title = action.payload.title;
+    //       item.price = action.payload.price;
+    //       item.description = action.payload.description;
+    //       item.images = action.payload.images;
+    //     }
+    //   });
+    // },
     sortByPrice: (state, action) => {
       if (action.payload === "price-up") {
         state.sort((a, b) => a.price - b.price);
@@ -75,9 +92,15 @@ const ProductsSlice = createSlice({
         }
         return action.payload;
       })
-      // .addCase(deleteProduct.fulfilled, (state, action) => {});
+      .addCase(editProductThunk.fulfilled, (state, action) => {
+        const itemIndex = state.findIndex((item) => item.id === action.payload.id);
+        state[itemIndex].price = action.payload.price
+        state[itemIndex].title = action.payload.title
+        state[itemIndex].description = action.payload.description
+
+      });
   },
 });
 export const productReducer = ProductsSlice.reducer;
-export const { deleteItem, editItem, sortByPrice } = ProductsSlice.actions;
+export const { deleteItem, sortByPrice } = ProductsSlice.actions;
 export default ProductsSlice;
