@@ -16,17 +16,15 @@ export const userLoginToken = createAsyncThunk(
       );
       const data = loginResponse.data.access_token;
       localStorage.setItem("userReducerLogin", data);
-      console.log(data);
       return data;
     } catch (error) {
       console.log(error);
     }
   }
 );
-
 export const userSessionInfo = createAsyncThunk("userSessionInfo", async () => {
   const userToken = localStorage.getItem("userToken");
-  console.log("test", userToken);
+  // console.log("test", userToken);
   if (userToken) {
     const sessionResponse = await axios.get(
       "https://api.escuelajs.co/api/v1/auth/profile",
@@ -37,12 +35,7 @@ export const userSessionInfo = createAsyncThunk("userSessionInfo", async () => {
       }
     );
     const data = sessionResponse.data.role;
-    // const nav = useNavigate();
-    // data && nav("/");
-    // console.log("call-1");
-
     localStorage.setItem("role", data);
-    // return data;
   }
 });
 

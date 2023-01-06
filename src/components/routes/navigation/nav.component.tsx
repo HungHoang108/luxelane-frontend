@@ -16,10 +16,10 @@ const Navigation = () => {
   const nav = useNavigate();
   // const loginStatus = localStorage.getItem("userToken");
   const dispatch = useAppDispatch();
-
+  let userLoginToc;
   useEffect(() => {
-    const userLoginToc = localStorage.getItem("userReducerLogin");
-    console.log("toc", userLoginToc);
+    userLoginToc = localStorage.getItem("userReducerLogin");
+    // console.log("toc", userLoginToc);
     setUserTock(userLoginToc);
   });
 

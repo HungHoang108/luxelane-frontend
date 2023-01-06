@@ -39,9 +39,9 @@ const Login = () => {
     userLoginToc && nav("/");
   });
 
-  useEffect(() => {
-    dispatch(userSessionInfo());
-  }, [token]);
+  // useEffect(() => {
+  //   dispatch(userSessionInfo());
+  // }, [token]);
 
   //Login
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -62,23 +62,6 @@ const Login = () => {
   const handleSubmit = async () => {
     dispatch(userLoginToken(obj));
     setSessionStatus(!sessionStatus);
-
-    // try {
-    //   await axios
-    //     .post("https://api.escuelajs.co/api/v1/auth/login", {
-    //       email: login.email,
-    //       password: login.password,
-    //     })
-    //     .then((res) => {
-    //       dispatch(accessTokenn(res.data.access_token));
-
-    //       if (res.data) {
-    //         nav("/");
-    //       }
-    //     });
-    // } catch (error) {
-    //   console.log(error);
-    // }
   };
 
   //Create user
@@ -145,23 +128,6 @@ const Login = () => {
   useEffect(() => {
     createUser();
   }, [status]);
-
-  // //get user session
-  // const userSession = async () => {
-  //   const loginToken = localStorage.getItem("userToken");
-  //   if (loginToken) {
-  //     await axios
-  //       .get("https://api.escuelajs.co/api/v1/auth/profile", {
-  //         headers: {
-  //           Authorization: `Bearer ${loginToken}`,
-  //         },
-  //       })
-  //       .then((res) => {
-  //         localStorage.setItem("role", res.data.role);
-  //         console.log(res.data);
-  //       });
-  //   }
-  // };
 
   return (
     <div>
