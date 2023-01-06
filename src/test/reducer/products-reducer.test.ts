@@ -1,7 +1,7 @@
 import { AnyAction, ThunkMiddleware } from "@reduxjs/toolkit";
 import { ToolkitStore } from "@reduxjs/toolkit/dist/configureStore";
 import { fetchAllProducts, deleteItem } from "../../redux/products-reducer";
-import { Product } from "../../types/product.type";
+
 import server from "../shared/server";
 import { createStore, RootState } from "../../redux/store";
 let store: ToolkitStore<

@@ -64,16 +64,6 @@ const ProductsSlice = createSlice({
         return state.filter((item) => item.id !== action.payload);
       }
     },
-    // editItem: (state, action) => {
-    //   state.map((item) => {
-    //     if (item.id === action.payload.id) {
-    //       item.title = action.payload.title;
-    //       item.price = action.payload.price;
-    //       item.description = action.payload.description;
-    //       item.images = action.payload.images;
-    //     }
-    //   });
-    // },
     sortByPrice: (state, action) => {
       if (action.payload === "price-up") {
         state.sort((a, b) => a.price - b.price);

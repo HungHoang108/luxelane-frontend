@@ -62,7 +62,7 @@ const ProductCard = ({ title, productsDisplayed }: ProductCardList) => {
               {role === "admin" && (
                 <button
                   onClick={() => {
-                    const id = product.id
+                    const id = product.id;
                     dispatch(deleteProduct(id));
                     dispatch(deleteItem(id));
                   }}
@@ -88,7 +88,6 @@ const ProductCard = ({ title, productsDisplayed }: ProductCardList) => {
                   price={product.price}
                   description={product.description}
                   id={product.id}
-                  images={product.images}
                 />
               )}
             </div>
