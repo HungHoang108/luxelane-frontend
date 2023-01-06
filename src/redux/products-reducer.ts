@@ -1,6 +1,6 @@
-import React from "react";
+
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
 import { Product } from "../types/product.type";
 
 const initialState: Product[] = [];
@@ -23,9 +23,12 @@ export const deleteProduct = createAsyncThunk(
   "deleteProduct",
   async (product: number) => {
     try {
-      await axios.delete(`https://api.escuelajs.co/api/v1/products/${product}`);
+      const response = await axios.delete(`https://api.escuelajs.co/api/v1/products/${product}`);
+      const data = response.data
+      return data
     } catch (error) {
-      console.log(error);
+      const err = error as AxiosError
+      console.log(err);
     }
   }
 );

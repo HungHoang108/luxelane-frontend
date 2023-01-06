@@ -17,7 +17,6 @@ export const fetchAllCategories = createAsyncThunk(
     }
   }
 );
-
 const CategoriesSlice = createSlice({
   name: "categoriesSlice",
   initialState: initialState,
@@ -30,7 +29,6 @@ const CategoriesSlice = createSlice({
         return state;
       }
       return action.payload;
-      //setState(action.payload)
     });
   },
 });

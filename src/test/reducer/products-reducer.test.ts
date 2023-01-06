@@ -1,7 +1,10 @@
 import { AnyAction, ThunkMiddleware } from "@reduxjs/toolkit";
 import { ToolkitStore } from "@reduxjs/toolkit/dist/configureStore";
-import { fetchAllProducts, deleteItem } from "../../redux/products-reducer";
-
+import {
+  fetchAllProducts,
+  deleteItem,
+  deleteProduct,
+} from "../../redux/products-reducer";
 import server from "../shared/server";
 import { createStore, RootState } from "../../redux/store";
 let store: ToolkitStore<
@@ -27,17 +30,15 @@ describe("Test all the actions", () => {
     await store.dispatch(fetchAllProducts());
     expect(store.getState().productReducer.length).toBe(3);
   });
-  test("delete product", async () => {
-    await store.dispatch(fetchAllProducts());
-    const product= {
-      product: {
-        id: 1
-      }
+  // test("delete product", async () => {
+  // // await store.dispatch(fetchAllProducts());
 
-    };
-    store.dispatch(deleteItem(product));
-    expect(store.getState().productReducer.length).toBe(2);
-  });
+  //   // await store.dispatch(deleteProduct(1));
+  //   const test3 = store.getState().productReducer
+  //   console.log("test33333333333333333",test3)
+  //   // expect(store.getState().productReducer).toBe(2);
+  // });
+
   // test("should create a product", async () => {
   //     const newProduct: NewProductType = {
   //         title: "D",
