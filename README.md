@@ -5,7 +5,7 @@
 ![TypeScript](https://img.shields.io/badge/TypeScript-v.4.9-green)
 ![SASS](https://img.shields.io/badge/SASS-v.4.9-hotpink)
 
-This project requires implementation of TypeScript and SASS.
+Live app please check out here[here](https://merry-genie-108.netlify.app/)
 
 ## Requirement
 
