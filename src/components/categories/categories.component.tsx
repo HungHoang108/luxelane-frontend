@@ -12,13 +12,20 @@ const Categories = () => {
     dispatch(fetchAllCategories());
   }, []);
 
+  const toCategoryRoute =()=>{
+
+  }
+
   return (
     <div className="category-box">
-      <h2>Categories</h2>
+      <div className="category-box-h2">
+        <h2>Categories</h2>
+      </div>
+
       <div className="categories">
         {categories.slice(0, 5).map((category) => (
-          <div key={category.id} className="categories-category">
-            <img src={category.image} alt="" />
+          <div key={category.id} className="categories-category" onClick={toCategoryRoute}>
+            <img src={category.image} />
             <h4>{category.name}</h4>
           </div>
         ))}

@@ -10,21 +10,27 @@
     justify-content: space-between;
     flex-wrap: wrap;
     padding: 1rem 2rem;
-
+    .navBox-nav-left {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      width: 10rem;
+    
+    }
     .navBox-nav_home {
-      margin-right: 1rem;
+      text-align: center;
     }
 
     .nav-icon {
       display: grid;
       grid-template-columns: auto auto auto auto auto;
-      
+
       .nav-icon_search {
         input {
           outline: none;
           width: 12rem;
           height: 2rem;
-          border: #FFB26B solid 1px;
+          border: #ffb26b solid 1px;
         }
         button {
           width: 2rem;
@@ -34,7 +40,7 @@
           color: white;
         }
       }
-      
+
       div {
         margin-right: 1rem;
       }
@@ -55,7 +61,7 @@
         span {
           position: relative;
           bottom: 0.57em;
-          background-color: #FFB26B;
+          background-color: #ffb26b;
           padding: 0 0.5rem;
           border-radius: 10px;
           color: white;
@@ -65,7 +71,6 @@
     }
     .link {
       text-decoration: none;
-
     }
     .btn {
       padding: 0.4rem 1rem;

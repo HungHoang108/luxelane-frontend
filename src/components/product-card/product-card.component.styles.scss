@@ -5,8 +5,15 @@
   gap: 3rem;
 
   .products-card {
-    margin-right: 2rem;
 
+    overflow: hidden;
+    cursor: pointer;
+    &:hover {
+      img {
+        transform: scale(1.03);
+        transition: all 0.4s ease-in-out;
+      }
+    }
     .products-title-price {
       display: flex;
       padding: 1rem 0;

@@ -16,7 +16,7 @@ export const fetchAllCategories = createAsyncThunk(
       console.log(error);
     }
   }
-);
+);  
 const CategoriesSlice = createSlice({
   name: "categoriesSlice",
   initialState: initialState,

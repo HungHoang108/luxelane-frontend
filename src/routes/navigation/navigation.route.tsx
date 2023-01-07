@@ -14,6 +14,13 @@ import "./nav.component.style.scss";
 const Navigation = () => {
   const [status, setStatus] = useState(false);
   const [searchTag, setSearchTag] = useState("");
+  const [navStyle, setNavStyle] = useState<string | null>(null);
+  const navHome = () => {
+    setNavStyle("home");
+  };
+  const navProject = () => {
+    setNavStyle("products");
+  };
 
   const nav = useNavigate();
   const loginStatus = localStorage.getItem("userToken");
@@ -45,13 +52,30 @@ const Navigation = () => {
   return (
     <div className="navBox">
       <div className="navBox-nav">
-        <div>
-          <Link className="navBox-nav_home link" to="">
-            Home
-          </Link>
-          <Link className="link" to="productlist">
-            Products
-          </Link>
+        <div className="navBox-nav-left">
+          <div
+            onClick={navHome}
+            style={{
+              borderBottom:
+                navStyle === "home" || navStyle === null
+                  ? "2px solid black"
+                  : "",
+            }}
+          >
+            <Link className="navBox-nav_home link" to="">
+              Home
+            </Link>
+          </div>
+          <div
+            onClick={navProject}
+            style={{
+              borderBottom: navStyle === "products" ? "2px solid black" : "",
+            }}
+          >
+            <Link className="link" to="productlist">
+              Products
+            </Link>
+          </div>
         </div>
         <div className="nav-icon">
           <div className="nav-icon_search">

@@ -1,8 +1,9 @@
 .category-box {
   padding: 4rem 4rem 0;
-  h2 {
+  .category-box-h2 {
     text-align: center;
     padding-bottom: 4rem;
+
   }
 
   .categories {
@@ -10,7 +11,16 @@
     justify-content: space-around;
 
     .categories-category {
-      margin-right: 2rem;
+      margin-right: 1rem;
+      cursor: pointer;
+      overflow: hidden;
+      text-align: center;
+      &:hover {
+        img {
+          transform: scale(1.04);
+          transition: all 0.4s ease-in-out;
+        }
+      }
       img {
         width: 110%;
       }
