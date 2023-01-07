@@ -22,8 +22,6 @@ const Navigation = () => {
 
   let counter = 0;
   cartItem.map((item) => (counter += item.amount));
-  // localStorage.setItem("totalCartItem", counter.toString());
-  // const allCartItem = localStorage.getItem("totalCartItem")
 
   const cartStatus = () => {
     setStatus(!status);
@@ -35,6 +33,7 @@ const Navigation = () => {
 
   const searchForProduct = () => {
     dispatch(searchTagAction(searchTag));
+    localStorage.setItem("searchQuery", searchTag);
     nav("/searchresult");
   };
 

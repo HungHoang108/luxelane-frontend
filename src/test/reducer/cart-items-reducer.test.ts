@@ -7,19 +7,12 @@ import {
   decreaseItem,
   removeItem,
 } from "../../redux/cart-items-reducer.redux";
-import server from "../shared/server";
 import { createStore, RootState } from "../../redux/store";
 let store: ToolkitStore<
   RootState,
   AnyAction,
   [ThunkMiddleware<RootState, AnyAction, undefined>]
 >;
-// beforeAll(() => {
-//   server.listen();
-// });
-// afterAll(() => {
-//   server.close();
-// });
 
 const item = {
   id: 1,

@@ -1,7 +1,5 @@
-
 import { useAppSelector } from "../../hooks/reduxHook";
 import Button from "../../components/button/button.component";
-
 
 const SearchResult = () => {
   const products = useAppSelector((state) => state.productReducer);
