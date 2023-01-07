@@ -7,6 +7,8 @@ import Button from "../button/button.component";
 import { deleteItem } from "../../redux/products-reducer";
 import { deleteProduct } from "../../redux/products-reducer";
 import ProductEditForm from "../product-editing-form/productEdit-form.component";
+import ModeEditOutlinedIcon from "@mui/icons-material/ModeEditOutlined";
+import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 
 import "./product-card.component.styles.scss";
 
@@ -46,40 +48,48 @@ const ProductCard = ({ title, productsDisplayed }: ProductCardList) => {
           .slice(1, productsDisplayed)
           .map((product) => (
             <div key={product.id} className="products-card">
-              <img src={product.images[0]} alt="" />
+              <img src={product.images[0]} />
               <div className="products-title-price">
                 <h4>{product.title}</h4>
                 <span>{product.price} $</span>
               </div>
+              <div className="product-card-button">
+                <div>
+                  <Button
+                    id={product.id}
+                    itemName={product.title}
+                    image={product.images[0]}
+                    price={product.price}
+                    amount={1}
+                  />
+                </div>
+                <div className="card-button_edit_deletebox">
+                  {role === "admin" && (
+                    <button
+                      className="edit-delete-button"
+                      onClick={() => {
+                        const id = product.id;
+                        dispatch(deleteProduct(id));
+                        dispatch(deleteItem(id));
+                      }}
+                    >
+                      <DeleteOutlineOutlinedIcon />
+                    </button>
+                  )}
+                  {role === "admin" && (
+                    <button
+                      className="edit-delete-button"
+                      onClick={() => {
+                        setPopup(true);
+                        setPopupId(product.id);
+                      }}
+                    >
+                      <ModeEditOutlinedIcon />
+                    </button>
+                  )}
+                </div>
+              </div>
 
-              <Button
-                id={product.id}
-                itemName={product.title}
-                image={product.images[0]}
-                price={product.price}
-                amount={1}
-              />
-              {role === "admin" && (
-                <button
-                  onClick={() => {
-                    const id = product.id;
-                    dispatch(deleteProduct(id));
-                    dispatch(deleteItem(id));
-                  }}
-                >
-                  delete
-                </button>
-              )}
-              {role === "admin" && (
-                <button
-                  onClick={() => {
-                    setPopup(true);
-                    setPopupId(product.id);
-                  }}
-                >
-                  Edit
-                </button>
-              )}
               {popupId === product.id && (
                 <ProductEditForm
                   open={popup}

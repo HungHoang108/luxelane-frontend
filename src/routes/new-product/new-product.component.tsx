@@ -120,18 +120,19 @@ const NewProduct = () => {
       </div>
       <div>
         <textarea
-          cols={50}
-          rows={8}
+          cols={80}
+          rows={20}
           name="description"
           placeholder="Description"
           onChange={handleTextareaChange}
         ></textarea>
       </div>
       <div>
+        <span><i><b>Upload images:</b></i></span>
         <input type="file" name="image" onChange={handleImageFile} multiple />
       </div>
       <div>
-        <button onClick={submitProduct}>submit</button>
+        <button onClick={submitProduct}>Submit</button>
       </div>
     </div>
   );

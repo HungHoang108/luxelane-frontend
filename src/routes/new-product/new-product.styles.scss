@@ -6,9 +6,12 @@
         margin-bottom: 3rem;
     }
 
-    input{
+    input {
         width: 18rem;
         height: 2rem;
+        margin-bottom: 1rem;
+    }
+    textarea {
         margin-bottom: 1rem;
     }
     button {
@@ -17,9 +20,12 @@
         color: white;
         cursor: pointer;
         border: none;
-        width: 6rem;
+        width: 7rem;
         &:hover {
           background-color: hsla(0, 0%, 0%, 0.719);
         }
+    }
+    span {
+        padding-right: 1rem;
     }
 }

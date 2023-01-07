@@ -174,7 +174,7 @@ const Login = () => {
 
       <div>
         <h2>Don't have an account?</h2>
-        <span>Sign up with your email and password</span>
+        <span>Sign up to get our latest updates and more</span>
 
         <div className="authen-input">
           <input

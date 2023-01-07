@@ -6,16 +6,38 @@
 
   .products-card {
     margin-right: 2rem;
+
     .products-title-price {
       display: flex;
       padding: 1rem 0;
+      // &:hover {
+      //   + {
+      //     .product-card-button {
+      //       display: block;
+      //     }
+      //   }
+      // }
       span {
         padding-left: 1rem;
       }
-     
     }
     img {
       width: 110%;
+    }
+    .product-card-button {
+      display: flex;
+      justify-content: space-between;
+      .card-button_edit_deletebox {
+        .edit-delete-button {
+          border: none;
+          background-color: transparent;
+          margin: 0 0.5rem;
+          cursor: pointer;
+          &:hover {
+            color: red;
+          }
+        }
+      }
     }
   }
 }
