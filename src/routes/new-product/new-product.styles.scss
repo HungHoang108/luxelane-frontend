@@ -1,0 +1,25 @@
+.newProduct-conntainer{
+    text-align: center;
+    margin-top: 6rem;
+    margin-bottom: 10rem;
+    h2 {
+        margin-bottom: 3rem;
+    }
+
+    input{
+        width: 18rem;
+        height: 2rem;
+        margin-bottom: 1rem;
+    }
+    button {
+        padding: 0.6rem 1rem;
+        background-color: black;
+        color: white;
+        cursor: pointer;
+        border: none;
+        width: 6rem;
+        &:hover {
+          background-color: hsla(0, 0%, 0%, 0.719);
+        }
+    }
+}

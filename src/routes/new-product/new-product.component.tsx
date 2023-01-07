@@ -2,6 +2,7 @@ import axios from "axios";
 import { ChangeEvent, useEffect, useState } from "react";
 
 import { NewProductType } from "../../types/new-product.type";
+import "./new-product.styles.scss";
 
 const NewProduct = () => {
   const [file, setFile] = useState<FileList | null>(null);
@@ -23,6 +24,14 @@ const NewProduct = () => {
       return {
         ...prev,
         [name]: value,
+      };
+    });
+  };
+  const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setProduct((prev) => {
+      return {
+        ...prev,
+        description: e.target.value,
       };
     });
   };
@@ -62,7 +71,6 @@ const NewProduct = () => {
       console.log(error);
     }
   };
-
   const createProduct = async () => {
     if (file) {
       try {
@@ -82,47 +90,48 @@ const NewProduct = () => {
   }, [status]);
 
   return (
-    <div>
+    <div className="newProduct-conntainer">
+      <h2>Create a new product</h2>
       <div>
-        <h2>Create your product</h2>
-        <div>
-          <input
-            type="text"
-            name="title"
-            onChange={handleChangeInput}
-            placeholder="title"
-          />
-        </div>
-        <div>
-          <input
-            type="number"
-            name="price"
-            placeholder="price"
-            onChange={handleChangeInput}
-          />
-        </div>
-        <div>
-          <input
-            type="text"
-            name="description"
-            placeholder="description"
-            onChange={handleChangeInput}
-          />
-        </div>
-        <div>
-          <input
-            type="number"
-            name="categoryId"
-            placeholder="categoryId"
-            onChange={handleChangeInput}
-          />
-        </div>
-        <div>
-          <input type="file" name="image" onChange={handleImageFile} multiple />
-        </div>
-        <div>
-          <button onClick={submitProduct}>submit</button>
-        </div>
+        <label htmlFor="title"></label>
+        <input
+          id="title"
+          type="text"
+          name="title"
+          onChange={handleChangeInput}
+          placeholder="title"
+        />
+      </div>
+      <div>
+        <input
+          type="number"
+          name="price"
+          placeholder="price"
+          onChange={handleChangeInput}
+        />
+      </div>
+      <div>
+        <input
+          type="number"
+          name="categoryId"
+          placeholder="categoryId"
+          onChange={handleChangeInput}
+        />
+      </div>
+      <div>
+        <textarea
+          cols={50}
+          rows={8}
+          name="description"
+          placeholder="Description"
+          onChange={handleTextareaChange}
+        ></textarea>
+      </div>
+      <div>
+        <input type="file" name="image" onChange={handleImageFile} multiple />
+      </div>
+      <div>
+        <button onClick={submitProduct}>submit</button>
       </div>
     </div>
   );
