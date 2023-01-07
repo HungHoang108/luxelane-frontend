@@ -1,27 +1,20 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { CartItemType } from "../types/cart-items.types";
 
-const cartItems = localStorage.getItem("cartItemArray")
 const initialState: CartItemType[] = [];
 
 const CartItemSlice = createSlice({
   name: "cartItemSlice",
   initialState: initialState,
   reducers: {
-    cartItemId: (state, action) => {
-      const condition = (): boolean => {
-        if (state.find((item) => item.id === action.payload.id)) {
-          return true;
-        } else {
-          return false;
-        }
-      };
-      if (condition()) {
+    addItem: (state, action: PayloadAction<CartItemType>) => {
+      const condition = state.find((item) => item.id === action.payload.id);
+
+      if (condition) {
         state.find((item) => item.id === action.payload.id && item.amount++);
       } else {
         state.push(action.payload);
       }
-      localStorage.setItem("cartItemArray", JSON.stringify(state))
     },
     increaseItem: (state, action) => {
       state.find((item) => item.id === action.payload.id && item.amount++);
@@ -37,7 +30,6 @@ const CartItemSlice = createSlice({
           item.amount--;
         }
       });
-    
     },
     removeItem: (state, action) => {
       return state.filter((item) => item.id !== action.payload.id);
@@ -46,6 +38,6 @@ const CartItemSlice = createSlice({
 });
 
 export const CartItemReducer = CartItemSlice.reducer;
-export const { cartItemId, increaseItem, decreaseItem, removeItem } =
+export const { addItem, increaseItem, decreaseItem, removeItem } =
   CartItemSlice.actions;
 export default CartItemSlice;

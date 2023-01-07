@@ -1,10 +1,9 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import { categoriesReducer } from "./categories-reducer.redux";
 import { productReducer } from "./products-reducer";
-import { CartItemReducer } from "./carttems-reducer.redux";
+import { CartItemReducer } from "./cart-items-reducer.redux";
 import { SearchTagReducer } from "./search-tag-reducer";
 import { SortReducer } from "./sort-category-reducer";
-import { SortPriceReducer } from "./sort-price-reducer";
 import { AccessTokenReducer } from "./access-token-reducer";
 
 import { persistReducer } from "redux-persist";
@@ -17,7 +16,6 @@ const reducers = combineReducers({
   CartItemReducer,
   SearchTagReducer,
   SortReducer,
-  SortPriceReducer,
   AccessTokenReducer,
 });
 
@@ -41,11 +39,7 @@ export const createStore = () => {
     reducer: persistedReducer,
   });
 };
-
 const store = createStore();
-// export const store = configureStore({
-//   reducer: persistedReducer,
-// });
 
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;

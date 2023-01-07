@@ -1,5 +1,5 @@
 import { useAppDispatch } from "../../hooks/reduxHook";
-import { cartItemId } from "../../redux/carttems-reducer.redux";
+import { addItem } from "../../redux/cart-items-reducer.redux";
 import { CartItemType } from "../../types/cart-items.types";
 
 import "./button.styles.scss";
@@ -14,11 +14,13 @@ const Button = ({ id, itemName, price, image, amount }: CartItemType) => {
       price: price,
       amount: amount,
     };
-    dispatch(cartItemId(cartItem));
+    dispatch(addItem(cartItem));
   };
   return (
     <div>
-      <button className="addtocart-button" onClick={addProduct}>Add to Cart</button>
+      <button className="addtocart-button" onClick={addProduct}>
+        Add to Cart
+      </button>
     </div>
   );
 };

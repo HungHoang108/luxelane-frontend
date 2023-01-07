@@ -16,15 +16,13 @@ const SearchResult = () => {
           if (product.title.toLowerCase().includes(searchQueryLowerCase)) {
             return (
               <div key={product.id} className="products-card">
-                {/* <img src={product.images[0]} /> */}
+                <img src={product.images[0]} />
                 <h4>{product.title}</h4>
                 <h4>{product.price} $</h4>
                 <Button
                   id={product.id}
                   itemName={product.title}
                   image={product.images[0]}
-                  // image={product.image}
-
                   price={product.price}
                   amount={1}
                 />

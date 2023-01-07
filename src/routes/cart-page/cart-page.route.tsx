@@ -6,7 +6,7 @@ import {
   increaseItem,
   decreaseItem,
   removeItem,
-} from "../../redux/carttems-reducer.redux";
+} from "../../redux/cart-items-reducer.redux";
 
 import "./cart-page.routes.styles.scss";
 
