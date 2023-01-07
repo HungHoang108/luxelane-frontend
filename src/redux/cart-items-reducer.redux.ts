@@ -27,7 +27,7 @@ const CartItemSlice = createSlice({
       }
       state.map((item) => {
         if (item.id === action.payload.id && item.amount > 0) {
-          item.amount--;
+          return item.amount--;
         }
       });
     },

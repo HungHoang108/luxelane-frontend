@@ -20,7 +20,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(fetchAllProducts());
-  }, []);
+  }, [dispatch]);
   return (
     <Routes>
       <Route path="" element={<Root />}>

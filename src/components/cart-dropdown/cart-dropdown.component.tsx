@@ -5,13 +5,12 @@ import "./cart.component.styles.scss";
 
 const Cart = () => {
   const cartItem = useAppSelector((state) => state.CartItemReducer);
-let counter = 0
-const itemMap = ()=> {
-  cartItem.map(item => {
-    counter += item.amount * item.price
-  })}
-  itemMap()
-  localStorage.setItem("totalCost", JSON.stringify(counter))
+  let counter = 0;
+  const itemMap = () => {
+    cartItem.map((item) => (counter += item.amount * item.price));
+  };
+  itemMap();
+  localStorage.setItem("totalCost", JSON.stringify(counter));
   return (
     <div className="cartBox">
       <div className="cartBox-items">
@@ -32,8 +31,16 @@ const itemMap = ()=> {
       </div>
       <div className="cartBox-cost">Total: {counter} $</div>
       <div className="cartBox-button">
-        <div><Link className="link" to="cartpage">GO TO CART</Link></div>
-        <div><Link className="link" to="cartpage">CHECKOUT</Link></div>
+        <div>
+          <Link className="link" to="cartpage">
+            GO TO CART
+          </Link>
+        </div>
+        <div>
+          <Link className="link" to="cartpage">
+            CHECKOUT
+          </Link>
+        </div>
       </div>
     </div>
   );

@@ -13,7 +13,7 @@ const Categories = () => {
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(fetchAllCategories());
-  }, []);
+  }, [dispatch]);
   return (
     <div className="category-box">
       <div className="category-box-h2">
@@ -30,7 +30,7 @@ const Categories = () => {
               nav("category");
             }}
           >
-            <img src={category.image} />
+            <img src={category.image} alt=""/>
             <h4>{category.name}</h4>
           </div>
         ))}

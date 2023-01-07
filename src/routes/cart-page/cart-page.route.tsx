@@ -38,7 +38,7 @@ const CartPage = () => {
       {cartItem.map((item) => (
         <div className="cartpage-box-item" key={item.id}>
           <div>
-            <img src={item.image} />
+            <img src={item.image} alt=""/>
           </div>
           <div>
             <p>{item.itemName}</p>
