@@ -1,5 +1,5 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
-import { categoriesReducer } from "./categories-reducer.redux";
+import { categoriesReducer, categoryReducer } from "./categories-reducer.redux";
 import { productReducer } from "./products-reducer";
 import { CartItemReducer } from "./cart-items-reducer.redux";
 import { SearchTagReducer } from "./search-tag-reducer";
@@ -17,6 +17,7 @@ const reducers = combineReducers({
   SearchTagReducer,
   SortReducer,
   AccessTokenReducer,
+  categoryReducer
 });
 
 const persistConfig = {
@@ -29,6 +30,7 @@ const persistConfig = {
     "SortReducer",
     "SortPriceReducer",
     "AccessTokenReducer",
+    
   ],
 };
 

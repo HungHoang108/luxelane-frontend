@@ -1,25 +1,22 @@
 import { ChangeEvent } from "react";
 
 import ProductCard from "../../components/product-card/product-card.component";
-import { useAppDispatch } from "../../hooks/reduxHook";
-import { sortByCategory } from "../../redux/sort-category-reducer";
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHook";
 import { sortByPrice } from "../../redux/products-reducer";
 
-import "./product-list.style.scss";
 
 const CategoryRoute = () => {
   const dispatch = useAppDispatch();
+  const products = useAppSelector(state=> state.categoryReducer)
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     dispatch(sortByPrice(e.target.value));
   };
-  const handleCategory = (e: ChangeEvent<HTMLSelectElement>) => {
-    dispatch(sortByCategory(e.target.value));
-  };
+
   return (
     <div className="productList-box">
       <div className="productList-box-head">
         <div>
-          <h2>All Products</h2>
+          <h2>Category</h2>
         </div>
         <div className="productList-box-head_sort">
           <span>Sort by price</span>
@@ -30,8 +27,8 @@ const CategoryRoute = () => {
           </select>
         </div>
       </div>
+      <ProductCard title="All Products" productsDisplayed={8} productList={products}/>
 
-      <ProductCard title="All Products" productsDisplayed={9} />
     </div>
   );
 };

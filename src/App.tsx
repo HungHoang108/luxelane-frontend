@@ -13,6 +13,7 @@ import Login from "./routes/login-logout/login.route";
 import SearchResult from "./routes/searchResult/searchResult.route";
 import NewProduct from "./routes/new-product/new-product.component";
 import ProductEditingForm from "./routes/product-editting/product-editing-form.component";
+import CategoryRoute from "./routes/category/category.route";
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -30,6 +31,7 @@ const App = () => {
         <Route path="/searchresult" element={<SearchResult />} />
         <Route path="/editproduct" element={<ProductEditingForm />} />
         <Route path="/newproduct" element={<NewProduct />} />
+        <Route path="/category" element={<CategoryRoute />} />
 
         <Route path="/*" element={<NotFound />} />
       </Route>

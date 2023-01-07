@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { useAppSelector } from "../../hooks/reduxHook";
-import { useAppDispatch } from "../../hooks/reduxHook";
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHook";
 import { ProductCardList } from "../../types/product-cardlist";
 import Button from "../button/button.component";
 import { deleteItem } from "../../redux/products-reducer";
@@ -12,9 +11,8 @@ import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined
 
 import "./product-card.component.styles.scss";
 
-const ProductCard = ({ title, productsDisplayed }: ProductCardList) => {
+const ProductCard = ({ title, productsDisplayed, productList }: ProductCardList) => {
   const dispatch = useAppDispatch();
-  const products = useAppSelector((state) => state.productReducer);
   const sortCategory = useAppSelector((state) => state.SortReducer);
 
   const [role, setRole] = useState("");
@@ -28,16 +26,16 @@ const ProductCard = ({ title, productsDisplayed }: ProductCardList) => {
 
   const sortByCategoryArray = () => {
     if (!sortCategory) {
-      return products;
+      return productList;
     }
 
-    const isCategoryExist = products.find(
+    const isCategoryExist = productList.find(
       (item) => item.category.name === sortCategory
     );
     if (isCategoryExist) {
-      return products.filter((item) => item.category.name === sortCategory);
+      return productList.filter((item) => item.category.name === sortCategory);
     } else {
-      return products;
+      return productList;
     }
   };
 

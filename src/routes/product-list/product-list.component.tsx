@@ -1,7 +1,7 @@
 import { ChangeEvent } from "react";
 
 import ProductCard from "../../components/product-card/product-card.component";
-import { useAppDispatch } from "../../hooks/reduxHook";
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHook";
 import { sortByCategory } from "../../redux/sort-category-reducer";
 import { sortByPrice } from "../../redux/products-reducer";
 
@@ -9,6 +9,7 @@ import "./product-list.style.scss";
 
 const ProductList = () => {
   const dispatch = useAppDispatch();
+  const products = useAppSelector(state => state.productReducer)
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     dispatch(sortByPrice(e.target.value));
   };
@@ -40,7 +41,7 @@ const ProductList = () => {
         </div>
       </div>
 
-      <ProductCard title="All Products" productsDisplayed={8} />
+      <ProductCard title="All Products" productsDisplayed={8} productList={products}/>
     </div>
   );
 };
