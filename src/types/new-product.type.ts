@@ -5,3 +5,8 @@ export interface NewProductType {
   categoryId: number;
   images: string[];
 }
+
+export interface FileAndNewProductForm {
+  file: FileList | null
+  product: NewProductType
+}

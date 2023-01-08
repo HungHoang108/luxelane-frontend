@@ -1,13 +1,14 @@
-import axios from "axios";
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useState } from "react";
 
+import { createProduct } from "../../redux/products-reducer";
+import { useAppDispatch } from "../../hooks/reduxHook";
 import { NewProductType } from "../../types/new-product.type";
 import "./new-product.styles.scss";
 
 const NewProduct = () => {
   const [file, setFile] = useState<FileList | null>(null);
-  const [status, setStatus] = useState(false);
 
+  const dispatch = useAppDispatch();
   const [product, setProduct] = useState<NewProductType>({
     title: "",
     price: 0,
@@ -15,8 +16,6 @@ const NewProduct = () => {
     categoryId: 0,
     images: [],
   });
-
-  const { title, price, description, categoryId, images } = product;
 
   const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -39,55 +38,14 @@ const NewProduct = () => {
   const handleImageFile = (e: ChangeEvent<HTMLInputElement>) => {
     setFile(e.target.files);
   };
-  const newItem = {
-    title: title,
-    price: price,
-    description: description,
-    categoryId: categoryId,
-    images: images,
-  };
-  const submitProduct = async () => {
-    try {
-      await axios
-        .post(
-          "https://api.escuelajs.co/api/v1/files/upload",
-          { file: file && file[0] },
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        )
-        .then((res) =>
-          setProduct((prev) => {
-            return {
-              ...product,
-              images: [res.data.location],
-            };
-          })
-        );
-      setStatus(!status);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  const createProduct = async () => {
-    if (file) {
-      try {
-        await axios
-          .post("https://api.escuelajs.co/api/v1/products/", newItem)
-          .then((res) => {
-            console.log(res.data);
-          });
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  };
 
-  useEffect(() => {
-    createProduct();
-  }, [status]);
+  const newItemForm = {
+    file: file,
+    product: product,
+  };
+  const submitProduct = () => {
+    dispatch(createProduct(newItemForm));
+  }
 
   return (
     <div className="newProduct-conntainer">
@@ -128,7 +86,11 @@ const NewProduct = () => {
         ></textarea>
       </div>
       <div>
-        <span><i><b>Upload images:</b></i></span>
+        <span>
+          <i>
+            <b>Upload images:</b>
+          </i>
+        </span>
         <input type="file" name="image" onChange={handleImageFile} multiple />
       </div>
       <div>
