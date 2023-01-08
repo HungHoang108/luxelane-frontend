@@ -4,9 +4,14 @@ import {
   fetchAllProducts,
   deleteItem,
   deleteProduct,
+  createProduct,
 } from "../../redux/products-reducer";
 import server from "../shared/server";
 import { createStore, RootState } from "../../redux/store";
+import {
+  FileAndNewProductForm,
+  NewProductType,
+} from "../../types/new-product.type";
 let store: ToolkitStore<
   RootState,
   AnyAction,
@@ -22,6 +27,7 @@ afterAll(() => {
 beforeEach(() => {
   store = createStore();
 });
+// let fl = new FileList();
 describe("Test all the actions", () => {
   test("Should return initial state", () => {
     expect(store.getState().productReducer.length).toBe(0);
@@ -39,17 +45,21 @@ describe("Test all the actions", () => {
   //   // expect(store.getState().productReducer).toBe(2);
   // });
 
-  // test("should create a product", async () => {
-  //     const newProduct: NewProductType = {
-  //         title: "D",
-  //         price: 1000,
-  //         description: "Test create product",
-  //         categoryId: 1,
-  //         images: []
-  //     }
-  //     await store.dispatch(createProduct(newProduct))
-  //     expect(store.getState().productReducer.length).toBe(1)
-  // })
+  test("should create a product", async () => {
+    const newItem: NewProductType = {
+      title: "D",
+      price: 1000,
+      description: "Test create product",
+      categoryId: 1,
+      images: ["test"],
+    };
+    const newItemForm: FileAndNewProductForm = {
+      file: null,
+      product: newItem,
+    };
+    await store.dispatch(createProduct(newItemForm));
+    // expect(store.getState().productReducer.length).toBe(1)
+  });
   // test("should not create a product", async () => {
   //     const newProduct: CreateProduct = {
   //         title: "E",

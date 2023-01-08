@@ -21,6 +21,8 @@ const Login = () => {
   });
   const [file, setFile] = useState<FileList | null>(null);
   const [status, setStatus] = useState(false);
+  const [newUserStatus, setNewUserStatus] = useState(false);
+
   const [user, setUser] = useState<UserType>({
     email: "",
     password: "",
@@ -96,6 +98,7 @@ const Login = () => {
           })
         );
       setStatus(!status);
+      setNewUserStatus(true);
     } catch (error) {
       console.log(error);
     }
@@ -113,7 +116,7 @@ const Login = () => {
         await axios
           .post("https://api.escuelajs.co/api/v1/users/", json)
           .then((res) => {
-            nav("/");
+            // nav("/");
           });
       } catch (error) {
         console.log(error);
@@ -144,75 +147,86 @@ const Login = () => {
         });
     }
   };
+  const LogInNewUser = () => {
+    setNewUserStatus(false);
+  };
 
   return (
-    <div className="authentication-container">
-      <div className="sign-in-container">
-        <h2>Already have an account?</h2>
-        <span>Sign in with your email and password</span>
+    <div>
+      {newUserStatus ? (
+        <div className="authentication-newUser">
+          <h4>Your account is created successfully</h4>
+          <button onClick={LogInNewUser}>Login now</button>
+        </div>
+      ) : (
+        <div className="authentication-container">
+          <div className="sign-in-container">
+            <h2>Already have an account?</h2>
+            <span>Sign in with your email and password</span>
 
-        <div className="authen-input">
-          <input
-            type="email"
-            name="email"
-            onChange={handleChange}
-            placeholder="Email"
-          />
-        </div>
-        <div className="authen-input">
-          <input
-            type="password"
-            name="password"
-            onChange={handleChange}
-            placeholder="Password"
-          />
-        </div>
-        <button className="authen-button" onClick={handleSubmit}>
-          Sign In
-        </button>
-      </div>
+            <div className="authen-input">
+              <input
+                type="email"
+                name="email"
+                onChange={handleChange}
+                placeholder="Email"
+              />
+            </div>
+            <div className="authen-input">
+              <input
+                type="password"
+                name="password"
+                onChange={handleChange}
+                placeholder="Password"
+              />
+            </div>
+            <button className="authen-button" onClick={handleSubmit}>
+              Sign In
+            </button>
+          </div>
+          <div>
+            <h2>Don't have an account?</h2>
+            <span>Sign up to get our latest updates and more</span>
 
-      <div>
-        <h2>Don't have an account?</h2>
-        <span>Sign up to get our latest updates and more</span>
+            <div className="authen-input">
+              <input
+                type="email"
+                name="email"
+                onChange={handleRegister}
+                placeholder="email"
+              />
+            </div>
+            <div className="authen-input">
+              <input
+                type="password"
+                name="password"
+                placeholder="password"
+                onChange={handleRegister}
+              />
+            </div>
+            <div className="authen-input">
+              <input
+                type="text"
+                name="name"
+                placeholder="name"
+                onChange={handleRegister}
+              />
+            </div>
+            <div className="authen-input">
+              <input
+                type="file"
+                name="avatar"
+                onChange={handleRegisterFile}
+                multiple
+              />
+            </div>
 
-        <div className="authen-input">
-          <input
-            type="email"
-            name="email"
-            onChange={handleRegister}
-            placeholder="email"
-          />
+            <button className="authen-button" onClick={submitRegister}>
+              Register
+            </button>
+          </div>
         </div>
-        <div className="authen-input">
-          <input
-            type="password"
-            name="password"
-            placeholder="password"
-            onChange={handleRegister}
-          />
-        </div>
-        <div className="authen-input">
-          <input
-            type="text"
-            name="name"
-            placeholder="name"
-            onChange={handleRegister}
-          />
-        </div>
-        <div className="authen-input">
-          <input
-            type="file"
-            name="avatar"
-            onChange={handleRegisterFile}
-            multiple
-          />
-        </div>
-
-        <button className="authen-button" onClick={submitRegister}>
-          Register
-        </button>
-      </div>
+      )}
     </div>
   );
 };

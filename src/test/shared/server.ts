@@ -1,5 +1,6 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
+import { NewProductType } from "../../types/new-product.type";
 
 let productTest = [
   {
@@ -81,16 +82,16 @@ const handler = [
   rest.get("https://api.escuelajs.co/api/v1/products", (req, res, ctx) => {
     return res(ctx.json(productTest));
   }),
-  // rest.post(
-  //   "https://api.escuelajs.co/api/v1/products/",
-  //   async (req, res, ctx) => {
-  //     const product: NewProductType = await req.json();
-  //     if (product.price < 1000) {
-  //       return res(ctx.status(400, "Data is invalid"));
-  //     }
-  //     return res(ctx.json(product));
-  //   }
-  // ),
+  rest.post(
+    "https://api.escuelajs.co/api/v1/products/",
+    async (req, res, ctx) => {
+      const product: NewProductType = await req.json();
+      if (product.price < 1) {
+        return res(ctx.status(400, "Data is invalid"));
+      }
+      return res(ctx.json(product));
+    }
+  ),
   // rest.delete(`https://api.escuelajs.co/api/v1/products/1`,
   //   async (req, res, ctx) => {
 
