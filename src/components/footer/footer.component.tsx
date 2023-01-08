@@ -16,7 +16,10 @@ const Footer = () => {
             {" "}
             Twitter
           </a>
-          <a className="footer-link" href="https://github.com/HungHoang108">
+          <a
+            className="footer-link"
+            href="https://github.com/HungHoang108/fs12-frontend-project-public"
+          >
             {" "}
             Github
           </a>
