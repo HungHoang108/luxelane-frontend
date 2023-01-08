@@ -8,6 +8,7 @@ import { searchTagAction } from "../../redux/search-tag-reducer";
 import LightModeSharpIcon from "@mui/icons-material/LightModeSharp";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import { darkMode } from "../../redux/dark-mode.reducer";
 
 import "./nav.component.style.scss";
 
@@ -25,6 +26,7 @@ const Navigation = () => {
   const nav = useNavigate();
   const loginStatus = localStorage.getItem("userToken");
   const dispatch = useAppDispatch();
+  const darkModeStatus = useAppSelector((state) => state.DarkModeReducer);
   const cartItem = useAppSelector((state) => state.CartItemReducer);
 
   let counter = 0;
@@ -47,6 +49,9 @@ const Navigation = () => {
   const removeUserData = () => {
     localStorage.removeItem("userToken");
     localStorage.removeItem("role");
+  };
+  const testa = () => {
+    dispatch(darkMode(!darkModeStatus));
   };
 
   return (
@@ -85,7 +90,7 @@ const Navigation = () => {
             </button>
           </div>
 
-          <div>
+          <div onClick={testa}>
             <LightModeSharpIcon fontSize="small" />
           </div>
 

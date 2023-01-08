@@ -9,6 +9,7 @@ import { AccessTokenReducer } from "./access-token-reducer";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { combineReducers } from "redux";
+import { DarkModeReducer } from "./dark-mode.reducer";
 
 const reducers = combineReducers({
   categoriesReducer,
@@ -17,7 +18,8 @@ const reducers = combineReducers({
   SearchTagReducer,
   SortReducer,
   AccessTokenReducer,
-  categoryReducer
+  categoryReducer,
+  DarkModeReducer
 });
 
 const persistConfig = {

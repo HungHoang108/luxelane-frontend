@@ -27,7 +27,7 @@ const Categories = () => {
             className="categories-category"
             onClick={() => {
               dispatch(fetchAllProductsInCategory(category.id));
-              nav("category");
+              nav("/category");
             }}
           >
             <img src={category.image} alt=""/>

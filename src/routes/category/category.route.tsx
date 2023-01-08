@@ -4,10 +4,9 @@ import ProductCard from "../../components/product-card/product-card.component";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHook";
 import { sortByPrice } from "../../redux/products-reducer";
 
-
 const CategoryRoute = () => {
   const dispatch = useAppDispatch();
-  const products = useAppSelector(state=> state.categoryReducer)
+  const products = useAppSelector((state) => state.categoryReducer);
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     dispatch(sortByPrice(e.target.value));
   };
@@ -16,7 +15,7 @@ const CategoryRoute = () => {
     <div className="productList-box">
       <div className="productList-box-head">
         <div>
-          <h2>Category</h2>
+          <h2>{products[0].category.name}</h2>
         </div>
         <div className="productList-box-head_sort">
           <span>Sort by price</span>
@@ -27,8 +26,11 @@ const CategoryRoute = () => {
           </select>
         </div>
       </div>
-      <ProductCard title="All Products" productsDisplayed={13} productList={products}/>
-
+      <ProductCard
+        title="All Products"
+        productsDisplayed={13}
+        productList={products}
+      />
     </div>
   );
 };
