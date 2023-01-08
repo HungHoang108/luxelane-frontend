@@ -1,0 +1,35 @@
+.productRoute {
+  padding: 10rem 5rem 10rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 3rem;
+  .productRoute-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    .productRoute-detail_cart-description {
+      div:nth-child(1) {
+        padding: 2rem 0;
+        display: flex;
+        gap: 3rem;
+        flex-wrap: wrap;
+
+      }
+      div:nth-child(2){
+        h3{
+            margin-bottom: 1rem;
+        }
+        p {
+            width: 30rem;
+        }
+      }
+    }
+    .productRoute-detail_title-price {
+      h1 {
+        padding-bottom: 1rem;
+      }
+    }
+  }
+}

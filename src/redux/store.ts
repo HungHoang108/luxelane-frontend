@@ -10,6 +10,7 @@ import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { combineReducers } from "redux";
 import { DarkModeReducer } from "./dark-mode.reducer";
+import {singleProductReducer} from "./singleProduct-reducer";
 
 const reducers = combineReducers({
   categoriesReducer,
@@ -19,7 +20,8 @@ const reducers = combineReducers({
   SortReducer,
   AccessTokenReducer,
   categoryReducer,
-  DarkModeReducer
+  DarkModeReducer,
+  singleProductReducer
 });
 
 const persistConfig = {
