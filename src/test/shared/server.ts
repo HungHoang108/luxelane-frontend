@@ -1,6 +1,7 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 import { NewProductType } from "../../types/new-product.type";
+import jwt from "jsonwebtoken";
 
 let productTest = [
   {
@@ -90,10 +91,10 @@ const users = [
   {
     id: 2,
     email: "maria@mail.com",
-    password: "changeme",
-    name: "Jhon",
+    password: "changemeh",
+    name: "Jhonh",
     role: "customer",
-    avatar: "https://api.lorem.space/image/face?w=640&h=480&r=6440",
+    avatar: "https://api.lorem.space/image/face?w=640&h=480&r=64440",
   },
 ];
 const handler = [
@@ -132,6 +133,31 @@ const handler = [
   }),
   rest.get("https://api.escuelajs.co/api/v1/users", (req, res, ctx) => {
     return res(ctx.json(users));
+  }),
+  rest.post(
+    "https://api.escuelajs.co/api/v1/auth/login",
+    async (req, res, ctx) => {
+      const { email, password } = await req.json();
+      const foundUser = users.find(
+        (user) => user.email === email && user.password === password
+      );
+      if (foundUser) {
+        const access_token = jwt.sign(foundUser, "loginKey");
+        return res(ctx.json({ access_token }));
+      } else {
+        return res(ctx.status(401, "Unauthorized"));
+      }
+    }
+  ),
+  rest.get("https://api.escuelajs.co/api/v1/auth/profile", (req, res, ctx) => {
+    const access_tokenArr = req.headers.get("Authorization")?.split(" ");
+    if (access_tokenArr) {
+      const access_token = access_tokenArr[1];
+      const foundUser = jwt.verify(access_token, "loginKey");
+      return res(ctx.json(foundUser));
+    } else {
+      return res(ctx.status(401, "Unauthorized"));
+    }
   }),
 ];
 

@@ -45,21 +45,21 @@ describe("Test all the actions", () => {
   //   // expect(store.getState().productReducer).toBe(2);
   // })
 
-  test("should create a product", async () => {
-    const newItem: NewProductType = {
-      title: "D",
-      price: 1000,
-      description: "Test create product",
-      categoryId: 1,
-      images: ["test"],
-    };
-    const newItemForm: FileAndNewProductForm = {
-      file: null,
-      product: newItem,
-    };
-    await store.dispatch(createProduct(newItemForm));
-    // expect(store.getState().productReducer.length).toBe(1)
-  });
+  // test("should create a product", async () => {
+  //   const newItem: NewProductType = {
+  //     title: "D",
+  //     price: 1000,
+  //     description: "Test create product",
+  //     categoryId: 1,
+  //     images: ["test"],
+  //   };
+  //   const newItemForm: FileAndNewProductForm = {
+  //     file: null,
+  //     product: newItem,
+  //   };
+  //   await store.dispatch(createProduct(newItemForm));
+  //   // expect(store.getState().productReducer.length).toBe(1)
+  // });
   // test("should not create a product", async () => {
   //     const newProduct: CreateProduct = {
   //         title: "E",

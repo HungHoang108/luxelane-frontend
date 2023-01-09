@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from "../../hooks/reduxHook";
 import { accessTokenn } from "../../redux/access-token-reducer";
 
 import "./login-logout.style.scss";
+import { logInUser } from "../../redux/user-reducer";
 
 const Login = () => {
   // no idea why whenever i delete the line of code below, the user session is not being added to localstorage.
@@ -24,10 +25,12 @@ const Login = () => {
   const [newUserStatus, setNewUserStatus] = useState(false);
 
   const [user, setUser] = useState<UserType>({
+    id: 0,
     email: "",
     password: "",
     name: "",
     avatar: "",
+    role: "customer"
   });
   const { email, password, name, avatar } = user;
   const nav = useNavigate();
@@ -44,22 +47,23 @@ const Login = () => {
   };
 
   const handleSubmit = async () => {
-    try {
-      await axios
-        .post("https://api.escuelajs.co/api/v1/auth/login", {
-          email: login.email,
-          password: login.password,
-        })
-        .then((res) => {
-          dispatch(accessTokenn(res.data.access_token));
-          localStorage.setItem("userToken", res.data.access_token);
-          if (res.data) {
-            nav("/");
-          }
-        });
-    } catch (error) {
-      console.log(error);
-    }
+    dispatch(logInUser(login))
+    // try {
+    //   await axios
+    //     .post("https://api.escuelajs.co/api/v1/auth/login", {
+    //       email: login.email,
+    //       password: login.password,
+    //     })
+    //     .then((res) => {
+    //       dispatch(accessTokenn(res.data.access_token));
+    //       localStorage.setItem("userToken", res.data.access_token);
+    //       if (res.data) {
+    //         nav("/");
+    //       }
+    //     });
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
 
   //Create user
@@ -128,25 +132,25 @@ const Login = () => {
     createUser();
   }, [status]);
 
-  useEffect(() => {
-    userSession();
-  });
+  // useEffect(() => {
+  //   userSession();
+  // });
 
-  const userSession = async () => {
-    const loginToken = localStorage.getItem("userToken");
-    if (loginToken) {
-      await axios
-        .get("https://api.escuelajs.co/api/v1/auth/profile", {
-          headers: {
-            Authorization: `Bearer ${loginToken}`,
-          },
-        })
-        .then((res) => {
-          localStorage.setItem("role", res.data.role);
-          console.log(res.data);
-        });
-    }
-  };
+  // const userSession = async () => {
+  //   const loginToken = localStorage.getItem("userToken");
+  //   if (loginToken) {
+  //     await axios
+  //       .get("https://api.escuelajs.co/api/v1/auth/profile", {
+  //         headers: {
+  //           Authorization: `Bearer ${loginToken}`,
+  //         },
+  //       })
+  //       .then((res) => {
+  //         localStorage.setItem("role", res.data.role);
+  //         console.log(res.data);
+  //       });
+  //   }
+  // };
   const LogInNewUser = () => {
     setNewUserStatus(false);
   };
