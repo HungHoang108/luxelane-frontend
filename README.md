@@ -8,24 +8,24 @@
 Live demo [https://merry-genie-108.netlify.app/](https://merry-genie-108.netlify.app/)
 
 ## Overview
-The app use fake API endpoint [https://fakeapi.platzi.com/](https://fakeapi.platzi.com/) to get products, category, user data.
+The app use fake API endpoint [https://fakeapi.platzi.com/](https://fakeapi.platzi.com/) to get products, category, user data, authentication and authorization.
 
 ## Features
 1. Get all products, find a single products, sort products by categories, sort products by price
 2. Register for a new customer account, login with Email and password
 3. Customer account can create new product
-4. Admin can create, delete and edit product
-    Admin acount for testing: 
+4. Admin can create, delete and edit product. Testing account: 
     - Email: admin@mail.com
     - Password: admin123
-5. Ddd product to cart, remove products, update products's quantity in cart
+5. Add product to cart, remove products, update products's quantity in cart
 
 ## Future features
 1. Dark mode
 2. Favourite
 3. Check out route and payment
+4. User profile route
 
-## Instruction to run the project
+## Instruction to run the app
 
 In the project directory, you can run:
 
