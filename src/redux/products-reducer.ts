@@ -59,13 +59,13 @@ export const createProduct = createAsyncThunk(
   "createProduct",
   async ({ file, product }: FileAndNewProductForm) => {
     try {
-      if (product.images.length == 1) {
-        const newItemResponse = await axios.post(
-          "https://api.escuelajs.co/api/v1/products/",
-          product
-        );
-        return newItemResponse.data;
-      }
+      // if (product.images.length == 1) {
+      //   const newItemResponse = await axios.post(
+      //     "https://api.escuelajs.co/api/v1/products/",
+      //     product
+      //   );
+      //   return newItemResponse.data;
+      // }
       const response = await axios.post(
         "https://api.escuelajs.co/api/v1/files/upload",
         { file: file && file[0] },

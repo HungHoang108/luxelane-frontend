@@ -10,7 +10,9 @@ const SearchResult = () => {
 
   return (
     <div className="search-result-box">
-      <h2>Search results for {searchQuery ? searchQuery : "..."}</h2>
+      <h2>
+        Search results for <i> {searchQuery ? searchQuery : "..."}</i>
+      </h2>
       <div className="products">
         {searchQueryLowerCase.length > 1 ? (
           products.map((product) => {

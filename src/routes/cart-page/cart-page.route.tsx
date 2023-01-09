@@ -41,7 +41,7 @@ const CartPage = () => {
             <img src={item.image} alt=""/>
           </div>
           <div>
-            <p>{item.itemName}</p>
+            <p className="">{item.itemName}</p>
           </div>
           <div className="cartpage-box-item_amount">
             <div>

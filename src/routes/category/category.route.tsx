@@ -28,7 +28,7 @@ const CategoryRoute = () => {
       </div>
       <ProductCard
         title="All Products"
-        productsDisplayed={13}
+        productsDisplayed={7}
         productList={products}
       />
     </div>

@@ -9,7 +9,6 @@ const Root = () => {
   return (
     <div>
       <Navigation />
-
       <Outlet />
       <Footer></Footer>
     </div>

@@ -43,7 +43,7 @@ describe("Test all the actions", () => {
   //   const test3 = store.getState().productReducer
   //   console.log("test33333333333333333",test3)
   //   // expect(store.getState().productReducer).toBe(2);
-  // });
+  // })
 
   test("should create a product", async () => {
     const newItem: NewProductType = {
