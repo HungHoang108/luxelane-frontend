@@ -22,14 +22,15 @@ const ProductCard = ({
   const sortCategory = useAppSelector((state) => state.SortReducer);
   const nav = useNavigate();
 
-  const [role, setRole] = useState("");
+  const [role, setRole] = useState<string | null>(null);
   const [popup, setPopup] = useState(false);
   const [popupId, setPopupId] = useState(0);
 
   useEffect(() => {
     const userRole = localStorage.getItem("userInfo");
     const userData = userRole && JSON.parse(userRole);
-    setRole(userData.role);
+    const getRole = userData.role;
+    getRole && setRole(getRole);
   }, []);
 
   const sortByCategoryArray = () => {
@@ -84,7 +85,7 @@ const ProductCard = ({
                   />
                 </div>
                 <div className="card-button_edit_deletebox">
-                  {role === "admin" && (
+                  {role && role === "admin" && (
                     <button
                       className="edit-delete-button"
                       onClick={() => {
@@ -96,7 +97,7 @@ const ProductCard = ({
                       <DeleteOutlineOutlinedIcon />
                     </button>
                   )}
-                  {role === "admin" && (
+                  {role && role === "admin" && (
                     <button
                       className="edit-delete-button"
                       onClick={() => {
