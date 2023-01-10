@@ -77,7 +77,7 @@ export const createProduct = createAsyncThunk(
       return newItemResponse.data;
     } catch (error) {
       const err = error as AxiosError;
-      console.log(err);
+      return err
     }
   }
 );

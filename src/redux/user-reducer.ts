@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios, { AxiosError } from "axios";
-import { UserType, userReducerType } from "../types/user.types";
+import { UserType, userReducerType, newUserType } from "../types/user.types";
 import { LoginType } from "../types/login.types";
 
 const userInitialState: userReducerType = {
@@ -66,16 +66,32 @@ export const getUserSession = createAsyncThunk(
     }
   }
 );
-// export const createNewUser = createAsyncThunk("createNewUser", async () => {
-//   try {
-//     const response = await axios.get(
-//       `https://api.escuelajs.co/api/v1/categories/${id}/products`
-//     );
-//     return response.data;
-//   } catch (error) {
-//     return error as AxiosError;
-//   }
-// });
+export const createUser = createAsyncThunk(
+  "createProduct",
+  async ({ file, user }: newUserType) => {
+    try {
+      const response = await axios.post(
+        "https://api.escuelajs.co/api/v1/files/upload",
+        { file: file && file[0] },
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      const data = response.data.location;
+      const newUser = { ...user, avatar: data };
+      const newUserResponse = await axios.post(
+        "https://api.escuelajs.co/api/v1/users/",
+        newUser
+      );
+      return newUserResponse.data;
+    } catch (error) {
+      const err = error as AxiosError;
+      return err;
+    }
+  }
+);
 
 export const UserSlice = createSlice({
   name: "UserSlice",

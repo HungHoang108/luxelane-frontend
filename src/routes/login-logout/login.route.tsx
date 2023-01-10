@@ -1,13 +1,11 @@
 import { ChangeEvent, useState, useEffect } from "react";
-import axios from "axios";
-
 import { useNavigate } from "react-router-dom";
 import { LoginType } from "../../types/login.types";
-import { UserType } from "../../types/user.types";
+import { newUserInputField, UserType } from "../../types/user.types";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHook";
 
 import "./login-logout.style.scss";
-import { logInUser } from "../../redux/user-reducer";
+import { createUser, logInUser } from "../../redux/user-reducer";
 
 const Login = () => {
   const dispatch = useAppDispatch();
@@ -18,18 +16,14 @@ const Login = () => {
     password: "",
   });
   const [file, setFile] = useState<FileList | null>(null);
-  const [status, setStatus] = useState(false);
   const [newUserStatus, setNewUserStatus] = useState(false);
 
-  const [user, setUser] = useState<UserType>({
-    id: 0,
+  const [user, setUser] = useState<newUserInputField>({
     email: "",
     password: "",
     name: "",
     avatar: "",
-    role: "customer",
   });
-  const { email, password, name, avatar } = user;
   const nav = useNavigate();
 
   //Login
@@ -61,53 +55,14 @@ const Login = () => {
   const handleRegisterFile = (e: ChangeEvent<HTMLInputElement>) => {
     setFile(e.target.files);
   };
+  const newUser = {
+    file: file,
+    user: user,
+  };
   const submitRegister = async () => {
-    try {
-      await axios
-        .post(
-          "https://api.escuelajs.co/api/v1/files/upload",
-          { file: file && file[0] },
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        )
-        .then((res) =>
-          setUser((prev) => {
-            return {
-              ...prev,
-              avatar: res.data.location,
-            };
-          })
-        );
-      setStatus(!status);
-      setNewUserStatus(true);
-    } catch (error) {
-      console.log(error);
-    }
+    dispatch(createUser(newUser));
+    setNewUserStatus(true);
   };
-  const json = {
-    email: email,
-    password: password,
-    name: name,
-    avatar: avatar,
-  };
-
-  const createUser = async () => {
-    if (file) {
-      try {
-        await axios
-          .post("https://api.escuelajs.co/api/v1/users/", json)
-          .then((res) => {});
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  };
-  useEffect(() => {
-    createUser();
-  }, [status]);
 
   const LogInNewUser = () => {
     setNewUserStatus(false);
