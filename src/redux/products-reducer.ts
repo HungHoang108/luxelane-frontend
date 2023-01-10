@@ -61,7 +61,7 @@ export const createProduct = createAsyncThunk(
     try {
       const response = await axios.post(
         "https://api.escuelajs.co/api/v1/files/upload",
-        { file: file && file[0] },
+        { file: file },
         {
           headers: {
             "Content-Type": "multipart/form-data",
@@ -77,7 +77,7 @@ export const createProduct = createAsyncThunk(
       return newItemResponse.data;
     } catch (error) {
       const err = error as AxiosError;
-      return err
+      return err;
     }
   }
 );
@@ -123,8 +123,11 @@ const ProductsSlice = createSlice({
         state[itemIndex].description = action.payload.description;
       })
       .addCase(createProduct.fulfilled, (state, action) => {
-        console.log(action.payload);
-        return state;
+        if (action.payload) {
+          state.push(action.payload);
+        } else {
+          return state;
+        }
       });
   },
 });

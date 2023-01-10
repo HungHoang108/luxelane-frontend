@@ -6,7 +6,7 @@ import { NewProductType } from "../../types/new-product.type";
 import "./new-product.styles.scss";
 
 const NewProduct = () => {
-  const [file, setFile] = useState<FileList | null>(null);
+  const [file, setFile] = useState<File | null>(null);
   const [status, setStatus] = useState(false);
 
   const dispatch = useAppDispatch();
@@ -37,7 +37,7 @@ const NewProduct = () => {
   };
 
   const handleImageFile = (e: ChangeEvent<HTMLInputElement>) => {
-    setFile(e.target.files);
+    e.target.files && setFile(e.target.files[0]);
     console.log(e.target.files)
   };
 

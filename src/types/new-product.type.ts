@@ -7,6 +7,6 @@ export interface NewProductType {
 }
 
 export interface FileAndNewProductForm {
-  file: FileList | null
+  file: File | null
   product: NewProductType
 }

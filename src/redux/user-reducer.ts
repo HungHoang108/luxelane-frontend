@@ -98,20 +98,21 @@ export const UserSlice = createSlice({
   initialState: userInitialState,
   reducers: {},
   extraReducers: (build) => {
-    build.addCase(fetchAllUser.fulfilled, (state, action) => {
-      if (action.payload instanceof AxiosError) {
-        return state;
-      } else {
-        state.userList = action.payload;
-      }
-    });
-    // .addCase(logInUser.fulfilled, (state, action) => {
-    //   if (action.payload instanceof AxiosError) {
-    //     return state;
-    //   } else {
-    //     state.access_token = action.payload;
-    //   }
-    // })
+    build
+      .addCase(fetchAllUser.fulfilled, (state, action) => {
+        if (action.payload instanceof AxiosError) {
+          return state;
+        } else {
+          state.userList = action.payload;
+        }
+      })
+      .addCase(createUser.fulfilled, (state, action) => {
+        if(action.payload){
+          state.userList.push(action.payload)
+        } else {
+          return state
+        }
+      });
   },
 });
 export const UserSessionSlice = createSlice({

@@ -159,6 +159,30 @@ const handler = [
       return res(ctx.status(401, "Unauthorized"));
     }
   }),
+  rest.post(
+    "https://api.escuelajs.co/api/v1/files/upload",
+    async (req, res, ctx) => {
+      const file: File = await req.json();
+      console.log(file)
+      return res(
+        ctx.json({
+          originalname: file.name,
+          filename: file.name,
+          location: `https://api.escuelajs.co/api/v1/files/${file.name}`,
+        })
+      );
+    }
+  ),
+  rest.post(
+    "https://api.escuelajs.co/api/v1/products/",
+    async (req, res, ctx) => {
+      const product: NewProductType = await req.json();
+      if (product.price < 1000) {
+        return res(ctx.status(400, "data is invalid"));
+      }
+      return res(ctx.json(product));
+    }
+  ),
 ];
 
 const server = setupServer(...handler);
