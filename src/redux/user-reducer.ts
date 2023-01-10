@@ -59,6 +59,7 @@ export const getUserSession = createAsyncThunk(
         }
       );
       const data: UserType = response.data;
+      localStorage.setItem("userInfo", JSON.stringify(data));
       return data;
     } catch (error) {
       const e = error as AxiosError;
@@ -107,10 +108,10 @@ export const UserSlice = createSlice({
         }
       })
       .addCase(createUser.fulfilled, (state, action) => {
-        if(action.payload){
-          state.userList.push(action.payload)
+        if (action.payload) {
+          state.userList.push(action.payload);
         } else {
-          return state
+          return state;
         }
       });
   },
@@ -124,7 +125,7 @@ export const UserSessionSlice = createSlice({
       if (action.payload instanceof AxiosError) {
         return state;
       } else {
-        state = action.payload;
+        return (state = action.payload);
       }
     });
   },

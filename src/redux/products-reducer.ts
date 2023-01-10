@@ -128,7 +128,7 @@ const ProductsSlice = createSlice({
         } else {
           return state;
         }
-      });
+      })
   },
 });
 export const productReducer = ProductsSlice.reducer;

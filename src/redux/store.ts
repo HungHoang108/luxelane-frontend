@@ -4,7 +4,6 @@ import { productReducer } from "./products-reducer";
 import { CartItemReducer } from "./cart-items-reducer.redux";
 import { SearchTagReducer } from "./search-tag-reducer";
 import { SortReducer } from "./sort-category-reducer";
-import { AccessTokenReducer } from "./access-token-reducer";
 
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
@@ -19,7 +18,6 @@ const reducers = combineReducers({
   CartItemReducer,
   SearchTagReducer,
   SortReducer,
-  AccessTokenReducer,
   categoryReducer,
   DarkModeReducer,
   singleProductReducer,

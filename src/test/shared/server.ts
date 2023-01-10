@@ -163,7 +163,6 @@ const handler = [
     "https://api.escuelajs.co/api/v1/files/upload",
     async (req, res, ctx) => {
       const file: File = await req.json();
-      console.log(file)
       return res(
         ctx.json({
           originalname: file.name,

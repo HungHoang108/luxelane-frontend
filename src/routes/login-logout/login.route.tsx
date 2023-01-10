@@ -1,7 +1,7 @@
 import { ChangeEvent, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoginType } from "../../types/login.types";
-import { newUserInputField, UserType } from "../../types/user.types";
+import { newUserInputField } from "../../types/user.types";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHook";
 
 import "./login-logout.style.scss";
@@ -9,7 +9,12 @@ import { createUser, logInUser } from "../../redux/user-reducer";
 
 const Login = () => {
   const dispatch = useAppDispatch();
-  const userSession = useAppSelector((state) => state.userSessionReducer);
+  // const userSession = useAppSelector((state) => state.userSessionReducer);
+  // console.log(userSession);
+  let userData = localStorage.getItem("userInfo");
+  useEffect(() => {
+    userData = localStorage.getItem("userInfo");
+  }, []);
 
   const [login, setLogin] = useState<LoginType>({
     email: "",
@@ -38,8 +43,9 @@ const Login = () => {
   };
   const handleSubmit = async () => {
     dispatch(logInUser(login));
-    localStorage.setItem("userInfo", JSON.stringify(userSession));
-    userSession && nav("/");
+    // localStorage.setItem("userInfo", JSON.stringify(userSession));
+    // userSession &&
+    nav("/");
   };
 
   //Create user

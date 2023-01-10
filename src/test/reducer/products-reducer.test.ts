@@ -77,17 +77,7 @@ describe("Test all the actions", () => {
     await store.dispatch(createProduct({ file, product }));
     expect(store.getState().productReducer.length).toBe(1);
   });
-  // test("should not create a product", async () => {
-  //     const newProduct: CreateProduct = {
-  //         title: "E",
-  //         price: -1000,
-  //         description: "Test create product",
-  //         categoryId: 1,
-  //         images: []
-  //     }
-  //     await store.dispatch(createProduct(newProduct))
-  //     expect(store.getState().productReducer.length).toBe(0)
-  // })
+
   // test("should sort by name asc", async () => {
   //     await store.dispatch(fetchAllProducts())
   //     store.dispatch(sortByName("asc"))
