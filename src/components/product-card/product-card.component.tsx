@@ -14,7 +14,6 @@ import "./product-card.component.styles.scss";
 import { fetchSingleProduct } from "../../redux/singleProduct-reducer";
 
 const ProductCard = ({
-  title,
   productsDisplayed,
   productList,
 }: ProductCardList) => {
@@ -22,16 +21,12 @@ const ProductCard = ({
   const sortCategory = useAppSelector((state) => state.SortReducer);
   const nav = useNavigate();
 
-  const [role, setRole] = useState<string | null>(null);
   const [popup, setPopup] = useState(false);
   const [popupId, setPopupId] = useState(0);
 
-  useEffect(() => {
-    const userRole = localStorage.getItem("userInfo");
-    const userData = userRole && JSON.parse(userRole);
-    const getRole = userData.role;
-    getRole && setRole(getRole);
-  }, []);
+  const userRole = localStorage.getItem("userInfo");
+  const userData = userRole && JSON.parse(userRole);
+  const getRole = userData && userData.role;
 
   const sortByCategoryArray = () => {
     if (!sortCategory) {
@@ -85,7 +80,7 @@ const ProductCard = ({
                   />
                 </div>
                 <div className="card-button_edit_deletebox">
-                  {role && role === "admin" && (
+                  {getRole === "admin" && (
                     <button
                       className="edit-delete-button"
                       onClick={() => {
@@ -97,7 +92,7 @@ const ProductCard = ({
                       <DeleteOutlineOutlinedIcon />
                     </button>
                   )}
-                  {role && role === "admin" && (
+                  {getRole === "admin" && (
                     <button
                       className="edit-delete-button"
                       onClick={() => {
