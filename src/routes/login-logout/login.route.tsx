@@ -5,17 +5,14 @@ import { useNavigate } from "react-router-dom";
 import { LoginType } from "../../types/login.types";
 import { UserType } from "../../types/user.types";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHook";
-import { accessTokenn } from "../../redux/access-token-reducer";
 
 import "./login-logout.style.scss";
 import { logInUser } from "../../redux/user-reducer";
 
 const Login = () => {
-  // no idea why whenever i delete the line of code below, the user session is not being added to localstorage.
-  // it obviously says that userAccessToken is not being used
-  const userAccessToken = useAppSelector((state) => state.AccessTokenReducer);
-
   const dispatch = useAppDispatch();
+  const userSession = useAppSelector((state) => state.userSessionReducer);
+
   const [login, setLogin] = useState<LoginType>({
     email: "",
     password: "",
@@ -30,7 +27,7 @@ const Login = () => {
     password: "",
     name: "",
     avatar: "",
-    role: "customer"
+    role: "customer",
   });
   const { email, password, name, avatar } = user;
   const nav = useNavigate();
@@ -45,25 +42,10 @@ const Login = () => {
       };
     });
   };
-
   const handleSubmit = async () => {
-    dispatch(logInUser(login))
-    // try {
-    //   await axios
-    //     .post("https://api.escuelajs.co/api/v1/auth/login", {
-    //       email: login.email,
-    //       password: login.password,
-    //     })
-    //     .then((res) => {
-    //       dispatch(accessTokenn(res.data.access_token));
-    //       localStorage.setItem("userToken", res.data.access_token);
-    //       if (res.data) {
-    //         nav("/");
-    //       }
-    //     });
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    dispatch(logInUser(login));
+    localStorage.setItem("userInfo", JSON.stringify(userSession));
+    userSession && nav("/");
   };
 
   //Create user
@@ -76,11 +58,9 @@ const Login = () => {
       };
     });
   };
-
   const handleRegisterFile = (e: ChangeEvent<HTMLInputElement>) => {
     setFile(e.target.files);
   };
-
   const submitRegister = async () => {
     try {
       await axios
@@ -119,38 +99,16 @@ const Login = () => {
       try {
         await axios
           .post("https://api.escuelajs.co/api/v1/users/", json)
-          .then((res) => {
-            // nav("/");
-          });
+          .then((res) => {});
       } catch (error) {
         console.log(error);
       }
     }
   };
-
   useEffect(() => {
     createUser();
   }, [status]);
 
-  // useEffect(() => {
-  //   userSession();
-  // });
-
-  // const userSession = async () => {
-  //   const loginToken = localStorage.getItem("userToken");
-  //   if (loginToken) {
-  //     await axios
-  //       .get("https://api.escuelajs.co/api/v1/auth/profile", {
-  //         headers: {
-  //           Authorization: `Bearer ${loginToken}`,
-  //         },
-  //       })
-  //       .then((res) => {
-  //         localStorage.setItem("role", res.data.role);
-  //         console.log(res.data);
-  //       });
-  //   }
-  // };
   const LogInNewUser = () => {
     setNewUserStatus(false);
   };

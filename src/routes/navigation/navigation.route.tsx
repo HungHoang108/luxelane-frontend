@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
@@ -9,6 +9,7 @@ import LightModeSharpIcon from "@mui/icons-material/LightModeSharp";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { darkMode } from "../../redux/dark-mode.reducer";
+import { UserType } from "../../types/user.types";
 
 import "./nav.component.style.scss";
 
@@ -16,18 +17,23 @@ const Navigation = () => {
   const [status, setStatus] = useState(false);
   const [searchTag, setSearchTag] = useState("");
   const [navStyle, setNavStyle] = useState<string | null>(null);
+
+  const nav = useNavigate();
+  const dispatch = useAppDispatch();
+  const darkModeStatus = useAppSelector((state) => state.DarkModeReducer);
+  const cartItem = useAppSelector((state) => state.CartItemReducer);
+
+  let userData = localStorage.getItem("userInfo");
+  useEffect(() => {
+    userData = localStorage.getItem("userInfo");
+  }, []);
+
   const navHome = () => {
     setNavStyle("home");
   };
   const navProject = () => {
     setNavStyle("products");
   };
-
-  const nav = useNavigate();
-  const loginStatus = localStorage.getItem("userToken");
-  const dispatch = useAppDispatch();
-  const darkModeStatus = useAppSelector((state) => state.DarkModeReducer);
-  const cartItem = useAppSelector((state) => state.CartItemReducer);
 
   let counter = 0;
   cartItem.map((item) => (counter += item.amount));
@@ -47,8 +53,7 @@ const Navigation = () => {
   };
 
   const removeUserData = () => {
-    localStorage.removeItem("userToken");
-    localStorage.removeItem("role");
+    localStorage.removeItem("userInfo");
   };
   const testa = () => {
     dispatch(darkMode(!darkModeStatus));
@@ -105,7 +110,7 @@ const Navigation = () => {
           </div>
 
           <div>
-            {loginStatus ? (
+            {userData ? (
               <Link className="link btn" onClick={removeUserData} to="">
                 Log out
               </Link>
@@ -116,7 +121,7 @@ const Navigation = () => {
             )}
           </div>
           <div>
-            {loginStatus && (
+            {userData && (
               <Link className="link btn" to="newproduct">
                 New Product
               </Link>
