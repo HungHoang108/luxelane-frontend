@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios, { AxiosError } from "axios";
-import { Category } from "../types/CartItemType";
-import { Product } from "../types/product.type";
+import { Category } from "../types/Category";
+import { Product } from "../types/ProductType";
 
 const categoriesInitialState: Category[] = [];
 const categoryInitialState: Product[] = [];

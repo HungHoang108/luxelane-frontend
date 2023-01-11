@@ -1,6 +1,6 @@
-import { Product } from "./product.type"
+import { Product } from "./ProductType";
 export interface ProductCardList {
-    title: string
-    productsDisplayed: number
-    productList: Product[]
+  title: string;
+  productsDisplayed: number;
+  productList: Product[];
 }

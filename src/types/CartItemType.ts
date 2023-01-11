@@ -1,5 +1,7 @@
-export interface Category {
-    id : number
-    name: string
+export interface CartItemType {
+    id: number
     image: string
+    itemName: string
+    price: number
+    amount: number
 }

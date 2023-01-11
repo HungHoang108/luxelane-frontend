@@ -1,6 +1,6 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios, { AxiosError } from "axios";
-import { Product } from "../types/product.type";
+import { Product } from "../types/ProductType";
 import { FileAndNewProductForm } from "../types/NewProductType";
 
 const initialState: Product[] = [];
@@ -14,11 +14,11 @@ export const fetchAllProducts = createAsyncThunk(
       );
       return products.data;
     } catch (error) {
-      console.log(error);
+      const err = error as AxiosError
+      return err
     }
   }
 );
-
 export const deleteProduct = createAsyncThunk(
   "deleteProduct",
   async (product: number) => {
@@ -34,7 +34,6 @@ export const deleteProduct = createAsyncThunk(
     }
   }
 );
-
 export const editProductThunk = createAsyncThunk(
   "editProduct",
   async (product: Partial<Product>) => {
@@ -50,7 +49,8 @@ export const editProductThunk = createAsyncThunk(
       const data = response.data;
       return data;
     } catch (error) {
-      console.log(error);
+      const err = error as AxiosError
+      return err
     }
   }
 );
@@ -106,29 +106,38 @@ const ProductsSlice = createSlice({
   },
   extraReducers: (build) => {
     build
-      .addCase(fetchAllProducts.fulfilled, (state, action) => {
-        if (action.payload && "message" in action.payload) {
-          return state;
-        } else if (!action.payload) {
-          return state;
+      .addCase(
+        fetchAllProducts.fulfilled,
+        (state, action: PayloadAction<Product[] | AxiosError>) => {
+          if (action.payload && "message" in action.payload) {
+            return state;
+          } else if (!action.payload) {
+            return state;
+          }
+          return action.payload;
         }
-        return action.payload;
-      })
-      .addCase(editProductThunk.fulfilled, (state, action) => {
-        const itemIndex = state.findIndex(
-          (item) => item.id === action.payload.id
-        );
-        state[itemIndex].price = action.payload.price;
-        state[itemIndex].title = action.payload.title;
-        state[itemIndex].description = action.payload.description;
-      })
-      .addCase(createProduct.fulfilled, (state, action) => {
-        if (action.payload) {
-          state.push(action.payload);
-        } else {
-          return state;
+      )
+      .addCase(
+        editProductThunk.fulfilled,
+        (state, action: PayloadAction<Product>) => {
+          const itemIndex = state.findIndex(
+            (item) => item.id === action.payload.id
+          );
+          state[itemIndex].price = action.payload.price;
+          state[itemIndex].title = action.payload.title;
+          state[itemIndex].description = action.payload.description;
         }
-      });
+      )
+      .addCase(
+        createProduct.fulfilled,
+        (state, action: PayloadAction<Product>) => {
+          if (action.payload) {
+            state.push(action.payload);
+          } else {
+            return state;
+          }
+        }
+      );
   },
 });
 export const productReducer = ProductsSlice.reducer;

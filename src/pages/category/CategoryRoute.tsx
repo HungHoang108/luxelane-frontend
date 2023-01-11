@@ -4,18 +4,13 @@ import ProductCard from "../../components/product-card/ProductCard";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHook";
 import { sortByPrice } from "../../redux/productReducer";
 
-const CategoryRoute = () => {
+const CategoryPage = () => {
   const dispatch = useAppDispatch();
   const products = useAppSelector((state) => state.categoryReducer);
 
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     dispatch(sortByPrice(e.target.value));
   };
-  let counter = 0;
-  useEffect(() => {
-    console.log(counter);
-    counter++;
-  });
 
   return (
     <div className="productList-box">
@@ -41,4 +36,4 @@ const CategoryRoute = () => {
   );
 };
 
-export default CategoryRoute;
+export default CategoryPage;

@@ -1,15 +1,14 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios, { AxiosError } from "axios";
-import { SingleProduct } from "../types/product.type";
+import { SingleProduct } from "../types/ProductType";
 
 const initialState: SingleProduct = {
-    id: 0,
-    title: "",
-    price: 0,
-    description: "",
-    images: []
+  id: 0,
+  title: "",
+  price: 0,
+  description: "",
+  images: [],
 };
-
 
 export const fetchSingleProduct = createAsyncThunk(
   "fetchSingleProduct",
@@ -30,14 +29,17 @@ const SingleProductSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (build) => {
-    build.addCase(fetchSingleProduct.fulfilled, (state, action : PayloadAction<SingleProduct>) => {
-      if (action.payload && "message" in action.payload) {
-        return state;
-      } else if (!action.payload) {
-        return state;
+    build.addCase(
+      fetchSingleProduct.fulfilled,
+      (state, action: PayloadAction<SingleProduct>) => {
+        if (action.payload && "message" in action.payload) {
+          return state;
+        } else if (!action.payload) {
+          return state;
+        }
+        return action.payload;
       }
-      return action.payload;
-    });
+    );
   },
 });
 export default SingleProductSlice;

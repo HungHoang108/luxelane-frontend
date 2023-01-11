@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router";
 
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHook";
@@ -24,17 +24,10 @@ const ProductCard = ({ productsDisplayed, productList }: ProductCardList) => {
   const userData = userRole && JSON.parse(userRole);
   const getRole = userData && userData.role;
 
-  let counter = 0;
-  useEffect(() => {
-    console.log("cart", counter);
-    counter++;
-  });
-
   const sortByCategoryArray = () => {
     if (!sortCategory) {
       return productList;
     }
-
     const isCategoryExist = productList.find(
       (item) => item.category.name === sortCategory
     );
@@ -44,7 +37,6 @@ const ProductCard = ({ productsDisplayed, productList }: ProductCardList) => {
       return productList;
     }
   };
-
   return (
     <>
       <div className="products">
