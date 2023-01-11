@@ -14,8 +14,8 @@ export const fetchAllProducts = createAsyncThunk(
       );
       return products.data;
     } catch (error) {
-      const err = error as AxiosError
-      return err
+      const err = error as AxiosError;
+      return err;
     }
   }
 );
@@ -49,8 +49,8 @@ export const editProductThunk = createAsyncThunk(
       const data = response.data;
       return data;
     } catch (error) {
-      const err = error as AxiosError
-      return err
+      const err = error as AxiosError;
+      return err;
     }
   }
 );
@@ -120,12 +120,18 @@ const ProductsSlice = createSlice({
       .addCase(
         editProductThunk.fulfilled,
         (state, action: PayloadAction<Product>) => {
-          const itemIndex = state.findIndex(
-            (item) => item.id === action.payload.id
-          );
-          state[itemIndex].price = action.payload.price;
-          state[itemIndex].title = action.payload.title;
-          state[itemIndex].description = action.payload.description;
+          // const itemIndex = state.findIndex(
+          //   (item) => item.id === action.payload.id
+          // );
+          // state[itemIndex].price = action.payload.price;
+          // state[itemIndex].title = action.payload.title;
+          // state[itemIndex].description = action.payload.description;
+          return state.map((product) => {
+            if (product.id === action.payload.id) {
+              return action.payload;
+            }
+            return product;
+          });
         }
       )
       .addCase(
@@ -138,6 +144,12 @@ const ProductsSlice = createSlice({
           }
         }
       );
+    // .addCase(
+    //   deleteProduct.fulfilled,
+    //   (state, action: PayloadAction<boolean>) => {
+    //     console.log(action.payload);
+    //   }
+    // );
   },
 });
 export const productReducer = ProductsSlice.reducer;

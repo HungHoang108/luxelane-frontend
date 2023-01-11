@@ -111,23 +111,18 @@ const handler = [
       return res(ctx.json(product));
     }
   ),
-  // rest.delete(`https://api.escuelajs.co/api/v1/products/1`,
-  //   async (req, res, ctx) => {
-
-  //       const productIndex = productTest.findIndex(
-  //         (product) => product.id === 1
-  //       );
-  //       console.log("product Index",productIndex)
-  //       if (productIndex !== -1) {
-  //         const test2 = productTest.filter((item) => item.id !== 1);
-  //         // const test = res(ctx.json(productTest));
-  //         console.log("teset", res(ctx.json(test2)));
-  //         // return res(ctx.json(test2))
-  //       } else {
-  //         return res(ctx.status(404));
-  //       }
-  //     }
-  // ),
+  rest.delete(
+    `https://api.escuelajs.co/api/v1/products/1`,
+    async (req, res, ctx) => {
+      const product = productTest.find((product) => product.id === 1);
+      if (product) {
+        productTest = productTest.filter((item) => item.id !== 1);
+        return res(ctx.json(productTest));
+      } else {
+        return res(ctx.status(404));
+      }
+    }
+  ),
   rest.get("https://api.escuelajs.co/api/v1/categories", (req, res, ctx) => {
     return res(ctx.json(categories));
   }),
@@ -180,6 +175,24 @@ const handler = [
         return res(ctx.status(400, "data is invalid"));
       }
       return res(ctx.json(product));
+    }
+  ),
+  rest.put(
+    "https://api.escuelajs.co/api/v1/products/:id",
+    async (req, res, ctx) => {
+      const update: Partial<NewProductType> = await req.json();
+      const { id } = req.params as any;
+      const foundItem = productTest.find((product) => product.id === parseInt(id));
+      if (foundItem) {
+        return res(
+          ctx.json({
+            ...foundItem,
+            ...update,
+          })
+        );
+      } else {
+        return res(ctx.status(404, "product is not found"));
+      }
     }
   ),
 ];

@@ -5,6 +5,7 @@ import {
   deleteItem,
   deleteProduct,
   createProduct,
+  editProductThunk,
 } from "../../redux/productReducer";
 import server from "../shared/server";
 import { createStore, RootState } from "../../redux/store";
@@ -33,11 +34,11 @@ describe("Test all the actions", () => {
     expect(store.getState().productReducer.length).toBe(3);
   });
   // test("delete product", async () => {
-  //   // await store.dispatch(fetchAllProducts());
+  //   await store.dispatch(fetchAllProducts());
 
-  //   // await store.dispatch(deleteProduct(1));
-  //   const test3 = store.getState().productReducer;
-  //   // expect(store.getState().productReducer).toBe(2);
+  //   await store.dispatch(deleteProduct(1));
+  //   // const test3 = store.getState().productReducer;
+  //   expect(store.getState().productReducer).toBe(2);
   // });
 
   test("should create a product", async () => {
@@ -75,7 +76,18 @@ describe("Test all the actions", () => {
     await store.dispatch(createProduct({ file, product }));
     expect(store.getState().productReducer.length).toBe(1);
   });
-
+  test("update product", async () => {
+    await store.dispatch(fetchAllProducts());
+    await store.dispatch(
+      editProductThunk({
+        id: 1,
+        price: 600,
+      })
+    );
+    expect(
+      store.getState().productReducer.find((item) => item.id === 1)?.price
+    ).toBe(600);
+  });
   // test("should sort by name asc", async () => {
   //     await store.dispatch(fetchAllProducts())
   //     store.dispatch(sortByName("asc"))

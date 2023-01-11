@@ -8,18 +8,21 @@
 Live demo [https://merry-genie-108.netlify.app/](https://merry-genie-108.netlify.app/)
 
 ## Overview
+
 The app use fake API endpoint [https://fakeapi.platzi.com/](https://fakeapi.platzi.com/) to get products, category, user data, authentication and authorization.
 
 ## Features
+
 1. Get all products, find a single products, sort products by categories, sort products by price
 2. Register for a new customer account, login with Email and password
 3. Customer account can create new product
-4. Admin can create, delete and edit product. Testing account: 
-    - Email: admin@mail.com
-    - Password: admin123
+4. Admin can create, delete and edit product. Testing account:
+   - Email: admin@mail.com
+   - Password: admin123
 5. Add product to cart, remove products, update products's quantity in cart
 
 ## Future features
+
 1. Dark mode
 2. Favourite
 3. Check out route and payment
@@ -49,3 +52,111 @@ Launches the test runner in the interactive watch mode
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
+
+## Project Structure
+
+```
+fs13-frontend-project
+├─ .git
+├─ .gitignore
+├─ .VSCodeCounter
+├─ package.json
+├─ public
+├─ README.md
+├─ src
+│  ├─ App.tsx
+│  ├─ components
+│  │  ├─ button
+│  │  │  └─ Button.tsx
+│  │  ├─ cart-dropdown
+│  │  │  └─ Cart.tsx
+│  │  ├─ categories
+│  │  │  └─ Categories.tsx
+│  │  ├─ footer
+│  │  │  └─ Footer.tsx
+│  │  ├─ not-found
+│  │  │  └─ NotFound.tsx
+│  │  ├─ product-card
+│  │  │  └─ ProductCard.tsx
+│  │  ├─ product-editing-form
+│  │  │  └─ ProductEditForm.tsx
+│  │  └─ root
+│  │     └─ Root.tsx
+│  ├─ hooks
+│  │  └─ reduxHook.ts
+│  ├─ index.tsx
+│  ├─ pages
+│  │  ├─ cart-page
+│  │  │  └─ CartPage.tsx
+│  │  ├─ category
+│  │  │  └─ CategoryRoute.tsx
+│  │  ├─ home
+│  │  │  └─ Home.tsx
+│  │  ├─ login-logout
+│  │  │  └─ Login.tsx
+│  │  ├─ navigation
+│  │  │  └─ Navigation.tsx
+│  │  ├─ new-product
+│  │  │  └─ NewProduct.tsx
+│  │  ├─ product
+│  │  │  └─ ProductRoute.tsx
+│  │  ├─ product-editting
+│  │  │  └─ ProductEditingForm.tsx
+│  │  ├─ product-list
+│  │  │  └─ ProductList.tsx
+│  │  └─ searchResult
+│  │     └─ SearchResult.tsx
+│  ├─ react-app-env.d.ts
+│  ├─ redux
+│  │  ├─ cartItemsReducer.ts
+│  │  ├─ categoriesReducer.ts
+│  │  ├─ darkModeReducer.ts
+│  │  ├─ productReducer.ts
+│  │  ├─ searchTagReducer.ts
+│  │  ├─ singleProductReducer.ts
+│  │  ├─ sortCategoryReducer.ts
+│  │  ├─ store.ts
+│  │  └─ userReducer.ts
+│  ├─ setupTests.ts
+│  ├─ styles
+│  │  ├─ image
+│  │  │  └─ kitty-cat.jpg
+│  │  ├─ styleComponent
+│  │  │  ├─ _button.scss
+│  │  │  ├─ _cartDropdown.scss
+│  │  │  ├─ _categories.scss
+│  │  │  ├─ _footer.scss
+│  │  │  ├─ _productCard.scss
+│  │  │  └─ _productEdit.scss
+│  │  ├─ stylePages
+│  │  │  ├─ _cartPage.scss
+│  │  │  ├─ _home.scss
+│  │  │  ├─ _loginLogout.scss
+│  │  │  ├─ _navigation.scss
+│  │  │  ├─ _newProduct.scss
+│  │  │  ├─ _productList.scss
+│  │  │  ├─ _productRoute.scss
+│  │  │  └─ _searchResult.scss
+│  │  └─ styles.scss
+│  ├─ test
+│  │  ├─ reducer
+│  │  │  ├─ cartItemsReducer.test.ts
+│  │  │  ├─ categoriesReducer.test.ts
+│  │  │  ├─ productReducer.test.ts
+│  │  │  ├─ searchTagReducer.test.ts
+│  │  │  ├─ sortCategoryReducer.test.ts
+│  │  │  └─ userReducer.test.ts
+│  │  └─ shared
+│  │     └─ server.ts
+│  └─ types
+│     ├─ ButtonType.ts
+│     ├─ CartItemType.ts
+│     ├─ Category.ts
+│     ├─ LoginType.ts
+│     ├─ NewProductType.ts
+│     ├─ ProductCardList.ts
+│     ├─ ProductType.ts
+│     └─ UserType.ts
+└─ tsconfig.json
+
+```
