@@ -103,6 +103,7 @@ const ProductsSlice = createSlice({
         state.sort((a, b) => b.price - a.price);
       }
     },
+
   },
   extraReducers: (build) => {
     build
@@ -153,5 +154,6 @@ const ProductsSlice = createSlice({
   },
 });
 export const productReducer = ProductsSlice.reducer;
-export const { deleteItem, sortByPrice } = ProductsSlice.actions;
+export const { deleteItem, sortByPrice } =
+  ProductsSlice.actions;
 export default ProductsSlice;

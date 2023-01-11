@@ -7,8 +7,7 @@ import { createUser, logInUser } from "../../redux/userReducer";
 
 const Login = () => {
   const dispatch = useAppDispatch();
-  // const userSession = useAppSelector((state) => state.userSessionReducer);
-  // console.log(userSession);
+
   let userData = localStorage.getItem("userInfo");
   useEffect(() => {
     userData = localStorage.getItem("userInfo");
@@ -18,7 +17,7 @@ const Login = () => {
     email: "",
     password: "",
   });
-  const [file, setFile] = useState<FileList | null>(null);
+  const [file, setFile] = useState<File | null>(null);
   const [newUserStatus, setNewUserStatus] = useState(false);
 
   const [user, setUser] = useState<newUserInputField>({
@@ -41,8 +40,6 @@ const Login = () => {
   };
   const handleSubmit = async () => {
     dispatch(logInUser(login));
-    // localStorage.setItem("userInfo", JSON.stringify(userSession));
-    // userSession &&
     nav("/");
   };
 
@@ -57,7 +54,7 @@ const Login = () => {
     });
   };
   const handleRegisterFile = (e: ChangeEvent<HTMLInputElement>) => {
-    setFile(e.target.files);
+    e.target.files && setFile(e.target.files[0]);
   };
   const newUser = {
     file: file,

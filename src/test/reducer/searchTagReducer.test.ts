@@ -20,4 +20,5 @@ describe("Test all the actions", () => {
     store.dispatch(searchTagAction(searchTag));
     expect(store.getState().SearchTagReducer.length).toBe(4);
   });
+  
 });

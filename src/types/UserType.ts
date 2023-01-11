@@ -2,7 +2,6 @@ export type Role = "admin" | "customer";
 
 export interface UserType extends newUserInputField {
   id: number;
-
   role: Role;
 }
 
@@ -20,6 +19,6 @@ export interface newUserInputField {
 }
 
 export interface newUserType {
-  file: FileList | null;
+  file: File | null;
   user: newUserInputField;
 }

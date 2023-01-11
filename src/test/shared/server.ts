@@ -2,6 +2,7 @@ import { rest } from "msw";
 import { setupServer } from "msw/node";
 import { NewProductType } from "../../types/NewProductType";
 import jwt from "jsonwebtoken";
+import { newUserInputField } from "../../types/UserType";
 
 let productTest = [
   {
@@ -98,6 +99,7 @@ const users = [
   },
 ];
 const handler = [
+  //Product reducer
   rest.get("https://api.escuelajs.co/api/v1/products", (req, res, ctx) => {
     return res(ctx.json(productTest));
   }),
@@ -121,50 +123,6 @@ const handler = [
       } else {
         return res(ctx.status(404));
       }
-    }
-  ),
-  rest.get("https://api.escuelajs.co/api/v1/categories", (req, res, ctx) => {
-    return res(ctx.json(categories));
-  }),
-  rest.get("https://api.escuelajs.co/api/v1/users", (req, res, ctx) => {
-    return res(ctx.json(users));
-  }),
-  rest.post(
-    "https://api.escuelajs.co/api/v1/auth/login",
-    async (req, res, ctx) => {
-      const { email, password } = await req.json();
-      const foundUser = users.find(
-        (user) => user.email === email && user.password === password
-      );
-      if (foundUser) {
-        const access_token = jwt.sign(foundUser, "loginKey");
-        return res(ctx.json({ access_token }));
-      } else {
-        return res(ctx.status(401, "Unauthorized"));
-      }
-    }
-  ),
-  rest.get("https://api.escuelajs.co/api/v1/auth/profile", (req, res, ctx) => {
-    const access_tokenArr = req.headers.get("Authorization")?.split(" ");
-    if (access_tokenArr) {
-      const access_token = access_tokenArr[1];
-      const foundUser = jwt.verify(access_token, "loginKey");
-      return res(ctx.json(foundUser));
-    } else {
-      return res(ctx.status(401, "Unauthorized"));
-    }
-  }),
-  rest.post(
-    "https://api.escuelajs.co/api/v1/files/upload",
-    async (req, res, ctx) => {
-      const file: File = await req.json();
-      return res(
-        ctx.json({
-          originalname: file.name,
-          filename: file.name,
-          location: `https://api.escuelajs.co/api/v1/files/${file.name}`,
-        })
-      );
     }
   ),
   rest.post(
@@ -195,6 +153,64 @@ const handler = [
       }
     }
   ),
+  //Category reducer
+  rest.get("https://api.escuelajs.co/api/v1/categories", (req, res, ctx) => {
+    return res(ctx.json(categories));
+  }),
+  //User reducer
+  rest.get("https://api.escuelajs.co/api/v1/users", (req, res, ctx) => {
+    return res(ctx.json(users));
+  }),
+  rest.post(
+    "https://api.escuelajs.co/api/v1/auth/login",
+    async (req, res, ctx) => {
+      const { email, password } = await req.json();
+      const foundUser = users.find(
+        (user) => user.email === email && user.password === password
+      );
+      if (foundUser) {
+        const access_token = jwt.sign(foundUser, "loginKey");
+        return res(ctx.json({ access_token }));
+      } else {
+        return res(ctx.status(401, "Unauthorized"));
+      }
+    }
+  ),
+  rest.get("https://api.escuelajs.co/api/v1/auth/profile", (req, res, ctx) => {
+    const access_tokenArr = req.headers.get("Authorization")?.split(" ");
+    if (access_tokenArr) {
+      const access_token = access_tokenArr[1];
+      const foundUser = jwt.verify(access_token, "loginKey");
+      return res(ctx.json(foundUser));
+    } else {
+      return res(ctx.status(401, "Unauthorized"));
+    }
+  }),
+  rest.post(
+    "https://api.escuelajs.co/api/v1/users/",
+    async (req, res, ctx) => {
+      const user: newUserInputField = await req.json();
+      if (user.avatar.length < 1) {
+        return res(ctx.status(400, "data is invalid"));
+      }
+      return res(ctx.json(user));
+    }
+  ),
+  // File upload
+  rest.post(
+    "https://api.escuelajs.co/api/v1/files/upload",
+    async (req, res, ctx) => {
+      const file: File = await req.json();
+      return res(
+        ctx.json({
+          originalname: file.name,
+          filename: file.name,
+          location: `https://api.escuelajs.co/api/v1/files/${file.name}`,
+        })
+      );
+    }
+  ),
+
 ];
 
 const server = setupServer(...handler);

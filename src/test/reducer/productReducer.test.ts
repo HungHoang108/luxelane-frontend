@@ -6,6 +6,7 @@ import {
   deleteProduct,
   createProduct,
   editProductThunk,
+  sortByPrice,
 } from "../../redux/productReducer";
 import server from "../shared/server";
 import { createStore, RootState } from "../../redux/store";
@@ -33,14 +34,6 @@ describe("Test all the actions", () => {
     await store.dispatch(fetchAllProducts());
     expect(store.getState().productReducer.length).toBe(3);
   });
-  // test("delete product", async () => {
-  //   await store.dispatch(fetchAllProducts());
-
-  //   await store.dispatch(deleteProduct(1));
-  //   // const test3 = store.getState().productReducer;
-  //   expect(store.getState().productReducer).toBe(2);
-  // });
-
   test("should create a product", async () => {
     const file: File = {
       lastModified: 0,
@@ -76,7 +69,7 @@ describe("Test all the actions", () => {
     await store.dispatch(createProduct({ file, product }));
     expect(store.getState().productReducer.length).toBe(1);
   });
-  test("update product", async () => {
+  test("should update product", async () => {
     await store.dispatch(fetchAllProducts());
     await store.dispatch(
       editProductThunk({
@@ -88,12 +81,19 @@ describe("Test all the actions", () => {
       store.getState().productReducer.find((item) => item.id === 1)?.price
     ).toBe(600);
   });
-  // test("should sort by name asc", async () => {
-  //     await store.dispatch(fetchAllProducts())
-  //     store.dispatch(sortByName("asc"))
-  //     // console.log("new sorted: ", store.getState().productReducer)
-  //     expect(store.getState().productReducer[0].title).toBe("A")
-  //     expect(store.getState().productReducer[1].title).toBe("B")
-  //     expect(store.getState().productReducer[2].title).toBe("C")
-  // })
+  test("should sort by price", async () => {
+    await store.dispatch(fetchAllProducts());
+    store.dispatch(sortByPrice("price-up"));
+    expect(store.getState().productReducer[0].title).toBe("B");
+    expect(store.getState().productReducer[1].title).toBe("C");
+    expect(store.getState().productReducer[2].title).toBe("A");
+  });
+    // test("delete product", async () => {
+  //   await store.dispatch(fetchAllProducts());
+
+  //   await store.dispatch(deleteProduct(1));
+  //   // const test3 = store.getState().productReducer;
+  //   expect(store.getState().productReducer).toBe(2);
+  // });
+
 });

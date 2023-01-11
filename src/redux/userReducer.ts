@@ -73,7 +73,7 @@ export const createUser = createAsyncThunk(
     try {
       const response = await axios.post(
         "https://api.escuelajs.co/api/v1/files/upload",
-        { file: file && file[0] },
+        { file: file},
         {
           headers: {
             "Content-Type": "multipart/form-data",
