@@ -36,17 +36,17 @@ describe("Test userReducer", () => {
   //   await store.dispatch(fetchAllUser());
   //   expect(store.getState().userReducer.userList.length).toBe(2);
   // });
-  // test("Should login user", async () => {
-  //   const emailAndPassword = {
-  //     email: "john@mail.com",
-  //     password: "changeme",
-  //   };
-  //   await store.dispatch(logInUser(emailAndPassword));
-  //   const access_token = store.getState().userReducer.access_token as string;
-  //   await store.dispatch(getUserSession(access_token));
-  //   const currentUser = store.getState().userReducer.currentUser;
-  //   // expect(currentUser).toBeDefined();
-  // });
+  test("Should login user and get user session", async () => {
+    const emailAndPassword = {
+      email: "john@mail.comk",
+      password: "changeme",
+    };
+    await store.dispatch(logInUser(emailAndPassword));
+    const newUser = store.getState().userSessionReducer;
+    // await store.dispatch(getUserSession(access_token));
+    // const currentUser = store.getState().userReducer.currentUser;
+    expect(newUser).toBeDefined();
+  });
   test("should create an user", async () => {
     const file: File = {
       lastModified: 0,

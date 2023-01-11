@@ -165,6 +165,7 @@ const handler = [
     "https://api.escuelajs.co/api/v1/auth/login",
     async (req, res, ctx) => {
       const { email, password } = await req.json();
+      console.log(email)
       const foundUser = users.find(
         (user) => user.email === email && user.password === password
       );
@@ -176,16 +177,16 @@ const handler = [
       }
     }
   ),
-  rest.get("https://api.escuelajs.co/api/v1/auth/profile", (req, res, ctx) => {
-    const access_tokenArr = req.headers.get("Authorization")?.split(" ");
-    if (access_tokenArr) {
-      const access_token = access_tokenArr[1];
-      const foundUser = jwt.verify(access_token, "loginKey");
-      return res(ctx.json(foundUser));
-    } else {
-      return res(ctx.status(401, "Unauthorized"));
-    }
-  }),
+  // rest.get("https://api.escuelajs.co/api/v1/auth/profile", (req, res, ctx) => {
+  //   const access_tokenArr = req.headers.get("Authorization")?.split(" ");
+  //   if (access_tokenArr) {
+  //     const access_token = access_tokenArr[1];
+  //     const foundUser = jwt.verify(access_token, "loginKey");
+  //     return res(ctx.json(foundUser));
+  //   } else {
+  //     return res(ctx.status(401, "Unauthorized"));
+  //   }
+  // }),
   rest.post(
     "https://api.escuelajs.co/api/v1/users/",
     async (req, res, ctx) => {
