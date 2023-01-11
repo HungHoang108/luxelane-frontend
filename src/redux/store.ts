@@ -1,16 +1,16 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
-import { categoriesReducer, categoryReducer } from "./categories-reducer.redux";
-import { productReducer } from "./products-reducer";
-import { CartItemReducer } from "./cart-items-reducer.redux";
-import { SearchTagReducer } from "./search-tag-reducer";
-import { SortReducer } from "./sort-category-reducer";
+import { categoriesReducer, categoryReducer } from "./categoriesReducer";
+import { productReducer } from "./productReducer";
+import { CartItemReducer } from "./cartItemsReducer";
+import { SearchTagReducer } from "./searchTagReducer";
+import { SortReducer } from "./sortCategoryReducer";
 
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { combineReducers } from "redux";
-import { DarkModeReducer } from "./dark-mode.reducer";
-import { singleProductReducer } from "./singleProduct-reducer";
-import { userReducer, userSessionReducer } from "./user-reducer";
+import { DarkModeReducer } from "./darkModeReducer";
+import { singleProductReducer } from "./singleProductReducer";
+import { userReducer, userSessionReducer } from "./userReducer";
 
 const reducers = combineReducers({
   categoriesReducer,

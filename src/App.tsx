@@ -1,21 +1,21 @@
 import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { useAppDispatch } from "./hooks/reduxHook";
-import { fetchAllProducts } from "./redux/products-reducer";
+import { fetchAllProducts } from "./redux/productReducer";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
-import Home from "./routes/home/home.route";
-import Root from "./components/root/root.component";
-import NotFound from "./components/not-found/notfound.component";
-import ProductList from "./routes/product-list/product-list.component";
-import CartPage from "./routes/cart-page/cart-page.route";
-import Login from "./routes/login-logout/login.route";
-import SearchResult from "./routes/searchResult/searchResult.route";
-import NewProduct from "./routes/new-product/new-product.component";
-import ProductEditingForm from "./routes/product-editting/product-editing-form.component";
-import CategoryRoute from "./routes/category/category.route";
+import Home from "./pages/home/Home";
+import Root from "./components/root/Root";
+import NotFound from "./components/not-found/NotFound";
+import ProductList from "./pages/product-list/ProductList";
+import CartPage from "./pages/cart-page/CartPage";
+import Login from "./pages/login-logout/Login";
+import SearchResult from "./pages/searchResult/SearchResult";
+import NewProduct from "./pages/new-product/NewProduct";
+import ProductEditingForm from "./pages/product-editting/ProductEditingForm";
+import CategoryRoute from "./pages/category/CategoryRoute";
 import { useAppSelector } from "./hooks/reduxHook";
-import ProductRoute from "./routes/product/product.route";
+import ProductRoute from "./pages/product/ProductRoute";
 
 const App = () => {
   const dispatch = useAppDispatch();

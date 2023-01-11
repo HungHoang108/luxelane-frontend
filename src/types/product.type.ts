@@ -1,4 +1,4 @@
-import { Category } from "./category.types";
+import { Category } from "./CartItemType";
 
 export interface Product extends SingleProduct {
   category: Category;

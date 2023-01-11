@@ -7,7 +7,7 @@ import { createStore } from "./redux/store";
 import App from "./App";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";
-import "./index.styles.scss";
+import "../src/styles/styles.scss";
 
 const store = createStore();
 const container = document.getElementById("root")!;

@@ -1,6 +1,6 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
-import { NewProductType } from "../../types/new-product.type";
+import { NewProductType } from "../../types/NewProductType";
 import jwt from "jsonwebtoken";
 
 let productTest = [
