@@ -28,14 +28,14 @@ beforeEach(() => {
 });
 
 describe("Test userReducer", () => {
-  // test("Should return initial state", () => {
-  //   const initialState = store.getState().userReducer;
-  //   expect(initialState.userList.length).toBe(0);
-  // });
-  // test("Should fetch all users", async () => {
-  //   await store.dispatch(fetchAllUser());
-  //   expect(store.getState().userReducer.userList.length).toBe(2);
-  // });
+  test("Should return initial state", () => {
+    const initialState = store.getState().userReducer;
+    expect(initialState.userList.length).toBe(0);
+  });
+  test("Should fetch all users", async () => {
+    await store.dispatch(fetchAllUser());
+    expect(store.getState().userReducer.userList.length).toBe(2);
+  });
   test("Should login user and get user session", async () => {
     const emailAndPassword = {
       email: "john@mail.comk",
@@ -43,8 +43,6 @@ describe("Test userReducer", () => {
     };
     await store.dispatch(logInUser(emailAndPassword));
     const newUser = store.getState().userSessionReducer;
-    // await store.dispatch(getUserSession(access_token));
-    // const currentUser = store.getState().userReducer.currentUser;
     expect(newUser).toBeDefined();
   });
   test("should create an user", async () => {

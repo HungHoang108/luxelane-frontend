@@ -3,6 +3,7 @@ import { setupServer } from "msw/node";
 import { NewProductType } from "../../types/NewProductType";
 import jwt from "jsonwebtoken";
 import { newUserInputField } from "../../types/UserType";
+import { json } from "stream/consumers";
 
 let productTest = [
   {
@@ -114,15 +115,11 @@ const handler = [
     }
   ),
   rest.delete(
-    `https://api.escuelajs.co/api/v1/products/1`,
+    `https://api.escuelajs.co/api/v1/products/:id`,
     async (req, res, ctx) => {
-      const product = productTest.find((product) => product.id === 1);
-      if (product) {
-        productTest = productTest.filter((item) => item.id !== 1);
-        return res(ctx.json(productTest));
-      } else {
-        return res(ctx.status(404));
-      }
+      const { id } = req.params as any;
+      productTest = productTest.filter(item => item.id !== parseInt(id));
+      return res(ctx.json(productTest))
     }
   ),
   rest.post(
@@ -140,7 +137,9 @@ const handler = [
     async (req, res, ctx) => {
       const update: Partial<NewProductType> = await req.json();
       const { id } = req.params as any;
-      const foundItem = productTest.find((product) => product.id === parseInt(id));
+      const foundItem = productTest.find(
+        (product) => product.id === parseInt(id)
+      );
       if (foundItem) {
         return res(
           ctx.json({
@@ -165,7 +164,6 @@ const handler = [
     "https://api.escuelajs.co/api/v1/auth/login",
     async (req, res, ctx) => {
       const { email, password } = await req.json();
-      console.log(email)
       const foundUser = users.find(
         (user) => user.email === email && user.password === password
       );
@@ -177,26 +175,23 @@ const handler = [
       }
     }
   ),
-  // rest.get("https://api.escuelajs.co/api/v1/auth/profile", (req, res, ctx) => {
-  //   const access_tokenArr = req.headers.get("Authorization")?.split(" ");
-  //   if (access_tokenArr) {
-  //     const access_token = access_tokenArr[1];
-  //     const foundUser = jwt.verify(access_token, "loginKey");
-  //     return res(ctx.json(foundUser));
-  //   } else {
-  //     return res(ctx.status(401, "Unauthorized"));
-  //   }
-  // }),
-  rest.post(
-    "https://api.escuelajs.co/api/v1/users/",
-    async (req, res, ctx) => {
-      const user: newUserInputField = await req.json();
-      if (user.avatar.length < 1) {
-        return res(ctx.status(400, "data is invalid"));
-      }
-      return res(ctx.json(user));
+  rest.get("https://api.escuelajs.co/api/v1/auth/profile", (req, res, ctx) => {
+    const access_tokenArr = req.headers.get("Authorization")?.split(" ");
+    if (access_tokenArr) {
+      const access_token = access_tokenArr[1];
+      const foundUser = jwt.verify(access_token, "loginKey");
+      return res(ctx.json(foundUser));
+    } else {
+      return res(ctx.status(401, "Unauthorized"));
     }
-  ),
+  }),
+  rest.post("https://api.escuelajs.co/api/v1/users/", async (req, res, ctx) => {
+    const user: newUserInputField = await req.json();
+    if (user.avatar.length < 1) {
+      return res(ctx.status(400, "data is invalid"));
+    }
+    return res(ctx.json(user));
+  }),
   // File upload
   rest.post(
     "https://api.escuelajs.co/api/v1/files/upload",
@@ -211,7 +206,12 @@ const handler = [
       );
     }
   ),
-
+  // Single Product
+  rest.get("https://api.escuelajs.co/api/v1/products/:id", (req, res, ctx) => {
+    const { id } = req.params as any;
+  const foundProduct = productTest.map(item => item.id === parseInt(id))
+  return res(ctx.json(foundProduct));
+  }),
 ];
 
 const server = setupServer(...handler);

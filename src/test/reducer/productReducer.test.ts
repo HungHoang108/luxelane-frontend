@@ -2,7 +2,6 @@ import { AnyAction, ThunkMiddleware } from "@reduxjs/toolkit";
 import { ToolkitStore } from "@reduxjs/toolkit/dist/configureStore";
 import {
   fetchAllProducts,
-  deleteItem,
   deleteProduct,
   createProduct,
   editProductThunk,
@@ -88,12 +87,9 @@ describe("Test all the actions", () => {
     expect(store.getState().productReducer[1].title).toBe("C");
     expect(store.getState().productReducer[2].title).toBe("A");
   });
-    // test("delete product", async () => {
-  //   await store.dispatch(fetchAllProducts());
-
-  //   await store.dispatch(deleteProduct(1));
-  //   // const test3 = store.getState().productReducer;
-  //   expect(store.getState().productReducer).toBe(2);
-  // });
-
+  test("delete product", async () => {
+    await store.dispatch(deleteProduct(1));
+    await store.dispatch(fetchAllProducts());
+    expect(store.getState().productReducer.length).toBe(2);
+  });
 });
