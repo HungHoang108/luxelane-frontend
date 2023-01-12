@@ -1,3 +1,6 @@
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import GitHubIcon from "@mui/icons-material/GitHub";
 
 const Footer = () => {
   return (
@@ -9,23 +12,23 @@ const Footer = () => {
             href="https://www.linkedin.com/in/vhunghoang/"
           >
             {" "}
-            LinkedIn
+            <LinkedInIcon />
           </a>
           <a className="footer-link" href="https://twitter.com/">
             {" "}
-            Twitter
+            <TwitterIcon />
           </a>
           <a
             className="footer-link"
             href="https://github.com/HungHoang108/fs12-frontend-project-public"
           >
             {" "}
-            Github
+            <GitHubIcon />
           </a>
         </div>
         <div className="footer-copyright">
-          <p>© Made by Hung Evan 2022</p>
-          <p> React TypeScript Redux & SCSS</p>
+          <p>© Hung Evan 2022</p>
+          <p> React js, Redux, TypeScript, SCSS, & Jest</p>
         </div>
       </div>
     </div>

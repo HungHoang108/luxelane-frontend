@@ -1,0 +1,72 @@
+.section3 {
+  text-align: center;
+  padding-bottom: 2rem;
+  .section3-div {
+    display: flex;
+    justify-content: center;
+
+    .animated-text-container {
+      width: 15rem;
+      h4 {
+        margin: 1rem;
+        overflow: hidden;
+        border-right: 0.15em solid rgb(255, 145, 0);
+        white-space: nowrap;
+        margin: 0 auto;
+        animation: typing 5s steps(40, end) infinite,
+          blink-caret 0.75s step-end infinite;
+      }
+      @keyframes typing {
+        0% {
+          width: 0;
+        }
+
+        50% {
+          width: 100%;
+        }
+
+        100% {
+          width: 0;
+        }
+      }
+
+      @keyframes blink-caret {
+        from,
+        to {
+          border-color: transparent;
+        }
+        50% {
+          border-color: rgb(228, 128, 13);
+        }
+      }
+    }
+  }
+
+  input {
+    margin: 1rem;
+    text-align: center;
+    border: none;
+    border-bottom: 1px solid rgb(12, 12, 12);
+    width: 15rem;
+    // background-color: black;
+    padding: 1rem;
+
+    &:focus {
+      outline: none;
+      width: 20rem;
+      transition: width 500ms;
+    }
+  }
+  button {
+    padding: 1rem 3rem;
+    border-radius: 10px;
+    border: none;
+    background-color: black;
+    color: white;
+    &:hover {
+        background-color: rgb(255, 208, 147);
+
+      transition: background-color 0.5s ease-out 100ms;
+    }
+  }
+}
