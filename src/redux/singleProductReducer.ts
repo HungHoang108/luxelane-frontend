@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios, { AxiosError } from "axios";
 import { SingleProduct } from "../types/ProductType";
 
-const initialState: SingleProduct = {
+const initialState: any = {
   id: 0,
   title: "",
   price: 0,
@@ -17,10 +17,13 @@ export const fetchSingleProduct = createAsyncThunk(
       const response = await axios.get(
         `https://api.escuelajs.co/api/v1/products/${id}`
       );
-      return response.data;
+      const data = response.data
+      console.log(data)
+      return data;
+      
     } catch (error) {
       const err = error as AxiosError;
-      console.log(err);
+      return err
     }
   }
 );
@@ -31,13 +34,14 @@ const SingleProductSlice = createSlice({
   extraReducers: (build) => {
     build.addCase(
       fetchSingleProduct.fulfilled,
-      (state, action: PayloadAction<SingleProduct>) => {
-        if (action.payload && "message" in action.payload) {
-          return state;
-        } else if (!action.payload) {
-          return state;
-        }
-        return action.payload;
+      (state, action: PayloadAction<SingleProduct | AxiosError>) => {
+        // if (action.payload && "message" in action.payload) {
+        //   return state;
+        // } else if (!action.payload) {
+        //   return state;
+        // }
+        // return action.payload;
+        return action.payload
       }
     );
   },

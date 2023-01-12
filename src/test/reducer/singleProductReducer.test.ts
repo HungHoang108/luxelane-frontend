@@ -1,10 +1,10 @@
 import { AnyAction, ThunkMiddleware } from "@reduxjs/toolkit";
 import { ToolkitStore } from "@reduxjs/toolkit/dist/configureStore";
 
-import { fetchAllCategories } from "../../redux/categoriesReducer";
 import { fetchSingleProduct } from "../../redux/singleProductReducer";
 import server from "../shared/server";
 import { createStore, RootState } from "../../redux/store";
+import { fetchAllProducts } from "../../redux/productReducer";
 let store: ToolkitStore<
   RootState,
   AnyAction,
@@ -25,7 +25,8 @@ describe("Test all the actions", () => {
     expect(store.getState().singleProductReducer.id).toBe(0);
   });
   test("Should fetch a single product", async () => {
+    await store.dispatch(fetchAllProducts());
     await store.dispatch(fetchSingleProduct(1));
-    expect(store.getState().singleProductReducer.title).toBe("C");
+    expect(store.getState().singleProductReducer.price).toBe(491);
   });
 });

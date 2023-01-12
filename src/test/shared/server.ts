@@ -118,8 +118,8 @@ const handler = [
     `https://api.escuelajs.co/api/v1/products/:id`,
     async (req, res, ctx) => {
       const { id } = req.params as any;
-      productTest = productTest.filter(item => item.id !== parseInt(id));
-      return res(ctx.json(productTest))
+      productTest = productTest.filter((item) => item.id !== parseInt(id));
+      return res(ctx.json(productTest));
     }
   ),
   rest.post(
@@ -207,11 +207,13 @@ const handler = [
     }
   ),
   // Single Product
-  rest.get("https://api.escuelajs.co/api/v1/products/:id", (req, res, ctx) => {
-    const { id } = req.params as any;
-  const foundProduct = productTest.map(item => item.id === parseInt(id))
-  return res(ctx.json(foundProduct));
-  }),
+  rest.get(
+    "https://api.escuelajs.co/api/v1/products/1",
+    async (req, res, ctx) => {
+      const index = productTest.findIndex((item) => item.id === 1);
+      return res(ctx.json(productTest[index]));
+    }
+  ),
 ];
 
 const server = setupServer(...handler);
