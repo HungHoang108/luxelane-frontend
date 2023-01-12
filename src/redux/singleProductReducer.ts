@@ -35,13 +35,13 @@ const SingleProductSlice = createSlice({
     build.addCase(
       fetchSingleProduct.fulfilled,
       (state, action: PayloadAction<SingleProduct | AxiosError>) => {
-        // if (action.payload && "message" in action.payload) {
-        //   return state;
-        // } else if (!action.payload) {
-        //   return state;
-        // }
-        // return action.payload;
-        return action.payload
+        if (action.payload && "message" in action.payload) {
+          return state;
+        } else if (!action.payload) {
+          return state;
+        }
+        return action.payload;
+   
       }
     );
   },
