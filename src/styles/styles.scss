@@ -6,20 +6,19 @@
 @use "./styleComponent/productCard";
 @use "./styleComponent/productEdit";
 @use "./styleComponent/subcribe";
-
+@use "./styleComponent/navigation";
 
 // pages styles
 @use "./stylePages/home";
 @use "./stylePages/loginLogout";
-@use "./stylePages/navigation";
 @use "./stylePages/newProduct";
 @use "./stylePages/productList";
 @use "./stylePages/productRoute";
 @use "./stylePages/searchResult";
 @use "./stylePages/cartPage";
 
-// * {
-//   margin: 0;
-//   padding: 0;
-//   box-sizing: border-box;
-// }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}

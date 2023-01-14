@@ -2,7 +2,7 @@ import { ChangeEvent, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-import Cart from "../../components/cart-dropdown/Cart";
+import Cart from "../cart-dropdown/Cart";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHook";
 import { searchTagAction } from "../../redux/searchTagReducer";
 import LightModeSharpIcon from "@mui/icons-material/LightModeSharp";
@@ -18,7 +18,6 @@ const Navigation = () => {
   const dispatch = useAppDispatch();
   const cartItem = useAppSelector((state) => state.CartItemReducer);
   const test = useAppSelector((state) => state.userSessionReducer);
-  // console.log(test)
 
   let userData = localStorage.getItem("userInfo");
   useEffect(() => {
@@ -88,11 +87,9 @@ const Navigation = () => {
               <SearchOutlinedIcon fontSize="inherit" />
             </button>
           </div>
-
           <div>
             <LightModeSharpIcon fontSize="small" />
           </div>
-
           <div>
             <div onClick={cartStatus} className="nav-icon_cart">
               <ShoppingCartOutlinedIcon fontSize="small" />
@@ -102,7 +99,6 @@ const Navigation = () => {
               <Cart />
             </div>
           </div>
-
           <div>
             {userData ? (
               <Link className="link btn" onClick={removeUserData} to="">

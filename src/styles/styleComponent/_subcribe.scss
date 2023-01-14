@@ -1,7 +1,10 @@
-.section3 {
+.subcrible-box {
   text-align: center;
   padding-bottom: 2rem;
-  .section3-div {
+  h1 {
+    font-size: 1.5rem;
+  }
+  .subcrible-box-animation {
     display: flex;
     justify-content: center;
 
@@ -43,12 +46,11 @@
   }
 
   input {
-    margin: 1rem;
+    margin-bottom: 1.5rem;
     text-align: center;
     border: none;
     border-bottom: 1px solid rgb(12, 12, 12);
     width: 15rem;
-    // background-color: black;
     padding: 1rem;
 
     &:focus {
@@ -64,7 +66,7 @@
     background-color: black;
     color: white;
     &:hover {
-        background-color: rgb(255, 208, 147);
+      background-color: rgb(255, 208, 147);
 
       transition: background-color 0.5s ease-out 100ms;
     }

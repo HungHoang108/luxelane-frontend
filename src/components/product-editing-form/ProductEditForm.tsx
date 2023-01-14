@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { useAppDispatch } from "../../hooks/reduxHook";
 import { editProductThunk } from "../../redux/productReducer";
 

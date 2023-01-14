@@ -5,7 +5,6 @@
   gap: 3rem;
 
   .products-card {
-
     overflow: hidden;
     cursor: pointer;
     &:hover {
@@ -16,14 +15,8 @@
     }
     .products-title-price {
       display: flex;
+      gap: 1rem;
       padding: 1rem 0;
-      // &:hover {
-      //   + {
-      //     .product-card-button {
-      //       display: block;
-      //     }
-      //   }
-      // }
       span {
         padding-left: 1rem;
       }

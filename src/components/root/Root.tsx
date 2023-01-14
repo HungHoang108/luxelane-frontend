@@ -2,7 +2,7 @@ import React from "react";
 
 import { Outlet } from "react-router-dom";
 
-import Navigation from "../../pages/navigation/Navigation";
+import Navigation from "../navigation/Navigation";
 import Footer from "../footer/Footer";
 
 const Root = () => {

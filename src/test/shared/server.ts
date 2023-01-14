@@ -3,7 +3,6 @@ import { setupServer } from "msw/node";
 import { NewProductType } from "../../types/NewProductType";
 import jwt from "jsonwebtoken";
 import { newUserInputField } from "../../types/UserType";
-import { json } from "stream/consumers";
 
 let productTest = [
   {

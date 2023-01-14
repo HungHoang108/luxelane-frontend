@@ -5,9 +5,7 @@ import pic from "../../styles/image/kitty-cat.jpg";
 const Home = () => {
   return (
     <div>
-      <div className="navBox-img">
-        <img src={pic} alt="" />
-      </div>
+      <div className="navBox-img">{/* <img src={pic} alt="" /> */}</div>
       <div className="home">
         <Categories />
       </div>

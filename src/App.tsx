@@ -12,7 +12,6 @@ import CartPage from "./pages/cart-page/CartPage";
 import Login from "./pages/login-logout/Login";
 import SearchResult from "./pages/searchResult/SearchResult";
 import NewProduct from "./pages/new-product/NewProduct";
-import ProductEditingForm from "./pages/product-editting/ProductEditingForm";
 import CategoryRoute from "./pages/category/CategoryRoute";
 import { useAppSelector } from "./hooks/reduxHook";
 import ProductRoute from "./pages/product/ProductRoute";
@@ -38,7 +37,6 @@ const App = () => {
           <Route path="/cartpage" element={<CartPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/searchresult" element={<SearchResult />} />
-          <Route path="/editproduct" element={<ProductEditingForm />} />
           <Route path="/newproduct" element={<NewProduct />} />
           <Route path="/category" element={<CategoryRoute />} />
           <Route path="/singleItemRoute" element={<ProductRoute />} />

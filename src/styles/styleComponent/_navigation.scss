@@ -4,7 +4,6 @@
   padding: 0;
   padding-top: 2rem;
   width: 100%;
-
   .navBox-nav {
     display: flex;
     justify-content: space-between;
@@ -15,32 +14,31 @@
       justify-content: space-between;
       flex-wrap: wrap;
       width: 10rem;
-    
     }
     .navBox-nav_home {
       text-align: center;
     }
-
     .nav-icon {
-      display: grid;
-      grid-template-columns: auto auto auto auto auto;
-
+      // display: grid;
+      // grid-template-columns: auto auto auto auto auto;
+      display: flex;
+      flex-wrap: wrap;
       .nav-icon_search {
         input {
           outline: none;
           width: 12rem;
-          height: 2rem;
+          height: 1.5rem;
           border: #ffb26b solid 1px;
+          margin-bottom: 10px;
         }
         button {
           width: 2rem;
-          height: 2rem;
+          height: 1.7rem;
           background-color: hsla(29, 100%, 71%, 0.856);
           border: none;
           color: white;
         }
       }
-
       div {
         margin-right: 1rem;
       }
@@ -73,7 +71,7 @@
       text-decoration: none;
     }
     .btn {
-      padding: 0.4rem 1rem;
+      padding: 0.3rem 1rem;
       background-color: #ffb300a6;
       border-radius: 10px;
     }
