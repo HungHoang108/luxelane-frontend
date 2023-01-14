@@ -1,15 +1,15 @@
-import { ChangeEvent, useEffect } from "react";
+import { ChangeEvent } from "react";
 
 import ProductCard from "../../components/product-card/ProductCard";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHook";
-import { sortByPrice } from "../../redux/productReducer";
+import { sortByPriceCategory } from "../../redux/categoriesReducer";
 
 const CategoryPage = () => {
   const dispatch = useAppDispatch();
   const products = useAppSelector((state) => state.categoryReducer);
 
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    dispatch(sortByPrice(e.target.value));
+    dispatch(sortByPriceCategory(e.target.value));
   };
 
   return (

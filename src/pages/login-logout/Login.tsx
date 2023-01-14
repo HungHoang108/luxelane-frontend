@@ -70,7 +70,7 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className="login-container">
       {newUserStatus ? (
         <div className="authentication-newUser">
           <h4>Your account is created successfully</h4>
@@ -81,7 +81,6 @@ const Login = () => {
           <div className="sign-in-container">
             <h2>Already have an account?</h2>
             <span>Sign in with your email and password</span>
-
             <div className="authen-input">
               <input
                 type="email"
@@ -104,8 +103,7 @@ const Login = () => {
           </div>
           <div>
             <h2>Don't have an account?</h2>
-            <span>Sign up to get our latest updates and more</span>
-
+            <span>Sign up to get latest updates</span>
             <div className="authen-input">
               <input
                 type="email"
@@ -138,7 +136,6 @@ const Login = () => {
                 multiple
               />
             </div>
-
             <button className="authen-button" onClick={submitRegister}>
               Register
             </button>

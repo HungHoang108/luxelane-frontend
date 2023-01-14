@@ -51,7 +51,15 @@ const CategoriesSlice = createSlice({
 export const CategorySlice = createSlice({
   name: "CategorySlice",
   initialState: categoryInitialState,
-  reducers: {},
+  reducers: {
+    sortByPriceCategory: (state, action) => {
+      if (action.payload === "price-up") {
+        state.sort((a, b) => a.price - b.price);
+      } else if (action.payload === "price-down") {
+        state.sort((a, b) => b.price - a.price);
+      }
+    }
+  },
   extraReducers: (build) => {
     build.addCase(fetchAllProductsInCategory.fulfilled, (state, action) => {
       if (action.payload && "message" in action.payload) {
@@ -66,3 +74,4 @@ export const CategorySlice = createSlice({
 export const categoriesReducer = CategoriesSlice.reducer;
 export default CategoriesSlice;
 export const categoryReducer = CategorySlice.reducer;
+export const {sortByPriceCategory} = CategorySlice.actions
