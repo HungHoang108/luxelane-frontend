@@ -4,6 +4,8 @@
   padding: 0;
   padding-top: 2rem;
   width: 100%;
+background-color: hsla(251, 55%, 22%, 0.724);
+color: white;
   .navBox-nav {
     display: flex;
     justify-content: space-between;
@@ -13,7 +15,8 @@
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
-      width: 10rem;
+      gap: 2rem;
+      // width: 10rem;
     }
     .navBox-nav_home {
       text-align: center;
@@ -34,7 +37,7 @@
         button {
           width: 2rem;
           height: 1.7rem;
-          background-color: hsla(29, 100%, 71%, 0.856);
+          background-color: #ffb26b;
           border: none;
           color: white;
         }
@@ -72,8 +75,9 @@
     }
     .btn {
       padding: 0.3rem 1rem;
-      background-color: #ffb300a6;
+      // background-color: hsla(250, 55%, 22%, 0.808);
       border-radius: 10px;
+      color: white;
     }
   }
 }

@@ -8,6 +8,7 @@ import { searchTagAction } from "../../redux/searchTagReducer";
 import LightModeSharpIcon from "@mui/icons-material/LightModeSharp";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import { darkMode } from "../../redux/darkModeReducer";
 
 const Navigation = () => {
   const [status, setStatus] = useState(false);
@@ -18,6 +19,7 @@ const Navigation = () => {
   const dispatch = useAppDispatch();
   const cartItem = useAppSelector((state) => state.CartItemReducer);
   const test = useAppSelector((state) => state.userSessionReducer);
+  const currentDarkMode = useAppSelector((state) => state.DarkModeReducer);
 
   let userData = localStorage.getItem("userInfo");
   useEffect(() => {
@@ -51,6 +53,9 @@ const Navigation = () => {
   const removeUserData = () => {
     localStorage.removeItem("userInfo");
   };
+  const setDarkMode = () => {
+    dispatch(darkMode(!currentDarkMode));
+  };
 
   return (
     <div className="navBox">
@@ -61,21 +66,21 @@ const Navigation = () => {
             style={{
               borderBottom:
                 navStyle === "home" || navStyle === null
-                  ? "2px solid black"
+                  ? "2px solid white"
                   : "",
             }}
           >
-            <Link className="navBox-nav_home link" to="">
+            <Link className="navBox-nav_home link btn" to="">
               Home
             </Link>
           </div>
           <div
             onClick={navProject}
             style={{
-              borderBottom: navStyle === "products" ? "2px solid black" : "",
+              borderBottom: navStyle === "products" ? "2px solid white" : "",
             }}
           >
-            <Link className="link" to="productlist">
+            <Link className="link btn" to="productlist">
               Products
             </Link>
           </div>
@@ -87,7 +92,7 @@ const Navigation = () => {
               <SearchOutlinedIcon fontSize="inherit" />
             </button>
           </div>
-          <div>
+          <div onClick={setDarkMode}>
             <LightModeSharpIcon fontSize="small" />
           </div>
           <div>

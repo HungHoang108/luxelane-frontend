@@ -49,9 +49,10 @@
     margin-bottom: 1.5rem;
     text-align: center;
     border: none;
-    border-bottom: 1px solid rgb(12, 12, 12);
+    border-bottom: 1px solid #FFB100;
     width: 15rem;
     padding: 1rem;
+    background-color: transparent;
 
     &:focus {
       outline: none;
@@ -62,7 +63,7 @@
   button {
     padding: 1rem 3rem;
     border-radius: 10px;
-    border: none;
+    border: solid 1px white;
     background-color: black;
     color: white;
     &:hover {

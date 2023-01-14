@@ -1,8 +1,5 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import { useAppDispatch } from "./hooks/reduxHook";
-import { fetchAllProducts } from "./redux/productReducer";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 import Home from "./pages/home/Home";
 import Root from "./components/root/Root";
@@ -16,20 +13,14 @@ import CategoryRoute from "./pages/category/CategoryRoute";
 import { useAppSelector } from "./hooks/reduxHook";
 import ProductRoute from "./pages/product/ProductRoute";
 
-const App = () => {
-  const dispatch = useAppDispatch();
-  const darkModeStatus = useAppSelector((state) => state.DarkModeReducer);
-  const myTheme = createTheme({
-    palette: {
-      mode: darkModeStatus ? "dark" : "light",
-    },
-  });
+import "./app.style.scss"
 
-  useEffect(() => {
-    dispatch(fetchAllProducts());
-  }, [dispatch]);
+const App = () => {
+  const currentDarkMode = useAppSelector((state) => state.DarkModeReducer);
+  const [test, settest] = useState(currentDarkMode);
+  // style={{ backgroundColor: "black", color: "white" }}
   return (
-    <ThemeProvider theme={myTheme}>
+    <div className={currentDarkMode ? "dark" : "light"}>
       <Routes>
         <Route path="" element={<Root />}>
           <Route path="" element={<Home />} />
@@ -43,7 +34,7 @@ const App = () => {
           <Route path="/*" element={<NotFound />} />
         </Route>
       </Routes>
-    </ThemeProvider>
+    </div>
   );
 };
 
