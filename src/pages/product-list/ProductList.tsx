@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 
 import ProductCard from "../../components/product-card/ProductCard";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHook";
@@ -6,10 +6,13 @@ import { sortByCategory } from "../../redux/sortCategoryReducer";
 import { fetchAllProducts, sortByPrice } from "../../redux/productReducer";
 
 const ProductList = () => {
+  const [currentPage, setCurrentPage] = useState(1)
+  const [postsPerPage, setPostsPerPage] = useState(10)
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(fetchAllProducts());
   }, [dispatch]);
+
   const products = useAppSelector((state) => state.productReducer);
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     dispatch(sortByPrice(e.target.value));
@@ -17,6 +20,9 @@ const ProductList = () => {
   const handleCategory = (e: ChangeEvent<HTMLSelectElement>) => {
     dispatch(sortByCategory(e.target.value));
   };
+  const lastPostIndex = currentPage * postsPerPage
+  const firstPostIndex = lastPostIndex - postsPerPage
+  const currentPosts = products.slice(firstPostIndex, lastPostIndex)
   return (
     <div className="productList-box">
       <div className="productList-box-head">
@@ -47,9 +53,9 @@ const ProductList = () => {
       </div>
 
       <ProductCard
-        title="All Products"
         productsDisplayed={8}
         productList={products}
+        params="product-list"
       />
     </div>
   );

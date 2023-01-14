@@ -12,13 +12,19 @@ import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined
 
 import { fetchSingleProduct } from "../../redux/singleProductReducer";
 
-const ProductCard = ({ productsDisplayed, productList }: ProductCardList) => {
+const ProductCard = ({
+  productsDisplayed,
+  productList,
+  params,
+}: ProductCardList) => {
   const dispatch = useAppDispatch();
   const sortCategory = useAppSelector((state) => state.SortReducer);
   const nav = useNavigate();
 
   const [popup, setPopup] = useState(false);
   const [popupId, setPopupId] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1)
+  const [postsPerPage, setPostsPerPage] = useState(10)
 
   const userRole = localStorage.getItem("userInfo");
   const userData = userRole && JSON.parse(userRole);
@@ -74,11 +80,12 @@ const ProductCard = ({ productsDisplayed, productList }: ProductCardList) => {
                   />
                 </div>
                 <div className="card-button_edit_deletebox">
-                  {getRole === "admin" && (
+                  {getRole === "admin" && params === "product-list" && (
                     <button
                       className="edit-delete-button"
                       onClick={() => {
                         const id = product.id;
+                        console.log(id);
                         dispatch(deleteProduct(id));
                         dispatch(deleteItem(id));
                       }}
@@ -86,7 +93,7 @@ const ProductCard = ({ productsDisplayed, productList }: ProductCardList) => {
                       <DeleteOutlineOutlinedIcon />
                     </button>
                   )}
-                  {getRole === "admin" && (
+                  {getRole === "admin" && params === "product-list" && (
                     <button
                       className="edit-delete-button"
                       onClick={() => {

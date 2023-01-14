@@ -64,6 +64,7 @@ fs13-frontend-project
 ├─ public
 ├─ README.md
 ├─ src
+│  ├─ app.style.scss
 │  ├─ App.tsx
 │  ├─ components
 │  │  ├─ button
@@ -72,16 +73,22 @@ fs13-frontend-project
 │  │  │  └─ Cart.tsx
 │  │  ├─ categories
 │  │  │  └─ Categories.tsx
+│  │  ├─ dark-mode
+│  │  │  └─ DarkMode.tsx
 │  │  ├─ footer
 │  │  │  └─ Footer.tsx
+│  │  ├─ navigation
+│  │  │  └─ Navigation.tsx
 │  │  ├─ not-found
 │  │  │  └─ NotFound.tsx
 │  │  ├─ product-card
 │  │  │  └─ ProductCard.tsx
 │  │  ├─ product-editing-form
 │  │  │  └─ ProductEditForm.tsx
-│  │  └─ root
-│  │     └─ Root.tsx
+│  │  ├─ root
+│  │  │  └─ Root.tsx
+│  │  └─ subcribe
+│  │     └─ Subcribe.tsx
 │  ├─ hooks
 │  │  └─ reduxHook.ts
 │  ├─ index.tsx
@@ -94,14 +101,10 @@ fs13-frontend-project
 │  │  │  └─ Home.tsx
 │  │  ├─ login-logout
 │  │  │  └─ Login.tsx
-│  │  ├─ navigation
-│  │  │  └─ Navigation.tsx
 │  │  ├─ new-product
 │  │  │  └─ NewProduct.tsx
 │  │  ├─ product
 │  │  │  └─ ProductRoute.tsx
-│  │  ├─ product-editting
-│  │  │  └─ ProductEditingForm.tsx
 │  │  ├─ product-list
 │  │  │  └─ ProductList.tsx
 │  │  └─ searchResult
@@ -126,13 +129,14 @@ fs13-frontend-project
 │  │  │  ├─ _cartDropdown.scss
 │  │  │  ├─ _categories.scss
 │  │  │  ├─ _footer.scss
+│  │  │  ├─ _navigation.scss
 │  │  │  ├─ _productCard.scss
-│  │  │  └─ _productEdit.scss
+│  │  │  ├─ _productEdit.scss
+│  │  │  └─ _subcribe.scss
 │  │  ├─ stylePages
 │  │  │  ├─ _cartPage.scss
 │  │  │  ├─ _home.scss
 │  │  │  ├─ _loginLogout.scss
-│  │  │  ├─ _navigation.scss
 │  │  │  ├─ _newProduct.scss
 │  │  │  ├─ _productList.scss
 │  │  │  ├─ _productRoute.scss
@@ -144,6 +148,7 @@ fs13-frontend-project
 │  │  │  ├─ categoriesReducer.test.ts
 │  │  │  ├─ productReducer.test.ts
 │  │  │  ├─ searchTagReducer.test.ts
+│  │  │  ├─ singleProductReducer.test.ts
 │  │  │  ├─ sortCategoryReducer.test.ts
 │  │  │  └─ userReducer.test.ts
 │  │  └─ shared

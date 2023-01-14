@@ -28,9 +28,9 @@ const CategoryPage = () => {
         </div>
       </div>
       <ProductCard
-        title="All Products"
         productsDisplayed={7}
         productList={products}
+        params=""
       />
     </div>
   );
