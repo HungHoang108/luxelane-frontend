@@ -1,44 +1,47 @@
-.newProdut-btn {
-  padding: 0.6rem 1rem;
-  background-color: black;
-  color: white;
-  cursor: pointer;
-  border: none;
-  width: 7rem;
-  &:hover {
-    background-color: hsla(0, 0%, 0%, 0.719);
-  }
-}
+.addNewProduct-box {
+  .newProdut-btn {
+    padding: 0.6rem 1rem;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    border: solid 1px white;
 
-.newProduct-response {
-  text-align: center;
-  padding: 15rem 0 17rem;
-  button {
-    @extend .newProdut-btn;
-    width: 10rem;
-    margin-top: 2rem;
-  }
-}
-.newProduct-conntainer {
-  text-align: center;
-  margin-top: 6rem;
-  margin-bottom: 10rem;
-  h2 {
-    margin-bottom: 3rem;
+    width: 7rem;
+    &:hover {
+      background-color: hsla(0, 0%, 0%, 0.719);
+    }
   }
 
-  input {
-    width: 18rem;
-    height: 2rem;
-    margin-bottom: 1rem;
+  .newProduct-response {
+    text-align: center;
+    padding: 15rem 0 17rem;
+    button {
+      @extend .newProdut-btn;
+      width: 10rem;
+      margin-top: 2rem;
+    }
   }
-  textarea {
-    margin-bottom: 1rem;
-  }
-  button {
-    @extend .newProdut-btn;
-  }
-  span {
-    padding-right: 1rem;
+  .newProduct-conntainer {
+    text-align: center;
+    margin-top: 6rem;
+    margin-bottom: 10rem;
+    h2 {
+      margin-bottom: 3rem;
+    }
+
+    input {
+      width: 18rem;
+      height: 2rem;
+      margin-bottom: 1rem;
+    }
+    textarea {
+      margin-bottom: 1rem;
+    }
+    button {
+      @extend .newProdut-btn;
+    }
+    span {
+      padding-right: 1rem;
+    }
   }
 }

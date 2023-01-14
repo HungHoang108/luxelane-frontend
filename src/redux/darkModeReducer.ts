@@ -9,6 +9,5 @@ const DarkModeSlice = createSlice({
     },
   },
 });
-
 export const DarkModeReducer = DarkModeSlice.reducer;
 export const { darkMode } = DarkModeSlice.actions;

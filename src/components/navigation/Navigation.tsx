@@ -89,7 +89,7 @@ const Navigation = () => {
           <div className="nav-icon_search">
             <input type="text" placeholder="search" onChange={handleSearch} />
             <button onClick={searchForProduct}>
-              <SearchOutlinedIcon fontSize="inherit" />
+              <SearchOutlinedIcon fontSize="small" />
             </button>
           </div>
           <div onClick={setDarkMode}>

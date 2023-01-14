@@ -13,6 +13,7 @@ export const fetchAllProducts = createAsyncThunk(
         "https://api.escuelajs.co/api/v1/products"
       );
       return products.data;
+      console.log(products.data)
     } catch (error) {
       const err = error as AxiosError;
       return err;

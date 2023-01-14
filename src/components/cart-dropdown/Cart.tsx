@@ -17,11 +17,11 @@ const Cart = () => {
             <div>
               <img src={item.image} alt="" />
             </div>
-            <div>
+            <div style={{color: "black"}}>
               <p>{item.itemName}</p>
             </div>
-            <div>
-              <span>{item.amount} x </span>
+            <div style={{color: "black"}}>
+              <span >{item.amount} x </span>
               <span>{item.price} $</span>
             </div>
           </div>

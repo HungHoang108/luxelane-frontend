@@ -53,7 +53,7 @@ const NewProduct = () => {
   };
 
   return (
-    <div>
+    <div className="addNewProduct-box">
       {status ? (
         <div className="newProduct-response">
           <h3>Your product has been added</h3>
@@ -90,8 +90,8 @@ const NewProduct = () => {
           </div>
           <div>
             <textarea
-              cols={80}
-              rows={20}
+              cols={60}
+              rows={10}
               name="description"
               placeholder="Description"
               onChange={handleTextareaChange}

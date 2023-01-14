@@ -4,8 +4,8 @@
   padding: 0;
   padding-top: 2rem;
   width: 100%;
-background-color: hsla(251, 55%, 22%, 0.724);
-color: white;
+  background-color: hsla(251, 55%, 22%, 0.724);
+  color: white;
   .navBox-nav {
     display: flex;
     justify-content: space-between;
@@ -30,16 +30,16 @@ color: white;
         input {
           outline: none;
           width: 12rem;
-          height: 1.5rem;
+          padding-top: 0.6rem;
           border: #ffb26b solid 1px;
           margin-bottom: 10px;
         }
         button {
           width: 2rem;
-          height: 1.7rem;
-          background-color: #ffb26b;
+          background-color: transparent;
           border: none;
           color: white;
+          cursor: pointer;
         }
       }
       div {
@@ -75,7 +75,6 @@ color: white;
     }
     .btn {
       padding: 0.3rem 1rem;
-      // background-color: hsla(250, 55%, 22%, 0.808);
       border-radius: 10px;
       color: white;
     }
