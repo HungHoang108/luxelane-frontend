@@ -69,8 +69,9 @@ const Navigation = () => {
                   ? "2px solid white"
                   : "",
             }}
+            className="testx"
           >
-            <Link className="navBox-nav_home link btn" to="">
+            <Link className="nav-left_sub link" to="">
               Home
             </Link>
           </div>
@@ -80,7 +81,7 @@ const Navigation = () => {
               borderBottom: navStyle === "products" ? "2px solid white" : "",
             }}
           >
-            <Link className="link btn" to="productlist">
+            <Link className="nav-left_sub link" to="productlist">
               Products
             </Link>
           </div>

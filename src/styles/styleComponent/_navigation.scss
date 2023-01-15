@@ -10,29 +10,34 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    padding: 1rem 2rem;
+    padding: 1rem 2rem 2rem;
     .navBox-nav-left {
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 2rem;
-      // width: 10rem;
+      margin-bottom: 1rem;
     }
-    .navBox-nav_home {
+    .nav-left_sub {
       text-align: center;
+      color: white;
     }
     .nav-icon {
-      // display: grid;
-      // grid-template-columns: auto auto auto auto auto;
       display: flex;
       flex-wrap: wrap;
       .nav-icon_search {
         input {
           outline: none;
-          width: 12rem;
+          width: 10rem;
           padding-top: 0.6rem;
-          border: #ffb26b solid 1px;
+          border: none;
           margin-bottom: 10px;
+          &:focus {
+            outline: none;
+            width: 15rem;
+            // transform: translateX(-2.1rem);
+            transition: width 500ms;
+          }
         }
         button {
           width: 2rem;
