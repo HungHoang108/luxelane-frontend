@@ -37,7 +37,6 @@ const NewProduct = () => {
 
   const handleImageFile = (e: ChangeEvent<HTMLInputElement>) => {
     e.target.files && setFile(e.target.files[0]);
-    console.log(e.target.files);
   };
 
   const newItemForm = {
@@ -81,12 +80,20 @@ const NewProduct = () => {
             />
           </div>
           <div>
-            <input
+            {/* <input
               type="number"
               name="categoryId"
               placeholder="categoryId"
               onChange={handleChangeInput}
-            />
+            /> */}
+            <select>
+              <option value="">Choose category</option>
+              <option value="1">Clothes</option>
+              <option value="2">Electronics</option>
+              <option value="3">Furniture</option>
+              <option value="4">Shoes</option>
+              <option value="5">Others</option>
+            </select>
           </div>
           <div>
             <textarea

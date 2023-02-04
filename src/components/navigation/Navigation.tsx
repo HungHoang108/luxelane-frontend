@@ -34,7 +34,7 @@ const Navigation = () => {
   };
 
   let counter = 0;
-  cartItem.map((item) => (counter += item.amount));
+  cartItem.map((item) => counter++);
 
   const cartStatus = () => {
     setStatus(!status);
@@ -93,7 +93,7 @@ const Navigation = () => {
               <SearchOutlinedIcon fontSize="small" />
             </button>
           </div>
-          <div onClick={setDarkMode}>
+          <div className="nav-icon_dark-mode" onClick={setDarkMode}>
             <LightModeSharpIcon fontSize="small" />
           </div>
           <div>

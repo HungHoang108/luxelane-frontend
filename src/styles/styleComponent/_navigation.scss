@@ -31,11 +31,12 @@
           width: 10rem;
           padding-top: 0.6rem;
           border: none;
+          border-radius: 10px;
           margin-bottom: 10px;
+          
           &:focus {
             outline: none;
             width: 15rem;
-            // transform: translateX(-2.1rem);
             transition: width 500ms;
           }
         }
@@ -47,11 +48,15 @@
           cursor: pointer;
         }
       }
+      .nav-icon_dark-mode {
+        cursor: pointer;
+      }
       div {
         margin-right: 1rem;
       }
       .navBox-cart {
         display: none;
+      
         &:hover {
           display: block;
         }

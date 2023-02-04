@@ -1,6 +1,6 @@
 import Categories from "../../components/categories/Categories";
 import Subcribe from "../../components/subcribe/Subcribe";
-import pic from "../../styles/image/kitty-cat.jpg";
+import pic from "../../styles/image/homepage.png";
 
 const Home = () => {
   return (

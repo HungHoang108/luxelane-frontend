@@ -122,12 +122,6 @@ const ProductsSlice = createSlice({
       .addCase(
         editProductThunk.fulfilled,
         (state, action: PayloadAction<Product>) => {
-          // const itemIndex = state.findIndex(
-          //   (item) => item.id === action.payload.id
-          // );
-          // state[itemIndex].price = action.payload.price;
-          // state[itemIndex].title = action.payload.title;
-          // state[itemIndex].description = action.payload.description;
           return state.map((product) => {
             if (product.id === action.payload.id) {
               return action.payload;
@@ -146,12 +140,6 @@ const ProductsSlice = createSlice({
           }
         }
       );
-    // .addCase(
-    //   deleteProduct.fulfilled,
-    //   (state, action: PayloadAction<boolean>) => {
-    //     console.log(action.payload);
-    //   }
-    // );
   },
 });
 export const productReducer = ProductsSlice.reducer;
