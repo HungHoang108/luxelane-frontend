@@ -20,12 +20,10 @@ const NewProduct = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<hookForm>();
 
   const onSubmit: SubmitHandler<hookForm> = (data) => {
-    console.log(typeof data.categoryId);
     const newItemForm = {
       file: data.file[0],
       product: {

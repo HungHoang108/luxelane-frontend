@@ -85,7 +85,6 @@ const ProductCard = ({
                       className="edit-delete-button"
                       onClick={() => {
                         const id = product.id;
-                        console.log(id);
                         dispatch(deleteProduct(id));
                         dispatch(deleteItem(id));
                       }}

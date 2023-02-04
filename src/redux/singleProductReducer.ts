@@ -18,7 +18,6 @@ export const fetchSingleProduct = createAsyncThunk(
         `https://api.escuelajs.co/api/v1/products/${id}`
       );
       const data = response.data
-      console.log(data)
       return data;
       
     } catch (error) {
