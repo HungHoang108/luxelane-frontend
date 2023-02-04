@@ -29,8 +29,9 @@
         input {
           outline: none;
           width: 10rem;
-          padding-top: 0.6rem;
-          border: none;
+          padding-top: 0.4rem;
+          padding-bottom: 0.3rem;
+          border: 1px solid #ffb26b;
           border-radius: 10px;
           margin-bottom: 10px;
           
@@ -84,7 +85,7 @@
       text-decoration: none;
     }
     .btn {
-      padding: 0.3rem 1rem;
+      padding: 0 0.7rem;
       border-radius: 10px;
       color: white;
     }

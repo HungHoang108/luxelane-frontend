@@ -12,6 +12,7 @@ import { darkMode } from "../../redux/darkModeReducer";
 
 const Navigation = () => {
   const [status, setStatus] = useState(false);
+
   const [searchTag, setSearchTag] = useState("");
   const [navStyle, setNavStyle] = useState<string | null>(null);
 
@@ -44,9 +45,19 @@ const Navigation = () => {
     setSearchTag(e.target.value);
   };
 
+  const handleKeyPress = (e: any) => {
+    if (e.key === "Enter") {
+      searchForProduct();
+    }
+  };
+
   const searchForProduct = () => {
     dispatch(searchTagAction(searchTag));
-    localStorage.setItem("searchQuery", searchTag);
+    nav("/searchresult");
+  };
+
+  const searchStatus = () => {
+    dispatch(searchTagAction(searchTag));
     nav("/searchresult");
   };
 
@@ -88,10 +99,12 @@ const Navigation = () => {
         </div>
         <div className="nav-icon">
           <div className="nav-icon_search">
-            <input type="text" placeholder="search" onChange={handleSearch} />
-            <button onClick={searchForProduct}>
-              <SearchOutlinedIcon fontSize="small" />
-            </button>
+            <input
+              onKeyPress={handleKeyPress}
+              type="text"
+              placeholder="search product"
+              onChange={handleSearch}
+            />
           </div>
           <div className="nav-icon_dark-mode" onClick={setDarkMode}>
             <LightModeSharpIcon fontSize="small" />

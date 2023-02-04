@@ -4,6 +4,7 @@ import Button from "../../components/button/Button";
 const SearchResult = () => {
   const products = useAppSelector((state) => state.productReducer);
   const searchQuery = useAppSelector((state) => state.SearchTagReducer);
+  console.log(searchQuery)
   const searchQueryLowerCase = searchQuery.toLowerCase();
 
   return (
