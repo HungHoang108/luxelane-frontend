@@ -23,10 +23,10 @@ The app use fake API endpoint [https://fakeapi.platzi.com/](https://fakeapi.plat
 
 ## Future features
 
-1. Dark mode
-2. Favourite
-3. Check out route and payment
-4. User profile route
+
+- Favourite
+- Check out route and payment
+- User profile route
 
 ## Instruction to run the app
 
