@@ -74,12 +74,12 @@ const Navigation = () => {
         <div className="navBox-nav-left">
           <div
             onClick={navHome}
-            style={{
-              borderBottom:
-                navStyle === "home" || navStyle === null
-                  ? "2px solid white"
-                  : "",
-            }}
+            // style={{
+            //   borderBottom:
+            //     navStyle === "home" || navStyle === null
+            //       ? "2px solid white"
+            //       : "",
+            // }}
             className="testx"
           >
             <Link className="nav-left_sub link" to="">
@@ -88,9 +88,9 @@ const Navigation = () => {
           </div>
           <div
             onClick={navProject}
-            style={{
-              borderBottom: navStyle === "products" ? "2px solid white" : "",
-            }}
+            // style={{
+            //   borderBottom: navStyle === "products" ? "2px solid white" : "",
+            // }}
           >
             <Link className="nav-left_sub link" to="productlist">
               Products
@@ -102,7 +102,7 @@ const Navigation = () => {
             <input
               onKeyPress={handleKeyPress}
               type="text"
-              placeholder="search product"
+              placeholder="search products"
               onChange={handleSearch}
             />
           </div>
