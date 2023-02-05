@@ -23,6 +23,7 @@ const Login = () => {
   }, []);
 
   const [newUserStatus, setNewUserStatus] = useState(false);
+  const [loginStatus, setLoginStatus] = useState(true);
 
   const {
     register,
@@ -44,7 +45,17 @@ const Login = () => {
   // login validation
   const onLogin: SubmitHandler<LoginType> = (data) => {
     dispatch(logInUser(data));
-    nav("/");
+    setTimeout(getUserSession, 1000);
+  };
+
+  const getUserSession = () => {
+    const userData = localStorage.getItem("userInfo");
+    if (userData) {
+      nav("/");
+      setLoginStatus(true);
+    } else {
+      setLoginStatus(false);
+    }
   };
   // register validation
   const onRegister: SubmitHandler<newUserForm> = (data) => {
@@ -74,6 +85,14 @@ const Login = () => {
             <h2>Already have an account?</h2>
             <span>Sign in with your email and password</span>
             <div className="authen-input">
+              {loginStatus === false ? (
+                <i>
+                  <p>
+                    <WarningAmberIcon color="error" sx={{ fontSize: "14px" }} />
+                    Wrong Email or Password
+                  </p>
+                </i>
+              ) : null}
               {errors.email && (
                 <i>
                   <p>

@@ -1,10 +1,16 @@
 import { useAppSelector } from "../../hooks/reduxHook";
 import Button from "../../components/button/Button";
+import { useEffect } from "react";
+import { fetchAllProducts } from "../../redux/productReducer";
+import { useAppDispatch } from "../../hooks/reduxHook";
 
 const SearchResult = () => {
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(fetchAllProducts());
+  }, [dispatch]);
   const products = useAppSelector((state) => state.productReducer);
   const searchQuery = useAppSelector((state) => state.SearchTagReducer);
-  console.log(searchQuery)
   const searchQueryLowerCase = searchQuery.toLowerCase();
 
   return (
