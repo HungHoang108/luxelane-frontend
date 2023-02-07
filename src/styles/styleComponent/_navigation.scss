@@ -81,14 +81,32 @@
         }
       }
       .nav-icon_user-profile {
-
+        position: relative;
         .nav-user-profile {
           text-align: center;
           .user-profile-image {
+            cursor: pointer;
             img {
               width: 1.9rem;
               height: 1.8rem;
               border-radius: 20px;
+            }
+            &:hover {
+              + {
+                .user-profile-popup {
+                  display: block;
+                  z-index: 1;
+                  
+                }
+              }
+            }
+          }
+          .user-profile-popup {
+            display: none;
+            position: absolute;
+            right: -2.5rem;
+            &:hover {
+              display: block;
             }
           }
         }

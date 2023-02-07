@@ -9,6 +9,7 @@ const Cart = () => {
   };
   itemMap();
   localStorage.setItem("totalCost", JSON.stringify(counter));
+  
   return (
     <div className="cartBox">
       <div className="cartBox-items">

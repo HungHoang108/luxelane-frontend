@@ -8,7 +8,7 @@ import { searchTagAction } from "../../redux/searchTagReducer";
 import LightModeSharpIcon from "@mui/icons-material/LightModeSharp";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { darkMode } from "../../redux/darkModeReducer";
-import UserPopUp from "../user-logout/UserPopUp";
+import UserPopUp from "../user-popup/UserPopUp";
 
 const Navigation = () => {
   const [status, setStatus] = useState(false);

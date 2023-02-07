@@ -1,10 +1,17 @@
 .profileBox {
-    padding-left: 2rem;
-
   .profile-boxsub {
     background-color: white;
+    border-radius: 10px;
+    width: 100%;
     padding: 1rem 0 1rem;
     padding-left: 1rem;
+    :nth-child(1) {
+      padding-bottom: 1rem;
+      &:hover {
+        color: red;
+      }
+    }
+
     .profileBox-link {
       text-decoration: none;
       text-align: center;

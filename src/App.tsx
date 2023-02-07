@@ -11,6 +11,7 @@ import NewProduct from "./pages/new-product/NewProduct";
 import CategoryRoute from "./pages/category/CategoryRoute";
 import { useAppSelector } from "./hooks/reduxHook";
 import ProductRoute from "./pages/product/ProductRoute";
+import UserProfile from "./pages/user-profile/UserProfile";
 
 const App = () => {
   const currentDarkMode = useAppSelector((state) => state.DarkModeReducer);
@@ -28,6 +29,8 @@ const App = () => {
           <Route path="/category" element={<CategoryRoute />} />
           <Route path="/singleItemRoute" element={<ProductRoute />} />
           <Route path="/*" element={<NotFound />} />
+          <Route path="/userprofile" element={<UserProfile />} />
+
         </Route>
       </Routes>
     </div>
