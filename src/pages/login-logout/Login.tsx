@@ -17,11 +17,6 @@ interface newUserForm {
 const Login = () => {
   const dispatch = useAppDispatch();
 
-  let userData = localStorage.getItem("userInfo");
-  useEffect(() => {
-    userData = localStorage.getItem("userInfo");
-  }, []);
-
   const [newUserStatus, setNewUserStatus] = useState(false);
   const [loginStatus, setLoginStatus] = useState(true);
 

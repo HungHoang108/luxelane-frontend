@@ -7,6 +7,8 @@
 @use "./styleComponent/productEdit";
 @use "./styleComponent/subcribe";
 @use "./styleComponent/navigation";
+@use "./styleComponent/userPopup";
+
 
 // pages styles
 @use "./stylePages/home";
@@ -16,6 +18,8 @@
 @use "./stylePages/productRoute";
 @use "./stylePages/searchResult";
 @use "./stylePages/cartPage";
+
+@use "./app";
 
 * {
   margin: 0;

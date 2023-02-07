@@ -1,4 +1,4 @@
-import { ChangeEvent, useState, useEffect } from "react";
+import { ChangeEvent, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
@@ -7,12 +7,11 @@ import { useAppDispatch, useAppSelector } from "../../hooks/reduxHook";
 import { searchTagAction } from "../../redux/searchTagReducer";
 import LightModeSharpIcon from "@mui/icons-material/LightModeSharp";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { darkMode } from "../../redux/darkModeReducer";
+import UserPopUp from "../user-logout/UserPopUp";
 
 const Navigation = () => {
   const [status, setStatus] = useState(false);
-
   const [searchTag, setSearchTag] = useState("");
   const [navStyle, setNavStyle] = useState<string | null>(null);
 
@@ -23,9 +22,7 @@ const Navigation = () => {
   const currentDarkMode = useAppSelector((state) => state.DarkModeReducer);
 
   let userData = localStorage.getItem("userInfo");
-  useEffect(() => {
-    userData = localStorage.getItem("userInfo");
-  }, []);
+  let parseUserData = userData && JSON.parse(userData);
 
   const navHome = () => {
     setNavStyle("home");
@@ -61,9 +58,6 @@ const Navigation = () => {
     nav("/searchresult");
   };
 
-  const removeUserData = () => {
-    localStorage.removeItem("userInfo");
-  };
   const setDarkMode = () => {
     dispatch(darkMode(!currentDarkMode));
   };
@@ -118,11 +112,16 @@ const Navigation = () => {
               <Cart />
             </div>
           </div>
-          <div>
+          <div className="nav-icon_user-profile">
             {userData ? (
-              <Link className="link btn" onClick={removeUserData} to="">
-                Log out
-              </Link>
+              <div className="nav-user-profile">
+                <div className="user-profile-image">
+                  <img src={parseUserData.avatar} alt="" />
+                </div>
+                <div className="user-profile-popup">
+                  <UserPopUp />
+                </div>
+              </div>
             ) : (
               <Link className="link btn" to="login">
                 Log in

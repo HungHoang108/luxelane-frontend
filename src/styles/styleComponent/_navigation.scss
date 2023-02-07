@@ -34,7 +34,7 @@
           border: 1px solid #ffb26b;
           border-radius: 10px;
           margin-bottom: 10px;
-          
+
           &:focus {
             outline: none;
             width: 15rem;
@@ -57,7 +57,7 @@
       }
       .navBox-cart {
         display: none;
-      
+
         &:hover {
           display: block;
         }
@@ -78,6 +78,19 @@
           border-radius: 10px;
           color: white;
           font-size: medium;
+        }
+      }
+      .nav-icon_user-profile {
+
+        .nav-user-profile {
+          text-align: center;
+          .user-profile-image {
+            img {
+              width: 1.9rem;
+              height: 1.8rem;
+              border-radius: 20px;
+            }
+          }
         }
       }
     }

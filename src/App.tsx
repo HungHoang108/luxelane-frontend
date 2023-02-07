@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Home from "./pages/home/Home";
@@ -13,12 +12,9 @@ import CategoryRoute from "./pages/category/CategoryRoute";
 import { useAppSelector } from "./hooks/reduxHook";
 import ProductRoute from "./pages/product/ProductRoute";
 
-import "./app.style.scss"
-
 const App = () => {
   const currentDarkMode = useAppSelector((state) => state.DarkModeReducer);
-  const [test, settest] = useState(currentDarkMode);
-  // style={{ backgroundColor: "black", color: "white" }}
+
   return (
     <div className={currentDarkMode ? "dark" : "light"}>
       <Routes>
