@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-import { createProduct } from "../../redux/productReducer";
-import { useAppDispatch } from "../../hooks/reduxHook";
+import { createProduct } from "../redux/productReducer";
+import { useAppDispatch } from "../hooks/reduxHook";
 import { SubmitHandler, useForm } from "react-hook-form";
 import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 
@@ -50,10 +50,7 @@ const NewProduct = () => {
           <button onClick={addMoreItem}>Add more items</button>
         </div>
       ) : (
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="newProduct-conntainer"
-        >
+        <form onSubmit={handleSubmit(onSubmit)} className="newProduct-conntainer">
           <h2>Create a new product</h2>
           <div>
             <label htmlFor="title"></label>
@@ -65,12 +62,7 @@ const NewProduct = () => {
                 </p>
               </i>
             )}
-            <input
-              id="title"
-              type="text"
-              placeholder="title"
-              {...register("title", { required: true })}
-            />
+            <input id="title" type="text" placeholder="title" {...register("title", { required: true })} />
           </div>
           <div>
             {errors.price && (
@@ -81,11 +73,7 @@ const NewProduct = () => {
                 </p>
               </i>
             )}
-            <input
-              type="number"
-              placeholder="price"
-              {...register("price", { required: true })}
-            />
+            <input type="number" placeholder="price" {...register("price", { required: true })} />
           </div>
           <div>
             {errors.categoryId && (
@@ -96,9 +84,7 @@ const NewProduct = () => {
                 </p>
               </i>
             )}
-            <select
-              {...register("categoryId", { required: "Category is required" })}
-            >
+            <select {...register("categoryId", { required: "Category is required" })}>
               <option value="">Choose category</option>
               <option value="1">Clothes</option>
               <option value="2">Electronics</option>
@@ -116,12 +102,7 @@ const NewProduct = () => {
                 </p>
               </i>
             )}
-            <textarea
-              cols={60}
-              rows={10}
-              placeholder="Description"
-              {...register("description", { required: true })}
-            ></textarea>
+            <textarea cols={60} rows={10} placeholder="Description" {...register("description", { required: true })}></textarea>
           </div>
           <div>
             {errors.file && (
@@ -137,11 +118,7 @@ const NewProduct = () => {
                 <b>Upload images:</b>
               </i>
             </span>
-            <input
-              type="file"
-              multiple
-              {...register("file", { required: true })}
-            />
+            <input type="file" multiple {...register("file", { required: true })} />
           </div>
 
           <div>

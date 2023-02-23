@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 
-import { useAppSelector, useAppDispatch } from "../../hooks/reduxHook";
-import { fetchAllCategories } from "../../redux/categoriesReducer";
-import { fetchAllProductsInCategory } from "../../redux/categoriesReducer";
+import { useAppSelector, useAppDispatch } from "../hooks/reduxHook";
+import { fetchAllCategories } from "../redux/categoriesReducer";
+import { fetchAllProductsInCategory } from "../redux/categoriesReducer";
 import { useNavigate } from "react-router-dom";
 
 const Categories = () => {

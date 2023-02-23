@@ -1,8 +1,8 @@
-import { useAppSelector } from "../../hooks/reduxHook";
-import Button from "../../components/button/Button";
+import { useAppSelector } from "../hooks/reduxHook";
+import Button from "../components/Button";
 import { useEffect } from "react";
-import { fetchAllProducts } from "../../redux/productReducer";
-import { useAppDispatch } from "../../hooks/reduxHook";
+import { fetchAllProducts } from "../redux/productReducer";
+import { useAppDispatch } from "../hooks/reduxHook";
 
 const SearchResult = () => {
   const dispatch = useAppDispatch();
@@ -27,13 +27,7 @@ const SearchResult = () => {
                   <img src={product.images[0]} />
                   <h4>{product.title}</h4>
                   <span>{product.price} $</span>
-                  <Button
-                    id={product.id}
-                    itemName={product.title}
-                    image={product.images[0]}
-                    price={product.price}
-                    amount={1}
-                  />
+                  <Button id={product.id} itemName={product.title} image={product.images[0]} price={product.price} amount={1} />
                 </div>
               );
             }

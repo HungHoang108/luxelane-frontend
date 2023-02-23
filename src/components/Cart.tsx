@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useAppSelector } from "../../hooks/reduxHook";
+import { useAppSelector } from "../hooks/reduxHook";
 
 const Cart = () => {
   const cartItem = useAppSelector((state) => state.CartItemReducer);
@@ -9,7 +9,7 @@ const Cart = () => {
   };
   itemMap();
   localStorage.setItem("totalCost", JSON.stringify(counter));
-  
+
   return (
     <div className="cartBox">
       <div className="cartBox-items">
@@ -18,11 +18,11 @@ const Cart = () => {
             <div>
               <img src={item.image} alt="" />
             </div>
-            <div style={{color: "black"}}>
+            <div style={{ color: "black" }}>
               <p>{item.itemName}</p>
             </div>
-            <div style={{color: "black"}}>
-              <span >{item.amount} x </span>
+            <div style={{ color: "black" }}>
+              <span>{item.amount} x </span>
               <span>{item.price} $</span>
             </div>
           </div>

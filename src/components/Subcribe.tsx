@@ -6,7 +6,7 @@ const Subcribe = () => {
         <h1>Subscribe for newest updates</h1>
         <div className="subcrible-box-animation">
           <div className="animated-text-container">
-            <h4>Where there's a will, there's a way</h4>
+            <h4>Weekly discounts up to 35% all products</h4>
           </div>
         </div>
         <label htmlFor="email" className="label-name"></label>

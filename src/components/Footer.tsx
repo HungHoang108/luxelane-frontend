@@ -7,22 +7,13 @@ const Footer = () => {
     <div className="footer-box">
       <div className="footer">
         <div className="footer-social-link">
-          <a
-            className="footer-link"
-            href="https://www.linkedin.com/in/vhunghoang/"
-          >
-            {" "}
+          <a className="footer-link" href="https://www.linkedin.com/in/vhunghoang/">
             <LinkedInIcon />
           </a>
           <a className="footer-link" href="https://twitter.com/">
-            {" "}
             <TwitterIcon />
           </a>
-          <a
-            className="footer-link"
-            href="https://github.com/HungHoang108/fs12-frontend-project-public"
-          >
-            {" "}
+          <a className="footer-link" href="https://github.com/HungHoang108/fs12-frontend-project-public">
             <GitHubIcon />
           </a>
         </div>

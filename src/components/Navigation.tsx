@@ -2,13 +2,13 @@ import { ChangeEvent, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-import Cart from "../cart-dropdown/Cart";
-import { useAppDispatch, useAppSelector } from "../../hooks/reduxHook";
-import { searchTagAction } from "../../redux/searchTagReducer";
+import Cart from "./Cart";
+import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
+import { searchTagAction } from "../redux/searchTagReducer";
 import LightModeSharpIcon from "@mui/icons-material/LightModeSharp";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import { darkMode } from "../../redux/darkModeReducer";
-import UserPopUp from "../user-popup/UserPopUp";
+import { darkMode } from "../redux/darkModeReducer";
+import UserPopUp from "./UserPopUp";
 
 const Navigation = () => {
   const [status, setStatus] = useState(false);
@@ -93,12 +93,7 @@ const Navigation = () => {
         </div>
         <div className="nav-icon">
           <div className="nav-icon_search">
-            <input
-              onKeyPress={handleKeyPress}
-              type="text"
-              placeholder="search products"
-              onChange={handleSearch}
-            />
+            <input onKeyPress={handleKeyPress} type="text" placeholder="search products" onChange={handleSearch} />
           </div>
           <div className="nav-icon_dark-mode" onClick={setDarkMode}>
             <LightModeSharpIcon fontSize="small" />

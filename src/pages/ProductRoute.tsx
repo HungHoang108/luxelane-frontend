@@ -1,5 +1,5 @@
-import { useAppSelector } from "../../hooks/reduxHook";
-import Button from "../../components/button/Button";
+import { useAppSelector } from "../hooks/reduxHook";
+import Button from "../components/Button";
 
 const ProductRoute = () => {
   const singleItem = useAppSelector((state) => state.singleProductReducer);
@@ -17,13 +17,7 @@ const ProductRoute = () => {
         </div>
         <div className="productRoute-detail_cart-description">
           <div>
-            <Button
-              id={singleItem.id}
-              itemName={singleItem.title}
-              image={singleItem.images[0]}
-              price={singleItem.price}
-              amount={1}
-            />
+            <Button id={singleItem.id} itemName={singleItem.title} image={singleItem.images[0]} price={singleItem.price} amount={1} />
           </div>
           <div>
             <h3>Description</h3>

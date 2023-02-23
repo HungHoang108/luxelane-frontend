@@ -1,8 +1,8 @@
 import { ChangeEvent } from "react";
 
-import ProductCard from "../../components/product-card/ProductCard";
-import { useAppDispatch, useAppSelector } from "../../hooks/reduxHook";
-import { sortByPriceCategory } from "../../redux/categoriesReducer";
+import ProductCard from "../components/ProductCard";
+import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
+import { sortByPriceCategory } from "../redux/categoriesReducer";
 
 const CategoryPage = () => {
   const dispatch = useAppDispatch();
@@ -27,11 +27,7 @@ const CategoryPage = () => {
           </select>
         </div>
       </div>
-      <ProductCard
-        productsDisplayed={7}
-        productList={products}
-        params=""
-      />
+      <ProductCard productsDisplayed={7} productList={products} params="" />
     </div>
   );
 };

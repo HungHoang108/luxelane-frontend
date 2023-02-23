@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-import { LoginType } from "../../types/LoginType";
-import { useAppDispatch } from "../../hooks/reduxHook";
-import { createUser, logInUser } from "../../redux/userReducer";
+import { LoginType } from "../types/LoginType";
+import { useAppDispatch } from "../hooks/reduxHook";
+import { createUser, logInUser } from "../redux/userReducer";
 import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 
 interface newUserForm {
@@ -96,11 +96,7 @@ const Login = () => {
                   </p>
                 </i>
               )}
-              <input
-                type="email"
-                placeholder="Email"
-                {...register("email", { required: true })}
-              />
+              <input type="email" placeholder="Email" {...register("email", { required: true })} />
             </div>
             <div className="authen-input">
               {errors.password && (
@@ -111,11 +107,7 @@ const Login = () => {
                   </p>
                 </i>
               )}
-              <input
-                type="password"
-                placeholder="Password"
-                {...register("password", { required: true })}
-              />
+              <input type="password" placeholder="Password" {...register("password", { required: true })} />
             </div>
             <button type="submit" className="authen-button">
               Sign In
@@ -133,11 +125,7 @@ const Login = () => {
                   </p>
                 </i>
               )}
-              <input
-                type="email"
-                placeholder="email"
-                {...register1("email", { required: true })}
-              />
+              <input type="email" placeholder="email" {...register1("email", { required: true })} />
             </div>
             <div className="authen-input">
               {errors1.password && (
@@ -148,11 +136,7 @@ const Login = () => {
                   </p>
                 </i>
               )}
-              <input
-                type="password"
-                placeholder="password"
-                {...register1("password", { required: true })}
-              />
+              <input type="password" placeholder="password" {...register1("password", { required: true })} />
             </div>
             <div className="authen-input">
               {errors1.name && (
@@ -163,11 +147,7 @@ const Login = () => {
                   </p>
                 </i>
               )}
-              <input
-                type="text"
-                placeholder="name"
-                {...register1("name", { required: true })}
-              />
+              <input type="text" placeholder="name" {...register1("name", { required: true })} />
             </div>
             <div className="authen-input">
               {errors1.avatar && (
@@ -178,11 +158,7 @@ const Login = () => {
                   </p>
                 </i>
               )}
-              <input
-                type="file"
-                multiple
-                {...register1("avatar", { required: true })}
-              />
+              <input type="file" multiple {...register1("avatar", { required: true })} />
             </div>
             <button className="authen-button">Register</button>
           </form>

@@ -22,9 +22,5 @@ export const ThemeProvider = ({ children }: ComponentProps<any>) => {
     setDarkMode(!darkMode);
   };
 
-  return (
-    <ThemeContext.Provider value={{ darkMode, toggleDarkMode }}>
-      {children}
-    </ThemeContext.Provider>
-  );
+  return <ThemeContext.Provider value={{ darkMode, toggleDarkMode }}>{children}</ThemeContext.Provider>;
 };

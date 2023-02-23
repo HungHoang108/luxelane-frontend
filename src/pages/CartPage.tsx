@@ -1,10 +1,6 @@
-import { useAppDispatch, useAppSelector } from "../../hooks/reduxHook";
+import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
 
-import {
-  increaseItem,
-  decreaseItem,
-  removeItem,
-} from "../../redux/cartItemsReducer";
+import { increaseItem, decreaseItem, removeItem } from "../redux/cartItemsReducer";
 
 const CartPage = () => {
   const cartItem = useAppSelector((state) => state.CartItemReducer);

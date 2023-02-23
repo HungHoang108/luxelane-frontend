@@ -3,15 +3,16 @@
   .category-box-h2 {
     text-align: center;
     padding-bottom: 4rem;
-
   }
 
   .categories {
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-gap: 1rem;
+    justify-items: center;
+    align-items: center;
 
     .categories-category {
-      margin-right: 1rem;
       cursor: pointer;
       overflow: hidden;
       text-align: center;
@@ -22,8 +23,16 @@
         }
       }
       img {
-        width: 110%;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
+    }
+  }
+  
+  @media only screen and (max-width: 768px) {
+    .categories {
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     }
   }
 }

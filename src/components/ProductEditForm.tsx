@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from "react";
-import { useAppDispatch } from "../../hooks/reduxHook";
-import { editProductThunk } from "../../redux/productReducer";
+import { useAppDispatch } from "../hooks/reduxHook";
+import { editProductThunk } from "../redux/productReducer";
 
 interface status {
   open: boolean;
@@ -11,14 +11,7 @@ interface status {
   id: number;
 }
 
-const ProductEditForm = ({
-  open,
-  onClose,
-  title,
-  price,
-  description,
-  id,
-}: status) => {
+const ProductEditForm = ({ open, onClose, title, price, description, id }: status) => {
   const dispatch = useAppDispatch();
   const [editProduct, setEditProduct] = useState({
     id: id,
@@ -77,22 +70,10 @@ const ProductEditForm = ({
               <h2>Edit Product</h2>
             </div>
             <div>
-              <input
-                type="text"
-                name="title"
-                placeholder="title"
-                onChange={handleInputChange}
-                value={editProduct.title}
-              />
+              <input type="text" name="title" placeholder="title" onChange={handleInputChange} value={editProduct.title} />
             </div>
             <div>
-              <input
-                type="number"
-                name="price"
-                placeholder="price"
-                value={editProduct.price}
-                onChange={handleInputChange}
-              />
+              <input type="number" name="price" placeholder="price" value={editProduct.price} onChange={handleInputChange} />
             </div>
             <div>
               <textarea

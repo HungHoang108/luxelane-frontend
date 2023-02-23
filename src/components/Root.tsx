@@ -2,8 +2,8 @@ import React from "react";
 
 import { Outlet } from "react-router-dom";
 
-import Navigation from "../navigation/Navigation";
-import Footer from "../footer/Footer";
+import Navigation from "./Navigation";
+import Footer from "./Footer";
 
 const Root = () => {
   return (
