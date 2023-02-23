@@ -12,6 +12,13 @@ import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined
 
 import { fetchSingleProduct } from "../redux/singleProductReducer";
 
+interface Pagination {
+  products: Array<any>;
+  currentPage: number;
+  setCurrentPage: (pageNumber: number) => void;
+  postsPerPage: number;
+}
+
 const ProductCard = ({ productsDisplayed, productList, params }: ProductCardList) => {
   const dispatch = useAppDispatch();
   const sortCategory = useAppSelector((state) => state.SortReducer);
