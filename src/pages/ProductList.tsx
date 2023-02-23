@@ -52,7 +52,7 @@ const ProductList = () => {
         </div>
       </div>
 
-      <ProductCard productsDisplayed={8} productList={products} params="product-list" />
+      <ProductCard productsDisplayed={20} productList={products} params="product-list" />
     </div>
   );
 };
