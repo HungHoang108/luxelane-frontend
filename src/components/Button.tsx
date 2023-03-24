@@ -5,6 +5,8 @@ import { CartItemType } from "../types/CartItemType";
 const Button = ({ id, itemName, price, image, amount }: CartItemType) => {
   const dispatch = useAppDispatch();
 
+ 
+
   const addProduct = () => {
     const cartItem = {
       id: id,
