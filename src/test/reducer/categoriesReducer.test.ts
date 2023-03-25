@@ -1,14 +1,10 @@
 import { AnyAction, ThunkMiddleware } from "@reduxjs/toolkit";
 import { ToolkitStore } from "@reduxjs/toolkit/dist/configureStore";
 
-import { fetchAllCategories } from "../../redux/categoriesReducer";
+import { fetchAllCategories } from "../../redux/categoryReducer";
 import server from "../shared/server";
 import { createStore, RootState } from "../../redux/store";
-let store: ToolkitStore<
-  RootState,
-  AnyAction,
-  [ThunkMiddleware<RootState, AnyAction, undefined>]
->;
+let store: ToolkitStore<RootState, AnyAction, [ThunkMiddleware<RootState, AnyAction, undefined>]>;
 beforeAll(() => {
   server.listen();
 });

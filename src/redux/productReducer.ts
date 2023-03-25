@@ -7,7 +7,7 @@ const initialState: Product[] = [];
 
 export const fetchAllProducts = createAsyncThunk("fetchAllProducts", async () => {
   try {
-    const products = await axios.get("https://api.escuelajs.co/api/v1/products");
+    const products = await axios.get("https://luxelane.azurewebsites.net/api/v1/product");
     return products.data;
   } catch (error) {
     const err = error as AxiosError;
@@ -27,7 +27,7 @@ export const deleteProduct = createAsyncThunk("deleteProduct", async (product: n
 export const editProductThunk = createAsyncThunk("editProduct", async (product: Partial<Product>) => {
   try {
     const response = await axios.put(`https://api.escuelajs.co/api/v1/products/${product.id}`, {
-      title: product.title,
+      title: product.name,
       price: product.price,
       description: product.description,
     });
@@ -47,7 +47,7 @@ export const createProduct = createAsyncThunk("createProduct", async ({ file, pr
       formData.append("file", imgFile);
     }
     formData.append("upload_preset", "luxelane");
-    const response = await axios
+      await axios
       .post(`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/image/upload`, formData)
       .then(async (res) => {
         const imageUrl = res.data.secure_url;
@@ -62,9 +62,7 @@ export const createProduct = createAsyncThunk("createProduct", async ({ file, pr
         })
         .then(res => {
           const data = res.data;
-          console.log(data);
           return data;
-
         })
 
       });
@@ -73,6 +71,8 @@ export const createProduct = createAsyncThunk("createProduct", async ({ file, pr
     return err;
   }
 });
+
+
 
 const ProductsSlice = createSlice({
   name: "productSlice",
@@ -114,13 +114,6 @@ const ProductsSlice = createSlice({
           return product;
         });
       });
-    // .addCase(createProduct.fulfilled, (state, action: PayloadAction<Product>) => {
-    //   if (action.payload) {
-    //     state.push(action.payload);
-    //   } else {
-    //     return state;
-    //   }
-    // });
   },
 });
 export const productReducer = ProductsSlice.reducer;

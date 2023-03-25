@@ -6,7 +6,6 @@ import { LoginType } from "../types/LoginType";
 import { useAppDispatch } from "../hooks/reduxHook";
 import { createUser, logInUser } from "../redux/userReducer";
 import WarningAmberIcon from "@mui/icons-material/WarningAmber";
-import Box from "@mui/material/Box";
 import LinearProgress from "@mui/material/LinearProgress";
 
 interface newUserForm {
@@ -16,7 +15,7 @@ interface newUserForm {
   avatar: FileList;
 }
 
-const Login = () => {
+const Authentication = () => {
   const dispatch = useAppDispatch();
 
   const [newUserStatus, setNewUserStatus] = useState(false);
@@ -43,7 +42,7 @@ const Login = () => {
   // login validation
   const onLogin: SubmitHandler<LoginType> = (data) => {
     setLoading(true);
-    const test = dispatch(logInUser(data)).then((response) => {
+    dispatch(logInUser(data)).then((response) => {
       const token: string = response.payload as string;
 
       if (token) {
@@ -55,7 +54,6 @@ const Login = () => {
         setLoginStatus(false);
       }
     });
-    console.log(test)
   };
 
   // register validation
@@ -176,4 +174,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Authentication;

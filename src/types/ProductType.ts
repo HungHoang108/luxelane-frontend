@@ -1,13 +1,12 @@
-import { Category } from "./Category";
-
 export interface Product extends SingleProduct {
-  category: Category;
+  categoryId: number;
 }
 
 export interface SingleProduct {
   id: number;
-  title: string;
+  name: string;
   price: number;
   description: string;
+  quantity: number;
   images: string[];
 }

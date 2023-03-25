@@ -1,21 +1,31 @@
 import { useState } from "react";
-import axios from "axios";
 import { createProduct } from "../redux/productReducer";
 import { useAppDispatch } from "../hooks/reduxHook";
 import { SubmitHandler, useForm } from "react-hook-form";
 import WarningAmberIcon from "@mui/icons-material/WarningAmber";
+import CircularProgress from "@mui/material/CircularProgress";
+import Backdrop from "@mui/material/Backdrop";
 
 interface hookForm {
   title: "";
   price: 0;
   description: "";
   quantity: 0;
+  categoryId: 0;
   file: FileList;
 }
 
 const NewProduct = () => {
   const [status, setStatus] = useState(false);
+  const [open, setOpen] = useState(false);
   const dispatch = useAppDispatch();
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleToggle = () => {
+    setOpen(!open);
+  };
 
   const {
     register,
@@ -32,14 +42,16 @@ const NewProduct = () => {
         price: data.price,
         quantity: data.quantity,
         images: [],
+        categoryId: data.categoryId
       },
     };
-    const test = dispatch(createProduct(newItemForm)).then((response) => {
-      const result = response.payload;
-      console.log(response)
-    })
-    console.log(test)
-    setStatus(true);
+    handleToggle();
+    dispatch(createProduct(newItemForm)).then((response) => {
+      if (response.meta.requestStatus === "fulfilled") {
+        handleClose();
+        setStatus(true);
+      }
+    });
   };
 
   const addMoreItem = () => {
@@ -90,7 +102,8 @@ const NewProduct = () => {
             )}
             <input type="number" placeholder="quantity" {...register("quantity", { required: true })} />
           </div>
-          {/* <div>
+
+          <div>
             {errors.categoryId && (
               <i>
                 <p>
@@ -107,7 +120,8 @@ const NewProduct = () => {
               <option value="4">Shoes</option>
               <option value="5">Others</option>
             </select>
-          </div> */}
+          </div>
+
           <div>
             {errors.description && (
               <i>
@@ -135,9 +149,11 @@ const NewProduct = () => {
             </span>
             <input type="file" multiple {...register("file", { required: true })} />
           </div>
-
           <div>
             <button type="submit">Submit</button>
+            <Backdrop sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }} open={open} onClick={handleClose}>
+              <CircularProgress color="inherit" />
+            </Backdrop>
           </div>
         </form>
       )}

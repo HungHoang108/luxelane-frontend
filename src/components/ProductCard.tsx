@@ -43,22 +43,20 @@ const ProductCard = ({ productsDisplayed, productList, params }: ProductCardList
     setHoveredProductId(null);
   };
 
-  const sortByCategoryArray = () => {
-    if (!sortCategory) {
-      return productList;
-    }
-    const isCategoryExist = productList.find((item) => item.category.name === sortCategory);
-    if (isCategoryExist) {
-      return productList.filter((item) => item.category.name === sortCategory);
-    } else {
-      return productList;
-    }
-  };
+  // const sortByCategoryArray = () => {
+  //   if (!sortCategory) {
+  //     return productList;
+  //   }
+  //   const isCategoryExist = productList.find((item) => item.category.name === sortCategory);
+  //   if (isCategoryExist) {
+  //     return productList.filter((item) => item.category.name === sortCategory);
+  //   } else {
+  //     return productList;
+  //   }
+  // };
   return (
     <div className="products">
-      {sortByCategoryArray()
-        .slice(1, productsDisplayed)
-        .map((product) => (
+      {productList.map((product) => (
           <div onMouseEnter={() => handleMouseEnter(product.id)} onMouseLeave={handleMouseLeave} key={product.id} className="products-card">
             <img
               src={product.images[0]}
@@ -76,12 +74,12 @@ const ProductCard = ({ productsDisplayed, productList, params }: ProductCardList
                 return;
               }}
             >
-              <h4>{product.title}</h4>
+              <h4>{product.name}</h4>
               <span>{product.price} $</span>
             </div>
             <div className="product-card-button">
               <div>
-                <Button id={product.id} itemName={product.title} image={product.images[0]} price={product.price} amount={1} />
+                <Button id={product.id} itemName={product.name} image={product.images[0]} price={product.price} amount={1} />
               </div>
               <div className="card-button_edit_deletebox">
                 {hoveredProductId === product.id && getRole === "admin" && params === "product-list" && (
@@ -114,7 +112,7 @@ const ProductCard = ({ productsDisplayed, productList, params }: ProductCardList
               <ProductEditForm
                 open={popup}
                 onClose={() => setPopup(false)}
-                title={product.title}
+                title={product.name}
                 price={product.price}
                 description={product.description}
                 id={product.id}

@@ -1,5 +1,5 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
-import { categoriesReducer, categoryReducer } from "./categoriesReducer";
+import { categoriesReducer, categoryReducer } from "./categoryReducer";
 import { productReducer } from "./productReducer";
 import { CartItemReducer } from "./cartItemsReducer";
 import { SearchTagReducer } from "./searchTagReducer";
@@ -28,13 +28,7 @@ const reducers = combineReducers({
 const persistConfig = {
   key: "root",
   storage,
-  blacklist: [
-    "categoriesReducer",
-    "productReducer",
-    "SearchTagReducer",
-    "SortReducer",
-    "SortPriceReducer",
-  ],
+  blacklist: ["categoriesReducer", "productReducer", "SearchTagReducer", "SortReducer", "SortPriceReducer"],
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);
@@ -48,9 +42,4 @@ const store = createStore();
 
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;
-export type AppThunk<ReturnType = void> = ThunkAction<
-  ReturnType,
-  RootState,
-  unknown,
-  Action<string>
->;
+export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, unknown, Action<string>>;

@@ -11,7 +11,7 @@ export const fetchAllCategories = createAsyncThunk(
   async () => {
     try {
       const categories = await axios.get(
-        "https://api.escuelajs.co/api/v1/categories"
+        "https://luxelane.azurewebsites.net/api/v1/category"
       );
       return categories.data;
     } catch (error) {

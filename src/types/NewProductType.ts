@@ -4,6 +4,7 @@ export interface NewProductType {
   price: number;
   quantity: number;
   images: string[];
+  categoryId: number;
 }
 
 export interface FileAndNewProductForm {
