@@ -17,6 +17,7 @@
     "@types/react-dom": "^18.0.9",
     "axios": "^1.2.2",
     "cloudinary-react": "^1.8.1",
+    "dotenv": "^16.0.3",
     "filelist": "^1.0.4",
     "jsonwebtoken": "^9.0.0",
     "moment": "^2.29.4",

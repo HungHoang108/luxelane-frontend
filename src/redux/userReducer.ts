@@ -30,15 +30,15 @@ export const logInUser = createAsyncThunk(
   async ({ email, password }: LoginType, thunkAPI) => {
     try {
       const response = await axios.post(
-        "https://api.escuelajs.co/api/v1/auth/login",
+        "https://luxelane.azurewebsites.net/api/v1/user/signin",
         {
           email: email,
           password: password,
         }
       );
-      const data: { access_token: string } = response.data;
-      await thunkAPI.dispatch(getUserSession(data.access_token));
-      return data.access_token;
+      const data : string  = response.data.token;
+      // await thunkAPI.dispatch(getUserSession(data.access_token));
+      return data;
     } catch (error) {
       const e = error as AxiosError;
       return e;

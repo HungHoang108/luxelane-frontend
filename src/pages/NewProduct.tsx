@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import axios from "axios";
 import { createProduct } from "../redux/productReducer";
 import { useAppDispatch } from "../hooks/reduxHook";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -9,7 +9,7 @@ interface hookForm {
   title: "";
   price: 0;
   description: "";
-  categoryId: 0;
+  quantity: 0;
   file: FileList;
 }
 
@@ -27,14 +27,18 @@ const NewProduct = () => {
     const newItemForm = {
       file: data.file[0],
       product: {
-        title: data.title,
-        price: data.price,
+        name: data.title,
         description: data.description,
-        categoryId: data.categoryId,
+        price: data.price,
+        quantity: data.quantity,
         images: [],
       },
     };
-    dispatch(createProduct(newItemForm));
+    const test = dispatch(createProduct(newItemForm)).then((response) => {
+      const result = response.payload;
+      console.log(response)
+    })
+    console.log(test)
     setStatus(true);
   };
 
@@ -76,6 +80,17 @@ const NewProduct = () => {
             <input type="number" placeholder="price" {...register("price", { required: true })} />
           </div>
           <div>
+            {errors.quantity && (
+              <i>
+                <p>
+                  <WarningAmberIcon color="error" sx={{ fontSize: "14px" }} />
+                  Quantity is required
+                </p>
+              </i>
+            )}
+            <input type="number" placeholder="quantity" {...register("quantity", { required: true })} />
+          </div>
+          {/* <div>
             {errors.categoryId && (
               <i>
                 <p>
@@ -92,7 +107,7 @@ const NewProduct = () => {
               <option value="4">Shoes</option>
               <option value="5">Others</option>
             </select>
-          </div>
+          </div> */}
           <div>
             {errors.description && (
               <i>

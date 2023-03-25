@@ -58,13 +58,12 @@ describe("Test all the actions", () => {
       },
     };
     const product: NewProductType = {
-      title: "D",
-      price: 1000,
+      name: "D",
       description: "Test create product",
-      categoryId: 1,
+      price: 1000,
+      quantity: 100,
       images: [],
     };
-
     await store.dispatch(createProduct({ file, product }));
     expect(store.getState().productReducer.length).toBe(1);
   });

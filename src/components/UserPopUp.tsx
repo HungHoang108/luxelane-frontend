@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const UserPopUp = () => {
 
   const removeUserData = () => {
-    localStorage.removeItem("userInfo");
+    localStorage.removeItem("userToken");
   };
   return (
     <div className="profileBox">

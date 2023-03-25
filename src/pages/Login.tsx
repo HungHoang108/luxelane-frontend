@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
 
@@ -6,6 +6,8 @@ import { LoginType } from "../types/LoginType";
 import { useAppDispatch } from "../hooks/reduxHook";
 import { createUser, logInUser } from "../redux/userReducer";
 import WarningAmberIcon from "@mui/icons-material/WarningAmber";
+import Box from "@mui/material/Box";
+import LinearProgress from "@mui/material/LinearProgress";
 
 interface newUserForm {
   email: "";
@@ -19,6 +21,7 @@ const Login = () => {
 
   const [newUserStatus, setNewUserStatus] = useState(false);
   const [loginStatus, setLoginStatus] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const {
     register,
@@ -39,19 +42,22 @@ const Login = () => {
   };
   // login validation
   const onLogin: SubmitHandler<LoginType> = (data) => {
-    dispatch(logInUser(data));
-    setTimeout(getUserSession, 1000);
+    setLoading(true);
+    const test = dispatch(logInUser(data)).then((response) => {
+      const token: string = response.payload as string;
+
+      if (token) {
+        localStorage.setItem("userToken", token);
+        nav("/");
+        setLoading(false);
+        setLoginStatus(true);
+      } else {
+        setLoginStatus(false);
+      }
+    });
+    console.log(test)
   };
 
-  const getUserSession = () => {
-    const userData = localStorage.getItem("userInfo");
-    if (userData) {
-      nav("/");
-      setLoginStatus(true);
-    } else {
-      setLoginStatus(false);
-    }
-  };
   // register validation
   const onRegister: SubmitHandler<newUserForm> = (data) => {
     const newUser = {
@@ -109,8 +115,10 @@ const Login = () => {
               )}
               <input type="password" placeholder="Password" {...register("password", { required: true })} />
             </div>
+            {loading ? <LinearProgress /> : null}
+
             <button type="submit" className="authen-button">
-              Sign In
+              {loading ? "Signing in ..." : "Sign In"}
             </button>
           </form>
           <form onSubmit={handleSubmit1(onRegister)}>
