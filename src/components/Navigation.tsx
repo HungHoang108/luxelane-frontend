@@ -19,7 +19,9 @@ const Navigation = () => {
   const cartItem = useAppSelector((state) => state.CartItemReducer);
   const currentDarkMode = useAppSelector((state) => state.DarkModeReducer);
 
-  let userData = localStorage.getItem("userToken");
+  let access_token = localStorage.getItem("userToken");
+  let userProfile = localStorage.getItem("userProfile");
+  let profile = userProfile && JSON.parse(userProfile);
 
   let counter = 0;
   cartItem.map((item) => counter++);
@@ -30,6 +32,7 @@ const Navigation = () => {
 
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchTag(e.target.value);
+    
   };
 
   const handleKeyPress = (e: any) => {
@@ -82,10 +85,10 @@ const Navigation = () => {
             </div>
           </div>
           <div className="nav-icon_user-profile">
-            {userData ? (
+            {access_token ? (
               <div className="nav-user-profile">
                 <div className="user-profile-image">
-                  <img src="https://cdn.pixabay.com/photo/2016/08/20/05/38/avatar-1606916_960_720.png" alt="" />
+                  <img src={profile.avatar} alt="" />
                 </div>
                 <div className="user-profile-popup">
                   <UserPopUp />
@@ -98,7 +101,7 @@ const Navigation = () => {
             )}
           </div>
           <div>
-            {userData && (
+            {access_token && (
               <Link className="link btn" to="newproduct">
                 New Product
               </Link>

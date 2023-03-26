@@ -12,6 +12,7 @@ const ProductList = () => {
 
   const products = useAppSelector((state) => state.productReducer);
 
+
   const [sortedProducts, setSortedProducts] = useState(products);
 
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -38,7 +39,11 @@ const ProductList = () => {
       setSortedProducts(sortedProductArray);
     }
   };
-
+  useEffect(() => {
+    if (products.length !== 0) {
+      setSortedProducts(products);
+    }
+  }, [products]);
   return (
     <div className="productList-box">
       <div className="productList-box-head">

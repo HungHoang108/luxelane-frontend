@@ -46,21 +46,37 @@ export const logInUser = createAsyncThunk("logInUser", async ({ email, password 
   }
 });
 
-export const createUser = createAsyncThunk("createProduct", async ({ file, user }: newUserType) => {
+export const createUser = createAsyncThunk("createUser", async ({ file, user }: newUserType) => {
   try {
-    const response = await axios.post(
-      "https://api.escuelajs.co/api/v1/files/upload",
-      { file: file },
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
+
+    const formData = new FormData();
+    const imgFile = file;
+    if (imgFile) {
+      formData.append("file", imgFile);
+    }
+    formData.append("upload_preset", "luxelane");
+
+    await axios
+    .post(`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/image/upload`, formData)
+    .then(async (res) => {
+      const imageUrl = res.data.secure_url;
+      const userInfo = {
+        "firstName": user.firstName,
+        "lastName": user.lastName,
+        "email": user.email,
+        "userName": user.userName,
+        "password": user.password,
+        "avatar": imageUrl
       }
-    );
-    const data = response.data.location;
-    const newUser = { ...user, avatar: data };
-    const newUserResponse = await axios.post("https://api.escuelajs.co/api/v1/users/", newUser);
-    return newUserResponse.data;
+      console.log(userInfo)
+      await axios
+        .post("https://luxelane.azurewebsites.net/api/v1/user/signup", userInfo)
+        .then((res) => {
+          const data = res.data;
+          return data;
+        });
+    });
+
   } catch (error) {
     const err = error as AxiosError;
     return err;
@@ -80,13 +96,6 @@ export const UserSlice = createSlice({
           state.userList = action.payload;
         }
       })
-      .addCase(createUser.fulfilled, (state, action) => {
-        if (action.payload) {
-          state.userList.push(action.payload);
-        } else {
-          return state;
-        }
-      });
   },
 });
 
