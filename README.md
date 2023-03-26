@@ -9,11 +9,11 @@ Live demo [here](https://luxelane.netlify.app/)
 
 ## Overview
 
-The app use fake API endpoint [https://fakeapi.platzi.com/](https://fakeapi.platzi.com/) to get products, category, user data, authentication and authorization.
+Backend: [https://luxelane.azurewebsites.net/swagger/index.html](https://luxelane.azurewebsites.net/swagger/index.html)
 
 ## Features
 
-1. Get all products, find a single products, sort products by categories, sort products by price
+1. Get all products, find a single products, sort products by categories and price
 2. Register for a new account, login with Email and password
 3. Customer account can create new product
 4. Admin can create, delete and edit product. Testing account:
@@ -21,7 +21,7 @@ The app use fake API endpoint [https://fakeapi.platzi.com/](https://fakeapi.plat
    - Password: admin123
 5. Add product to cart, remove products, update products's quantity in cart
 6. Light/Dark mode
-7. 
+7. Backend is built with C# and .Net core API
 
 ## Future features
 
@@ -58,112 +58,6 @@ It correctly bundles React in production mode and optimizes the build for the be
 ## Project Structure
 
 ```
-fs13-frontend-project
-├─ .git
-├─ .gitignore
-├─ .VSCodeCounter
-├─ package.json
-├─ public
-├─ README.md
-├─ src
-│  ├─ app.style.scss
-│  ├─ App.tsx
-│  ├─ components
-│  │  ├─ button
-│  │  │  └─ Button.tsx
-│  │  ├─ cart-dropdown
-│  │  │  └─ Cart.tsx
-│  │  ├─ categories
-│  │  │  └─ Categories.tsx
-│  │  ├─ dark-mode
-│  │  │  └─ DarkMode.tsx
-│  │  ├─ footer
-│  │  │  └─ Footer.tsx
-│  │  ├─ navigation
-│  │  │  └─ Navigation.tsx
-│  │  ├─ not-found
-│  │  │  └─ NotFound.tsx
-│  │  ├─ product-card
-│  │  │  └─ ProductCard.tsx
-│  │  ├─ product-editing-form
-│  │  │  └─ ProductEditForm.tsx
-│  │  ├─ root
-│  │  │  └─ Root.tsx
-│  │  └─ subcribe
-│  │     └─ Subcribe.tsx
-│  ├─ hooks
-│  │  └─ reduxHook.ts
-│  ├─ index.tsx
-│  ├─ pages
-│  │  ├─ cart-page
-│  │  │  └─ CartPage.tsx
-│  │  ├─ category
-│  │  │  └─ CategoryRoute.tsx
-│  │  ├─ home
-│  │  │  └─ Home.tsx
-│  │  ├─ login-logout
-│  │  │  └─ Login.tsx
-│  │  ├─ new-product
-│  │  │  └─ NewProduct.tsx
-│  │  ├─ product
-│  │  │  └─ ProductRoute.tsx
-│  │  ├─ product-list
-│  │  │  └─ ProductList.tsx
-│  │  └─ searchResult
-│  │     └─ SearchResult.tsx
-│  ├─ react-app-env.d.ts
-│  ├─ redux
-│  │  ├─ cartItemsReducer.ts
-│  │  ├─ categoriesReducer.ts
-│  │  ├─ darkModeReducer.ts
-│  │  ├─ productReducer.ts
-│  │  ├─ searchTagReducer.ts
-│  │  ├─ singleProductReducer.ts
-│  │  ├─ sortCategoryReducer.ts
-│  │  ├─ store.ts
-│  │  └─ userReducer.ts
-│  ├─ setupTests.ts
-│  ├─ styles
-│  │  ├─ image
-│  │  │  └─ kitty-cat.jpg
-│  │  ├─ styleComponent
-│  │  │  ├─ _button.scss
-│  │  │  ├─ _cartDropdown.scss
-│  │  │  ├─ _categories.scss
-│  │  │  ├─ _footer.scss
-│  │  │  ├─ _navigation.scss
-│  │  │  ├─ _productCard.scss
-│  │  │  ├─ _productEdit.scss
-│  │  │  └─ _subcribe.scss
-│  │  ├─ stylePages
-│  │  │  ├─ _cartPage.scss
-│  │  │  ├─ _home.scss
-│  │  │  ├─ _loginLogout.scss
-│  │  │  ├─ _newProduct.scss
-│  │  │  ├─ _productList.scss
-│  │  │  ├─ _productRoute.scss
-│  │  │  └─ _searchResult.scss
-│  │  └─ styles.scss
-│  ├─ test
-│  │  ├─ reducer
-│  │  │  ├─ cartItemsReducer.test.ts
-│  │  │  ├─ categoriesReducer.test.ts
-│  │  │  ├─ productReducer.test.ts
-│  │  │  ├─ searchTagReducer.test.ts
-│  │  │  ├─ singleProductReducer.test.ts
-│  │  │  ├─ sortCategoryReducer.test.ts
-│  │  │  └─ userReducer.test.ts
-│  │  └─ shared
-│  │     └─ server.ts
-│  └─ types
-│     ├─ ButtonType.ts
-│     ├─ CartItemType.ts
-│     ├─ Category.ts
-│     ├─ LoginType.ts
-│     ├─ NewProductType.ts
-│     ├─ ProductCardList.ts
-│     ├─ ProductType.ts
-│     └─ UserType.ts
-└─ tsconfig.json
+
 
 ```
