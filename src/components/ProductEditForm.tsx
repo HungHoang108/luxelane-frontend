@@ -1,22 +1,24 @@
 import { ChangeEvent, useState } from "react";
 import { useAppDispatch } from "../hooks/reduxHook";
-import { editProductThunk } from "../redux/productReducer";
+import { editProductThunk, fetchAllProducts } from "../redux/productReducer";
 
 interface status {
   open: boolean;
   onClose: () => void;
-  title: string;
+  name: string;
   price: number;
+  quantity: number;
   description: string;
   id: number;
 }
 
-const ProductEditForm = ({ open, onClose, title, price, description, id }: status) => {
+const ProductEditForm = ({ open, onClose, name, price, description, id, quantity }: status) => {
   const dispatch = useAppDispatch();
   const [editProduct, setEditProduct] = useState({
     id: id,
-    title: title,
+    name: name,
     price: price,
+    quantity: quantity,
     description: description,
   });
   const [status, setStatus] = useState(false);
@@ -27,6 +29,11 @@ const ProductEditForm = ({ open, onClose, title, price, description, id }: statu
       setEditProduct({
         ...editProduct,
         price: Number(value),
+      });
+    } else if (name === "quantity") {
+      setEditProduct({
+        ...editProduct,
+        quantity: Number(value),
       });
     } else {
       setEditProduct((prev) => {
@@ -47,9 +54,11 @@ const ProductEditForm = ({ open, onClose, title, price, description, id }: statu
   };
 
   const submitChanges = async () => {
-    dispatch(editProductThunk(editProduct));
-    setStatus(!status);
-    onClose();
+    dispatch(editProductThunk(editProduct)).then((res) => {
+      dispatch(fetchAllProducts());
+      setStatus(!status);
+      onClose();
+    });
   };
 
   if (!open) return null;
@@ -70,10 +79,19 @@ const ProductEditForm = ({ open, onClose, title, price, description, id }: statu
               <h2>Edit Product</h2>
             </div>
             <div>
-              <input type="text" name="title" placeholder="title" onChange={handleInputChange} value={editProduct.title} />
+              <input type="text" name="name" placeholder="name" onChange={handleInputChange} value={editProduct.name} />
             </div>
             <div>
               <input type="number" name="price" placeholder="price" value={editProduct.price} onChange={handleInputChange} />
+            </div>
+            <div>
+              <input
+                type="number"
+                name="quantity"
+                placeholder="quantity"
+                value={editProduct.quantity}
+                onChange={handleInputChange}
+              />
             </div>
             <div>
               <textarea

@@ -19,20 +19,7 @@ export const fetchAllCategories = createAsyncThunk(
     }
   }
 );
-export const fetchAllProductsInCategory = createAsyncThunk(
-  "fetchAllProductInCategory",
-  async (id: number) => {
-    try {
-      const response = await axios.get(
-        `https://api.escuelajs.co/api/v1/categories/${id}/products`
-      );
-      return response.data;
-    } catch (error) {
-      const err = error as AxiosError;
-      console.log(err);
-    }
-  }
-);
+
 const CategoriesSlice = createSlice({
   name: "categoriesSlice",
   initialState: categoriesInitialState,
@@ -59,17 +46,7 @@ export const CategorySlice = createSlice({
         state.sort((a, b) => b.price - a.price);
       }
     }
-  },
-  extraReducers: (build) => {
-    build.addCase(fetchAllProductsInCategory.fulfilled, (state, action) => {
-      if (action.payload && "message" in action.payload) {
-        return state;
-      } else if (!action.payload) {
-        return state;
-      }
-      return action.payload;
-    });
-  },
+  }
 });
 export const categoriesReducer = CategoriesSlice.reducer;
 export default CategoriesSlice;

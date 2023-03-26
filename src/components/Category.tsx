@@ -2,7 +2,6 @@ import { useEffect } from "react";
 
 import { useAppSelector, useAppDispatch } from "../hooks/reduxHook";
 import { fetchAllCategories } from "../redux/categoryReducer";
-import { fetchAllProductsInCategory } from "../redux/categoryReducer";
 import { useNavigate } from "react-router-dom";
 
 const Categories = () => {
@@ -24,7 +23,6 @@ const Categories = () => {
             key={category.id}
             className="categories-category"
             onClick={() => {
-              dispatch(fetchAllProductsInCategory(category.id));
               nav(`/category/${category.id}/products`);
             }}
           >

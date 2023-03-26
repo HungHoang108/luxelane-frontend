@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 
 const UserPopUp = () => {
-
   const removeUserData = () => {
     localStorage.removeItem("userToken");
+    localStorage.removeItem("userProfile");
   };
   return (
     <div className="profileBox">

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
 import { ProductCardList } from "../types/ProductCardList";
 import Button from "./Button";
-import { deleteItem } from "../redux/productReducer";
+import {fetchAllProducts } from "../redux/productReducer";
 import { deleteProduct } from "../redux/productReducer";
 import ProductEditForm from "./ProductEditForm";
 import ModeEditOutlinedIcon from "@mui/icons-material/ModeEditOutlined";
@@ -12,26 +12,15 @@ import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined
 
 import { fetchSingleProduct } from "../redux/singleProductReducer";
 
-interface Pagination {
-  products: Array<any>;
-  currentPage: number;
-  setCurrentPage: (pageNumber: number) => void;
-  postsPerPage: number;
-}
-
-const ProductCard = ({ productsDisplayed, productList, params }: ProductCardList) => {
+const ProductCard = ({ productList }: ProductCardList) => {
   const dispatch = useAppDispatch();
-  const sortCategory = useAppSelector((state) => state.SortReducer);
   const nav = useNavigate();
 
   const [popup, setPopup] = useState(false);
   const [popupId, setPopupId] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(10);
-  const [showButton, setShowButton] = useState(false);
   const [hoveredProductId, setHoveredProductId] = useState<null | Number>(null);
 
-  const userRole = localStorage.getItem("userInfo");
+  const userRole = localStorage.getItem("userProfile");
   const userData = userRole && JSON.parse(userRole);
   const getRole = userData && userData.role;
 
@@ -43,17 +32,6 @@ const ProductCard = ({ productsDisplayed, productList, params }: ProductCardList
     setHoveredProductId(null);
   };
 
-  // const sortByCategoryArray = () => {
-  //   if (!sortCategory) {
-  //     return productList;
-  //   }
-  //   const isCategoryExist = productList.find((item) => item.category.name === sortCategory);
-  //   if (isCategoryExist) {
-  //     return productList.filter((item) => item.category.name === sortCategory);
-  //   } else {
-  //     return productList;
-  //   }
-  // };
   return (
     <div className="products">
       {productList.map((product) => (
@@ -82,19 +60,18 @@ const ProductCard = ({ productsDisplayed, productList, params }: ProductCardList
                 <Button id={product.id} itemName={product.name} image={product.images[0]} price={product.price} amount={1} />
               </div>
               <div className="card-button_edit_deletebox">
-                {hoveredProductId === product.id && getRole === "admin" && params === "product-list" && (
+                {hoveredProductId === product.id && getRole === "Admin" && (
                   <button
                     className="edit-delete-button"
                     onClick={() => {
                       const id = product.id;
-                      dispatch(deleteProduct(id));
-                      dispatch(deleteItem(id));
+                      dispatch(deleteProduct(id)).then(res => dispatch(fetchAllProducts()))
                     }}
                   >
                     <DeleteOutlineOutlinedIcon />
                   </button>
                 )}
-                {hoveredProductId === product.id && getRole === "admin" && params === "product-list" && (
+                {hoveredProductId === product.id && getRole === "Admin" && (
                   <button
                     className="edit-delete-button"
                     onClick={() => {
@@ -112,9 +89,10 @@ const ProductCard = ({ productsDisplayed, productList, params }: ProductCardList
               <ProductEditForm
                 open={popup}
                 onClose={() => setPopup(false)}
-                title={product.name}
+                name={product.name}
                 price={product.price}
                 description={product.description}
+                quantity={product.quantity}
                 id={product.id}
               />
             )}

@@ -35,7 +35,7 @@ const CategoryPage = () => {
           </select>
         </div>
       </div>
-      {productArray[0] && <ProductCard productsDisplayed={7} productList={productArray[0].product} params="" />}
+      {productArray[0] && <ProductCard productList={productArray[0].product} />}
     </div>
   );
 };

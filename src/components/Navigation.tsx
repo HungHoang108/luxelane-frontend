@@ -13,22 +13,13 @@ import UserPopUp from "./UserPopUp";
 const Navigation = () => {
   const [status, setStatus] = useState(false);
   const [searchTag, setSearchTag] = useState("");
-  const [navStyle, setNavStyle] = useState<string | null>(null);
 
   const nav = useNavigate();
   const dispatch = useAppDispatch();
   const cartItem = useAppSelector((state) => state.CartItemReducer);
-  const test = useAppSelector((state) => state.userSessionReducer);
   const currentDarkMode = useAppSelector((state) => state.DarkModeReducer);
 
   let userData = localStorage.getItem("userToken");
-
-  const navHome = () => {
-    setNavStyle("home");
-  };
-  const navProject = () => {
-    setNavStyle("products");
-  };
 
   let counter = 0;
   cartItem.map((item) => counter++);
@@ -61,7 +52,6 @@ const Navigation = () => {
       <div className="navBox-nav">
         <div className="navBox-nav-left">
           <div
-            onClick={navHome}
             className="testx"
           >
             <Link className="nav-left_sub link" to="">
@@ -69,7 +59,6 @@ const Navigation = () => {
             </Link>
           </div>
           <div
-            onClick={navProject}
           >
             <Link className="nav-left_sub link" to="productlist">
               Products

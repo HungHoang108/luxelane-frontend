@@ -42,15 +42,15 @@ const Authentication = () => {
   // login validation
   const onLogin: SubmitHandler<LoginType> = (data) => {
     setLoading(true);
-    dispatch(logInUser(data)).then((response) => {
-      const token: string = response.payload as string;
-
-      if (token) {
-        localStorage.setItem("userToken", token);
+    dispatch(logInUser(data)).then((res) => {
+      //if logging is unsuccessful, the res.payload = undefined
+      const unauthorized = res.payload;
+      if (!unauthorized) {
         nav("/");
         setLoading(false);
         setLoginStatus(true);
       } else {
+        setLoading(false);
         setLoginStatus(false);
       }
     });
