@@ -15,7 +15,7 @@ export const fetchSingleProduct = createAsyncThunk(
   async (id: number) => {
     try {
       const response = await axios.get(
-        `https://api.escuelajs.co/api/v1/products/${id}`
+        `https://luxelane.azurewebsites.net/api/v1/product/${id}`
       );
       const data = response.data
       return data;

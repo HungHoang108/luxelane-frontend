@@ -6,14 +6,7 @@ import { LoginType } from "../types/LoginType";
 const userInitialState: userReducerType = {
   userList: [],
 };
-const initialUserSession: UserType = {
-  id: 0,
-  email: "string",
-  password: "string",
-  name: "string",
-  avatar: "string",
-  role: "customer",
-};
+
 export const fetchAllUser = createAsyncThunk("fetchAllUser", async () => {
   try {
     const response = await axios.get("https://api.escuelajs.co/api/v1/users");
@@ -25,74 +18,70 @@ export const fetchAllUser = createAsyncThunk("fetchAllUser", async () => {
   }
 });
 
-export const logInUser = createAsyncThunk(
-  "logInUser",
-  async ({ email, password }: LoginType, thunkAPI) => {
-    try {
-      const response = await axios.post(
-        "https://api.escuelajs.co/api/v1/auth/login",
-        {
-          email: email,
-          password: password,
-        }
-      );
-      const data: { access_token: string } = response.data;
-      await thunkAPI.dispatch(getUserSession(data.access_token));
-      return data.access_token;
-    } catch (error) {
-      const e = error as AxiosError;
-      return e;
-    }
+export const logInUser = createAsyncThunk("logInUser", async ({ email, password }: LoginType) => {
+  try {
+    await axios
+      .post("https://luxelane.azurewebsites.net/api/v1/user/signin", {
+        email: email,
+        password: password,
+      })
+      .then(async (response) => {
+        const data: string = response.data.token;
+        data && localStorage.setItem("userToken", data);
+        await axios
+          .get("https://luxelane.azurewebsites.net/api/v1/user/profile", {
+            headers: {
+              Authorization: `Bearer ${data}`,
+            },
+          })
+          .then((response) => {
+            const data = response.data;
+            localStorage.setItem("userProfile", JSON.stringify(data));
+            return data;
+          });
+      });
+  } catch (error) {
+    const e = error as AxiosError;
+    return e;
   }
-);
+});
 
-export const getUserSession = createAsyncThunk(
-  "getUserSession",
-  async (access_token: string) => {
-    try {
-      const response = await axios.get(
-        "https://api.escuelajs.co/api/v1/auth/profile",
-        {
-          headers: {
-            Authorization: `Bearer ${access_token}`,
-          },
-        }
-      );
-      const data: UserType = response.data;
-      localStorage.setItem("userInfo", JSON.stringify(data));
-      return data;
-    } catch (error) {
-      const e = error as AxiosError;
-      return e;
+export const createUser = createAsyncThunk("createUser", async ({ file, user }: newUserType) => {
+  try {
+
+    const formData = new FormData();
+    const imgFile = file;
+    if (imgFile) {
+      formData.append("file", imgFile);
     }
+    formData.append("upload_preset", "luxelane");
+
+    await axios
+    .post(`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/image/upload`, formData)
+    .then(async (res) => {
+      const imageUrl = res.data.secure_url;
+      const userInfo = {
+        "firstName": user.firstName,
+        "lastName": user.lastName,
+        "email": user.email,
+        "userName": user.userName,
+        "password": user.password,
+        "avatar": imageUrl
+      }
+      console.log(userInfo)
+      await axios
+        .post("https://luxelane.azurewebsites.net/api/v1/user/signup", userInfo)
+        .then((res) => {
+          const data = res.data;
+          return data;
+        });
+    });
+
+  } catch (error) {
+    const err = error as AxiosError;
+    return err;
   }
-);
-export const createUser = createAsyncThunk(
-  "createProduct",
-  async ({ file, user }: newUserType) => {
-    try {
-      const response = await axios.post(
-        "https://api.escuelajs.co/api/v1/files/upload",
-        { file: file},
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      const data = response.data.location;
-      const newUser = { ...user, avatar: data };
-      const newUserResponse = await axios.post(
-        "https://api.escuelajs.co/api/v1/users/",
-        newUser
-      );
-      return newUserResponse.data;
-    } catch (error) {
-      const err = error as AxiosError;
-      return err;
-    }
-  }
-);
+});
 
 export const UserSlice = createSlice({
   name: "UserSlice",
@@ -107,29 +96,8 @@ export const UserSlice = createSlice({
           state.userList = action.payload;
         }
       })
-      .addCase(createUser.fulfilled, (state, action) => {
-        if (action.payload) {
-          state.userList.push(action.payload);
-        } else {
-          return state;
-        }
-      });
-  },
-});
-export const UserSessionSlice = createSlice({
-  name: "UserSessionSlice",
-  initialState: initialUserSession,
-  reducers: {},
-  extraReducers: (build) => {
-    build.addCase(getUserSession.fulfilled, (state, action) => {
-      if (action.payload instanceof AxiosError) {
-        return state;
-      } else {
-        return (state = action.payload);
-      }
-    });
   },
 });
 
 export const userReducer = UserSlice.reducer;
-export const userSessionReducer = UserSessionSlice.reducer;
+

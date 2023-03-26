@@ -1,21 +1,31 @@
 import { useState } from "react";
-
 import { createProduct } from "../redux/productReducer";
 import { useAppDispatch } from "../hooks/reduxHook";
 import { SubmitHandler, useForm } from "react-hook-form";
 import WarningAmberIcon from "@mui/icons-material/WarningAmber";
+import CircularProgress from "@mui/material/CircularProgress";
+import Backdrop from "@mui/material/Backdrop";
 
 interface hookForm {
   title: "";
   price: 0;
   description: "";
+  quantity: 0;
   categoryId: 0;
   file: FileList;
 }
 
 const NewProduct = () => {
   const [status, setStatus] = useState(false);
+  const [open, setOpen] = useState(false);
   const dispatch = useAppDispatch();
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleToggle = () => {
+    setOpen(!open);
+  };
 
   const {
     register,
@@ -27,15 +37,21 @@ const NewProduct = () => {
     const newItemForm = {
       file: data.file[0],
       product: {
-        title: data.title,
-        price: data.price,
+        name: data.title,
         description: data.description,
-        categoryId: data.categoryId,
+        price: data.price,
+        quantity: data.quantity,
         images: [],
+        categoryId: data.categoryId
       },
     };
-    dispatch(createProduct(newItemForm));
-    setStatus(true);
+    handleToggle();
+    dispatch(createProduct(newItemForm)).then((response) => {
+      if (response.meta.requestStatus === "fulfilled") {
+        handleClose();
+        setStatus(true);
+      }
+    });
   };
 
   const addMoreItem = () => {
@@ -76,6 +92,18 @@ const NewProduct = () => {
             <input type="number" placeholder="price" {...register("price", { required: true })} />
           </div>
           <div>
+            {errors.quantity && (
+              <i>
+                <p>
+                  <WarningAmberIcon color="error" sx={{ fontSize: "14px" }} />
+                  Quantity is required
+                </p>
+              </i>
+            )}
+            <input type="number" placeholder="quantity" {...register("quantity", { required: true })} />
+          </div>
+
+          <div>
             {errors.categoryId && (
               <i>
                 <p>
@@ -93,6 +121,7 @@ const NewProduct = () => {
               <option value="5">Others</option>
             </select>
           </div>
+
           <div>
             {errors.description && (
               <i>
@@ -120,9 +149,11 @@ const NewProduct = () => {
             </span>
             <input type="file" multiple {...register("file", { required: true })} />
           </div>
-
           <div>
             <button type="submit">Submit</button>
+            <Backdrop sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }} open={open} onClick={handleClose}>
+              <CircularProgress color="inherit" />
+            </Backdrop>
           </div>
         </form>
       )}

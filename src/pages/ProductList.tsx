@@ -2,27 +2,48 @@ import { ChangeEvent, useEffect, useState } from "react";
 
 import ProductCard from "../components/ProductCard";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
-import { sortByCategory } from "../redux/sortCategoryReducer";
-import { fetchAllProducts, sortByPrice } from "../redux/productReducer";
+import { fetchAllProducts } from "../redux/productReducer";
 
 const ProductList = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(10);
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(fetchAllProducts());
   }, [dispatch]);
 
   const products = useAppSelector((state) => state.productReducer);
+
+
+  const [sortedProducts, setSortedProducts] = useState(products);
+
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    dispatch(sortByPrice(e.target.value));
+    const value = e.target.value;
+    if (value === "price-down") {
+      const sortedArray = sortedProducts.slice().sort((a, b) => b.price - a.price);
+      setSortedProducts(sortedArray);
+    } else if (value === "price-up") {
+      const sortedArray = sortedProducts.slice().sort((a, b) => a.price - b.price);
+      setSortedProducts(sortedArray);
+    }
   };
+  
   const handleCategory = (e: ChangeEvent<HTMLSelectElement>) => {
-    dispatch(sortByCategory(e.target.value));
+    const categoryNumber = Number(e.target.value);
+    if (categoryNumber === 0) {
+      setSortedProducts(products);
+    } else {
+      const sortedProductArray = products.filter((item) => {
+        if (categoryNumber === item.categoryId) {
+          return item;
+        }
+      });
+      setSortedProducts(sortedProductArray);
+    }
   };
-  const lastPostIndex = currentPage * postsPerPage;
-  const firstPostIndex = lastPostIndex - postsPerPage;
-  const currentPosts = products.slice(firstPostIndex, lastPostIndex);
+  useEffect(() => {
+    if (products.length !== 0) {
+      setSortedProducts(products);
+    }
+  }, [products]);
   return (
     <div className="productList-box">
       <div className="productList-box-head">
@@ -33,12 +54,12 @@ const ProductList = () => {
           <div>
             <span>Sort by category</span>
             <select onChange={handleCategory}>
-              <option value="">All</option>
-              <option value="Furniture">Furniture</option>
-              <option value="Clothes">Clothes</option>
-              <option value="Electronics">Electronics</option>
-              <option value="Shoes">Shoes</option>
-              <option value="Others">Others</option>
+              <option value="0">All</option>
+              <option value="1">Clothes</option>
+              <option value="2">Electronics</option>
+              <option value="3">Furniture</option>
+              <option value="4">Shoes</option>
+              <option value="5">Others</option>
             </select>
           </div>
           <div>
@@ -51,8 +72,7 @@ const ProductList = () => {
           </div>
         </div>
       </div>
-
-      <ProductCard productsDisplayed={20} productList={products} params="product-list" />
+      <ProductCard productList={sortedProducts} />
     </div>
   );
 };

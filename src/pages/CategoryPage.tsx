@@ -1,12 +1,22 @@
-import { ChangeEvent } from "react";
-
+import { ChangeEvent, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
-import { sortByPriceCategory } from "../redux/categoriesReducer";
+import { sortByPriceCategory } from "../redux/categoryReducer";
+import { fetchAllCategories } from "../redux/categoryReducer";
 
 const CategoryPage = () => {
   const dispatch = useAppDispatch();
-  const products = useAppSelector((state) => state.categoryReducer);
+  const categoryProducts = useAppSelector((state) => state.categoriesReducer);
+  const { categoryId } = useParams<string>();
+  const groupId = Number(categoryId);
+
+  // dispatch the action to load the initial state in case the component is being reloaded
+  useEffect(() => {
+    dispatch(fetchAllCategories());
+  }, []);
+
+  const productArray = categoryProducts.filter((item) => item.id === groupId && item);
 
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     dispatch(sortByPriceCategory(e.target.value));
@@ -15,9 +25,7 @@ const CategoryPage = () => {
   return (
     <div className="productList-box">
       <div className="productList-box-head">
-        <div>
-          <h2>{products[0].category.name}</h2>
-        </div>
+        <div>{productArray[0] && <h2>{productArray[0] && productArray[0].name}</h2>}</div>
         <div className="productList-box-head_sort">
           <span>Sort by price</span>
           <select onChange={handleChange} id="sort">
@@ -27,7 +35,7 @@ const CategoryPage = () => {
           </select>
         </div>
       </div>
-      <ProductCard productsDisplayed={7} productList={products} params="" />
+      {productArray[0] && <ProductCard productList={productArray[0].product} />}
     </div>
   );
 };

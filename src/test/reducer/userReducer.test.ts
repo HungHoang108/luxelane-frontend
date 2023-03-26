@@ -6,7 +6,6 @@ import { createStore, RootState } from "../../redux/store";
 import {
   createUser,
   fetchAllUser,
-  getUserSession,
   logInUser,
 } from "../../redux/userReducer";
 import { newUserInputField, UserType } from "../../types/UserType";
@@ -36,15 +35,7 @@ describe("Test userReducer", () => {
     await store.dispatch(fetchAllUser());
     expect(store.getState().userReducer.userList.length).toBe(2);
   });
-  test("Should login user and get user session", async () => {
-    const emailAndPassword = {
-      email: "john@mail.comk",
-      password: "changeme",
-    };
-    await store.dispatch(logInUser(emailAndPassword));
-    const newUser = store.getState().userSessionReducer;
-    expect(newUser).toBeDefined();
-  });
+
   test("should create an user", async () => {
     const file: File = {
       lastModified: 0,
@@ -70,9 +61,11 @@ describe("Test userReducer", () => {
       },
     };
     const user: newUserInputField = {
+      firstName: "van hung",
+      lastName: "hoang",
       email: "testt1@a.com",
       password: "123456",
-      name: "test",
+      userName: "test",
       avatar: "https://api.lorem.space/image/face?w=640&h=480&r=6440"
     };
     await store.dispatch(createUser({ file, user }));

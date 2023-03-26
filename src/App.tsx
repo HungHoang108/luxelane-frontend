@@ -5,12 +5,12 @@ import Root from "./components/Root";
 import NotFound from "./components/NotFound";
 import ProductList from "./pages/ProductList";
 import CartPage from "./pages/CartPage";
-import Login from "./pages/Login";
+import Login from "./pages/Authentication";
 import SearchResult from "./pages/SearchResult";
 import NewProduct from "./pages/NewProduct";
-import CategoryRoute from "./pages/CategoryRoute";
+import CategoryRoute from "./pages/CategoryPage";
 import { useAppSelector } from "./hooks/reduxHook";
-import ProductRoute from "./pages/ProductRoute";
+import ProductRoute from "./pages/SingleProduct";
 import UserProfile from "./pages/UserProfile";
 
 const App = () => {
@@ -26,7 +26,7 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/searchresult" element={<SearchResult />} />
           <Route path="/newproduct" element={<NewProduct />} />
-          <Route path="/category" element={<CategoryRoute />} />
+          <Route path="/category/:categoryId/products" element={<CategoryRoute />} />
           <Route path="/singleItemRoute" element={<ProductRoute />} />
           <Route path="/*" element={<NotFound />} />
           <Route path="/userprofile" element={<UserProfile />} />

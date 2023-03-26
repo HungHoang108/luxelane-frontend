@@ -12,9 +12,11 @@ export interface userReducerType {
 }
 
 export interface newUserInputField {
+  firstName: string;
+  lastName: string;
   email: string;
   password: string;
-  name: string;
+  userName: string;
   avatar: string;
 }
 

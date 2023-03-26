@@ -58,13 +58,13 @@ describe("Test all the actions", () => {
       },
     };
     const product: NewProductType = {
-      title: "D",
-      price: 1000,
+      name: "D",
       description: "Test create product",
-      categoryId: 1,
+      price: 1000,
+      quantity: 100,
       images: [],
+      categoryId: 1
     };
-
     await store.dispatch(createProduct({ file, product }));
     expect(store.getState().productReducer.length).toBe(1);
   });
@@ -83,9 +83,9 @@ describe("Test all the actions", () => {
   test("should sort by price", async () => {
     await store.dispatch(fetchAllProducts());
     store.dispatch(sortByPrice("price-up"));
-    expect(store.getState().productReducer[0].title).toBe("B");
-    expect(store.getState().productReducer[1].title).toBe("C");
-    expect(store.getState().productReducer[2].title).toBe("A");
+    expect(store.getState().productReducer[0].name).toBe("B");
+    expect(store.getState().productReducer[1].name).toBe("C");
+    expect(store.getState().productReducer[2].name).toBe("A");
   });
   test("delete product", async () => {
     await store.dispatch(deleteProduct(1));

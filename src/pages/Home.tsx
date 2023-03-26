@@ -1,4 +1,4 @@
-import Categories from "../components/Categories";
+import Categories from "../components/Category";
 import Subcribe from "../components/Subcribe";
 import pic from ".././styles/image/homepage.jpg";
 

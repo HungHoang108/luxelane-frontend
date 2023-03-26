@@ -13,23 +13,15 @@ import UserPopUp from "./UserPopUp";
 const Navigation = () => {
   const [status, setStatus] = useState(false);
   const [searchTag, setSearchTag] = useState("");
-  const [navStyle, setNavStyle] = useState<string | null>(null);
 
   const nav = useNavigate();
   const dispatch = useAppDispatch();
   const cartItem = useAppSelector((state) => state.CartItemReducer);
-  const test = useAppSelector((state) => state.userSessionReducer);
   const currentDarkMode = useAppSelector((state) => state.DarkModeReducer);
 
-  let userData = localStorage.getItem("userInfo");
-  let parseUserData = userData && JSON.parse(userData);
-
-  const navHome = () => {
-    setNavStyle("home");
-  };
-  const navProject = () => {
-    setNavStyle("products");
-  };
+  let access_token = localStorage.getItem("userToken");
+  let userProfile = localStorage.getItem("userProfile");
+  let profile = userProfile && JSON.parse(userProfile);
 
   let counter = 0;
   cartItem.map((item) => counter++);
@@ -40,6 +32,7 @@ const Navigation = () => {
 
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchTag(e.target.value);
+    
   };
 
   const handleKeyPress = (e: any) => {
@@ -53,11 +46,6 @@ const Navigation = () => {
     nav("/searchresult");
   };
 
-  const searchStatus = () => {
-    dispatch(searchTagAction(searchTag));
-    nav("/searchresult");
-  };
-
   const setDarkMode = () => {
     dispatch(darkMode(!currentDarkMode));
   };
@@ -67,13 +55,6 @@ const Navigation = () => {
       <div className="navBox-nav">
         <div className="navBox-nav-left">
           <div
-            onClick={navHome}
-            // style={{
-            //   borderBottom:
-            //     navStyle === "home" || navStyle === null
-            //       ? "2px solid white"
-            //       : "",
-            // }}
             className="testx"
           >
             <Link className="nav-left_sub link" to="">
@@ -81,10 +62,6 @@ const Navigation = () => {
             </Link>
           </div>
           <div
-            onClick={navProject}
-            // style={{
-            //   borderBottom: navStyle === "products" ? "2px solid white" : "",
-            // }}
           >
             <Link className="nav-left_sub link" to="productlist">
               Products
@@ -93,7 +70,7 @@ const Navigation = () => {
         </div>
         <div className="nav-icon">
           <div className="nav-icon_search">
-            <input onKeyPress={handleKeyPress} type="text" placeholder="search products" onChange={handleSearch} />
+            <input onKeyDown={handleKeyPress}  type="text" placeholder="search products" onChange={handleSearch} />
           </div>
           <div className="nav-icon_dark-mode" onClick={setDarkMode}>
             <LightModeSharpIcon fontSize="small" />
@@ -108,10 +85,10 @@ const Navigation = () => {
             </div>
           </div>
           <div className="nav-icon_user-profile">
-            {userData ? (
+            {access_token ? (
               <div className="nav-user-profile">
                 <div className="user-profile-image">
-                  <img src={parseUserData.avatar} alt="" />
+                  <img src={profile.avatar} alt="" />
                 </div>
                 <div className="user-profile-popup">
                   <UserPopUp />
@@ -124,7 +101,7 @@ const Navigation = () => {
             )}
           </div>
           <div>
-            {userData && (
+            {access_token && (
               <Link className="link btn" to="newproduct">
                 New Product
               </Link>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
 
@@ -6,19 +6,23 @@ import { LoginType } from "../types/LoginType";
 import { useAppDispatch } from "../hooks/reduxHook";
 import { createUser, logInUser } from "../redux/userReducer";
 import WarningAmberIcon from "@mui/icons-material/WarningAmber";
+import LinearProgress from "@mui/material/LinearProgress";
 
 interface newUserForm {
+  firstName: "";
+  lastName: "";
+  userName: "";
   email: "";
   password: "";
-  name: "";
   avatar: FileList;
 }
 
-const Login = () => {
+const Authentication = () => {
   const dispatch = useAppDispatch();
 
   const [newUserStatus, setNewUserStatus] = useState(false);
   const [loginStatus, setLoginStatus] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const {
     register,
@@ -37,34 +41,48 @@ const Login = () => {
   const LogInNewUser = () => {
     setNewUserStatus(false);
   };
+
   // login validation
   const onLogin: SubmitHandler<LoginType> = (data) => {
-    dispatch(logInUser(data));
-    setTimeout(getUserSession, 1000);
+    setLoading(true);
+    dispatch(logInUser(data)).then((res) => {
+      //if logging is unsuccessful, the res.payload = undefined
+      const unauthorized = res.payload;
+      if (!unauthorized) {
+        nav("/");
+        setLoading(false);
+        setLoginStatus(true);
+      } else {
+        setLoading(false);
+        setLoginStatus(false);
+      }
+    });
   };
 
-  const getUserSession = () => {
-    const userData = localStorage.getItem("userInfo");
-    if (userData) {
-      nav("/");
-      setLoginStatus(true);
-    } else {
-      setLoginStatus(false);
-    }
-  };
   // register validation
   const onRegister: SubmitHandler<newUserForm> = (data) => {
     const newUser = {
       file: data.avatar[0],
       user: {
+        firstName: data.firstName,
+        lastName: data.lastName,
         email: data.email,
+        userName: data.userName,
         password: data.password,
-        name: data.name,
         avatar: "",
       },
     };
-    dispatch(createUser(newUser));
-    setNewUserStatus(true);
+
+    dispatch(createUser(newUser)).then((res) => {
+      const unauthorized = res.payload;
+      if (!unauthorized) {
+        setLoading(false);
+        setNewUserStatus(true);
+      } else {
+        setLoading(false);
+        setNewUserStatus(true);
+      }
+    });
   };
 
   return (
@@ -109,13 +127,51 @@ const Login = () => {
               )}
               <input type="password" placeholder="Password" {...register("password", { required: true })} />
             </div>
+            {loading ? <LinearProgress /> : null}
+
             <button type="submit" className="authen-button">
-              Sign In
+              {loading ? "Signing in ..." : "Sign In"}
             </button>
           </form>
           <form onSubmit={handleSubmit1(onRegister)}>
             <h2>Don't have an account?</h2>
             <span>Sign up to get latest updates</span>
+
+            <div className="authen-input">
+              {errors1.firstName && (
+                <i>
+                  <p>
+                    <WarningAmberIcon color="error" sx={{ fontSize: "14px" }} />
+                    FirstName is required
+                  </p>
+                </i>
+              )}
+              <input type="text" placeholder="firstName" {...register1("firstName", { required: true })} />
+            </div>
+
+            <div className="authen-input">
+              {errors1.lastName && (
+                <i>
+                  <p>
+                    <WarningAmberIcon color="error" sx={{ fontSize: "14px" }} />
+                    LastName is required
+                  </p>
+                </i>
+              )}
+              <input type="text" placeholder="lastName" {...register1("lastName", { required: true })} />
+            </div>
+
+            <div className="authen-input">
+              {errors1.userName && (
+                <i>
+                  <p>
+                    <WarningAmberIcon color="error" sx={{ fontSize: "14px" }} />
+                    UserName is required
+                  </p>
+                </i>
+              )}
+              <input type="text" placeholder="userName" {...register1("userName", { required: true })} />
+            </div>
             <div className="authen-input">
               {errors1.email && (
                 <i>
@@ -127,6 +183,7 @@ const Login = () => {
               )}
               <input type="email" placeholder="email" {...register1("email", { required: true })} />
             </div>
+
             <div className="authen-input">
               {errors1.password && (
                 <i>
@@ -138,17 +195,7 @@ const Login = () => {
               )}
               <input type="password" placeholder="password" {...register1("password", { required: true })} />
             </div>
-            <div className="authen-input">
-              {errors1.name && (
-                <i>
-                  <p>
-                    <WarningAmberIcon color="error" sx={{ fontSize: "14px" }} />
-                    Name is required
-                  </p>
-                </i>
-              )}
-              <input type="text" placeholder="name" {...register1("name", { required: true })} />
-            </div>
+
             <div className="authen-input">
               {errors1.avatar && (
                 <i>
@@ -160,7 +207,8 @@ const Login = () => {
               )}
               <input type="file" multiple {...register1("avatar", { required: true })} />
             </div>
-            <button className="authen-button">Register</button>
+            {loading ? <LinearProgress /> : null}
+            <button className="authen-button">{loading ? "Registering..." : "Register"}</button>
           </form>
         </div>
       )}
@@ -168,4 +216,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Authentication;

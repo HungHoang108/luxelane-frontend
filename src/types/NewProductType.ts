@@ -1,9 +1,10 @@
 export interface NewProductType {
-  title: string;
-  price: number;
+  name: string;
   description: string;
-  categoryId: number;
+  price: number;
+  quantity: number;
   images: string[];
+  categoryId: number;
 }
 
 export interface FileAndNewProductForm {

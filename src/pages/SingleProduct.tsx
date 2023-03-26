@@ -1,7 +1,7 @@
 import { useAppSelector } from "../hooks/reduxHook";
 import Button from "../components/Button";
 
-const ProductRoute = () => {
+const SingleProduct = () => {
   const singleItem = useAppSelector((state) => state.singleProductReducer);
   return (
     <div className="productRoute">
@@ -12,7 +12,7 @@ const ProductRoute = () => {
       </div>
       <div className="productRoute-detail">
         <div className="productRoute-detail_title-price">
-          <h1>{singleItem.title}</h1>
+          <h1>{singleItem.name}</h1>
           <span>{singleItem.price} $</span>
         </div>
         <div className="productRoute-detail_cart-description">
@@ -29,4 +29,4 @@ const ProductRoute = () => {
   );
 };
 
-export default ProductRoute;
+export default SingleProduct;
