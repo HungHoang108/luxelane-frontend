@@ -61,3 +61,96 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 
 ```
+
+```
+fs13-frontend-project
+├─ .gitignore
+├─ package.json
+├─ public
+├─ README.md
+├─ src
+│  ├─ App.tsx
+│  ├─ components
+│  │  ├─ Button.tsx
+│  │  ├─ Cart.tsx
+│  │  ├─ Category.tsx
+│  │  ├─ DarkMode.tsx
+│  │  ├─ Footer.tsx
+│  │  ├─ Navigation.tsx
+│  │  ├─ NotFound.tsx
+│  │  ├─ ProductCard.tsx
+│  │  ├─ ProductEditForm.tsx
+│  │  ├─ Root.tsx
+│  │  ├─ Subcribe.tsx
+│  │  └─ UserPopUp.tsx
+│  ├─ hooks
+│  │  └─ reduxHook.ts
+│  ├─ index.tsx
+│  ├─ pages
+│  │  ├─ Authentication.tsx
+│  │  ├─ CartPage.tsx
+│  │  ├─ CategoryPage.tsx
+│  │  ├─ Home.tsx
+│  │  ├─ NewProduct.tsx
+│  │  ├─ ProductList.tsx
+│  │  ├─ SearchResult.tsx
+│  │  ├─ SingleProduct.tsx
+│  │  └─ UserProfile.tsx
+│  ├─ react-app-env.d.ts
+│  ├─ redux
+│  │  ├─ cartItemsReducer.ts
+│  │  ├─ categoryReducer.ts
+│  │  ├─ darkModeReducer.ts
+│  │  ├─ productReducer.ts
+│  │  ├─ searchTagReducer.ts
+│  │  ├─ singleProductReducer.ts
+│  │  ├─ store.ts
+│  │  └─ userReducer.ts
+│  ├─ setupTests.ts
+│  ├─ styles
+│  │  ├─ image
+│  │  │  ├─ Copy of Copy of Untitled (1).jpg
+│  │  │  └─ homepage.jpg
+│  │  ├─ styleComponent
+│  │  │  ├─ _button.scss
+│  │  │  ├─ _cartDropdown.scss
+│  │  │  ├─ _categories.scss
+│  │  │  ├─ _footer.scss
+│  │  │  ├─ _navigation.scss
+│  │  │  ├─ _productCard.scss
+│  │  │  ├─ _productEdit.scss
+│  │  │  ├─ _subcribe.scss
+│  │  │  └─ _userPopup.scss
+│  │  ├─ stylePages
+│  │  │  ├─ _cartPage.scss
+│  │  │  ├─ _home.scss
+│  │  │  ├─ _loginLogout.scss
+│  │  │  ├─ _newProduct.scss
+│  │  │  ├─ _productList.scss
+│  │  │  ├─ _productRoute.scss
+│  │  │  ├─ _searchResult.scss
+│  │  │  └─ _userProfile.scss
+│  │  ├─ styles.scss
+│  │  └─ _app.scss
+│  ├─ test
+│  │  ├─ reducer
+│  │  │  ├─ cartItemsReducer.test.ts
+│  │  │  ├─ categoriesReducer.test.ts
+│  │  │  ├─ productReducer.test.ts
+│  │  │  ├─ searchTagReducer.test.ts
+│  │  │  ├─ singleProductReducer.test.ts
+│  │  │  └─ userReducer.test.ts
+│  │  └─ shared
+│  │     └─ server.ts
+│  └─ types
+│     ├─ ButtonType.ts
+│     ├─ CartItemType.ts
+│     ├─ Category.ts
+│     ├─ LoginType.ts
+│     ├─ NewProductType.ts
+│     ├─ ProductCardList.ts
+│     ├─ ProductType.ts
+│     └─ UserType.ts
+└─ tsconfig.json
+
+```
