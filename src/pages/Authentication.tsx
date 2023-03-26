@@ -23,6 +23,7 @@ const Authentication = () => {
   const [newUserStatus, setNewUserStatus] = useState(false);
   const [loginStatus, setLoginStatus] = useState(true);
   const [loading, setLoading] = useState(false);
+  const [loadingRegister, setLoadingRegister] = useState(false);
 
   const {
     register,
@@ -61,6 +62,7 @@ const Authentication = () => {
 
   // register validation
   const onRegister: SubmitHandler<newUserForm> = (data) => {
+    setLoadingRegister(true);
     const newUser = {
       file: data.avatar[0],
       user: {
@@ -72,14 +74,13 @@ const Authentication = () => {
         avatar: "",
       },
     };
-
     dispatch(createUser(newUser)).then((res) => {
       const unauthorized = res.payload;
       if (!unauthorized) {
-        setLoading(false);
+        setLoadingRegister(false);
         setNewUserStatus(true);
       } else {
-        setLoading(false);
+        setLoadingRegister(false);
         setNewUserStatus(true);
       }
     });
@@ -207,8 +208,8 @@ const Authentication = () => {
               )}
               <input type="file" multiple {...register1("avatar", { required: true })} />
             </div>
-            {loading ? <LinearProgress /> : null}
-            <button className="authen-button">{loading ? "Registering..." : "Register"}</button>
+            {loadingRegister ? <LinearProgress /> : null}
+            <button className="authen-button">{loadingRegister ? "Registering..." : "Register"}</button>
           </form>
         </div>
       )}
