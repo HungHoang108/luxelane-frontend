@@ -14,43 +14,45 @@ const CategoryPage = () => {
   // dispatch the action to load the initial state in case the component is being reloaded
   useEffect(() => {
     dispatch(fetchAllCategories());
-  }, []);
+  }, [dispatch]);
 
   const productArray = categoryProducts.filter((item) => item.id === groupId && item);
 
-  const [sortedProducts, setSortedProducts] = useState(productArray[0].product);
+  const [sortedProducts, setSortedProducts] = useState(productArray.length && productArray[0].product);
 
-
+  useEffect(() => {
+    if (productArray.length > 0) {
+      setSortedProducts(productArray[0].product);
+    }
+  }, [productArray]);
   const sortByPrice = (e: ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value;
     if (value === "price-down") {
-      const sortedArray = productArray[0].product.slice().sort((a, b) => b.price - a.price);
+      const sortedArray =sortedProducts && sortedProducts.slice().sort((a, b) => b.price - a.price);
+      console.log(sortedArray)
       setSortedProducts(sortedArray);
     } else if (value === "price-up") {
-      const sortedArray = productArray[0].product.slice().sort((a, b) => a.price - b.price);
+      const sortedArray =sortedProducts && sortedProducts.slice().sort((a, b) => a.price - b.price);
+      console.log(sortedArray)
       setSortedProducts(sortedArray);
     }
-    // dispatch(sortByPriceCategory(e.target.value));
   };
-  // useEffect(() => {
-  //   if (productArray.length !== 0) {
-  //     setSortedProducts(productArray[0].product);
-  //   }
-  // }, [productArray]);
   return (
     <div className="productList-box">
       <div className="productList-box-head">
-        <div>{productArray && <h2>{productArray && productArray[0].name}</h2>}</div>
+        <div>
+          <h2>{productArray.length && productArray[0].name}</h2>
+        </div>
         <div className="productList-box-head_sort">
-          <span>Sort by price</span>
+          {/* <span>Sort by price</span>
           <select onChange={sortByPrice} id="sort">
             <option>Sort products</option>
             <option value="price-down">From highest price</option>
             <option value="price-up">From lowest price</option>
-          </select>
+          </select> */}
         </div>
       </div>
-      {productArray[0] && <ProductCard productList={sortedProducts} />}
+      {sortedProducts && <ProductCard productList={sortedProducts} />}
     </div>
   );
 };

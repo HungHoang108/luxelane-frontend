@@ -34,7 +34,7 @@ const ProductCard = ({ productList }: ProductCardList) => {
   const handleClose = () => {
     setOpen(false);
   };
-  const deleteCustomer = () => {
+  const deleteItem = () => {
     dispatch(deleteProduct(productId)).then((res) => {
       dispatch(fetchAllProducts());
       setOpen(false);
@@ -105,7 +105,7 @@ const ProductCard = ({ productList }: ProductCardList) => {
                 <DialogTitle id="alert-dialog-title">{"Are you sure you want to delete this product?"}</DialogTitle>
                 <DialogActions>
                   <Button onClick={handleClose}>No</Button>
-                  <Button onClick={deleteCustomer} autoFocus>
+                  <Button onClick={deleteItem} autoFocus>
                     Delete
                   </Button>
                 </DialogActions>
