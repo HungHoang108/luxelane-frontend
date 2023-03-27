@@ -5,3 +5,9 @@ export interface Category {
     image: string
     product: Product[]
 }
+
+export interface fetchCategory {
+    categories: Category[],
+    status: 'idle',
+    error: null,
+}

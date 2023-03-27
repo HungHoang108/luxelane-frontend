@@ -1,5 +1,5 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
-import { categoriesReducer, categoryReducer } from "./categoryReducer";
+import { categoriesReducer } from "./categoryReducer";
 import { productReducer } from "./productReducer";
 import { CartItemReducer } from "./cartItemsReducer";
 import { SearchTagReducer } from "./searchTagReducer";
@@ -16,7 +16,6 @@ const reducers = combineReducers({
   productReducer,
   CartItemReducer,
   SearchTagReducer,
-  categoryReducer,
   DarkModeReducer,
   singleProductReducer,
   userReducer,

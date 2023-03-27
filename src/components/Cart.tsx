@@ -3,6 +3,11 @@ import { useAppSelector } from "../hooks/reduxHook";
 
 const Cart = () => {
   const cartItem = useAppSelector((state) => state.CartItemReducer);
+  localStorage.setItem("cartItems", JSON.stringify(cartItem));
+  const getCartItems = localStorage.getItem("cartItems");
+  if (getCartItems) {
+    var items = JSON.parse(getCartItems);
+  }
   let counter = 0;
   const itemMap = () => {
     cartItem.map((item) => (counter += item.amount * item.price));
@@ -13,7 +18,7 @@ const Cart = () => {
   return (
     <div className="cartBox">
       <div className="cartBox-items">
-        {cartItem.map((item) => (
+        {items.map((item : any) => (
           <div className="cartBox-item" key={item.id}>
             <div>
               <img src={item.image} alt="" />

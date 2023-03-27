@@ -2,8 +2,7 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
-import { sortByPriceCategory } from "../redux/categoryReducer";
-import { fetchAllCategories } from "../redux/categoryReducer";
+import { fetchCategories } from "../redux/categoryReducer";
 
 const CategoryPage = () => {
   const dispatch = useAppDispatch();
@@ -13,11 +12,10 @@ const CategoryPage = () => {
 
   // dispatch the action to load the initial state in case the component is being reloaded
   useEffect(() => {
-    dispatch(fetchAllCategories());
+    dispatch(fetchCategories());
   }, [dispatch]);
 
   const productArray = categoryProducts.filter((item) => item.id === groupId && item);
-
   const [sortedProducts, setSortedProducts] = useState(productArray.length && productArray[0].product);
 
   useEffect(() => {
@@ -44,7 +42,10 @@ const CategoryPage = () => {
           <h2>{productArray.length && productArray[0].name}</h2>
         </div>
         <div className="productList-box-head_sort">
-          {/* <span>Sort by price</span>
+          
+          {
+          // To come back later
+          /* <span>Sort by price</span>
           <select onChange={sortByPrice} id="sort">
             <option>Sort products</option>
             <option value="price-down">From highest price</option>

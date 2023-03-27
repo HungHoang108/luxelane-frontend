@@ -6,9 +6,8 @@ import { createStore, RootState } from "../../redux/store";
 import {
   createUser,
   fetchAllUser,
-  logInUser,
 } from "../../redux/userReducer";
-import { newUserInputField, UserType } from "../../types/UserType";
+import { newUserInputField } from "../../types/UserType";
 
 let store: ToolkitStore<
   RootState,

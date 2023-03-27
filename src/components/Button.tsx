@@ -3,6 +3,7 @@ import { addItem } from "../redux/cartItemsReducer";
 import { CartItemType } from "../types/CartItemType";
 
 const Button_ = ({ id, itemName, price, image, amount }: CartItemType) => {
+  
   const dispatch = useAppDispatch();
 
  
