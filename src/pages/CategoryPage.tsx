@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
@@ -18,24 +18,39 @@ const CategoryPage = () => {
 
   const productArray = categoryProducts.filter((item) => item.id === groupId && item);
 
-  const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    dispatch(sortByPriceCategory(e.target.value));
-  };
+  const [sortedProducts, setSortedProducts] = useState(productArray[0].product);
 
+
+  const sortByPrice = (e: ChangeEvent<HTMLSelectElement>) => {
+    const value = e.target.value;
+    if (value === "price-down") {
+      const sortedArray = productArray[0].product.slice().sort((a, b) => b.price - a.price);
+      setSortedProducts(sortedArray);
+    } else if (value === "price-up") {
+      const sortedArray = productArray[0].product.slice().sort((a, b) => a.price - b.price);
+      setSortedProducts(sortedArray);
+    }
+    // dispatch(sortByPriceCategory(e.target.value));
+  };
+  // useEffect(() => {
+  //   if (productArray.length !== 0) {
+  //     setSortedProducts(productArray[0].product);
+  //   }
+  // }, [productArray]);
   return (
     <div className="productList-box">
       <div className="productList-box-head">
-        <div>{productArray[0] && <h2>{productArray[0] && productArray[0].name}</h2>}</div>
+        <div>{productArray && <h2>{productArray && productArray[0].name}</h2>}</div>
         <div className="productList-box-head_sort">
           <span>Sort by price</span>
-          <select onChange={handleChange} id="sort">
+          <select onChange={sortByPrice} id="sort">
             <option>Sort products</option>
             <option value="price-down">From highest price</option>
             <option value="price-up">From lowest price</option>
           </select>
         </div>
       </div>
-      {productArray[0] && <ProductCard productList={productArray[0].product} />}
+      {productArray[0] && <ProductCard productList={sortedProducts} />}
     </div>
   );
 };

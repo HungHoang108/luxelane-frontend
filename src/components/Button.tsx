@@ -2,7 +2,7 @@ import { useAppDispatch } from "../hooks/reduxHook";
 import { addItem } from "../redux/cartItemsReducer";
 import { CartItemType } from "../types/CartItemType";
 
-const Button = ({ id, itemName, price, image, amount }: CartItemType) => {
+const Button_ = ({ id, itemName, price, image, amount }: CartItemType) => {
   const dispatch = useAppDispatch();
 
  
@@ -26,4 +26,4 @@ const Button = ({ id, itemName, price, image, amount }: CartItemType) => {
   );
 };
 
-export default Button;
+export default Button_;

@@ -15,7 +15,7 @@ const ProductList = () => {
 
   const [sortedProducts, setSortedProducts] = useState(products);
 
-  const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
+  const sortByPrice = (e: ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value;
     if (value === "price-down") {
       const sortedArray = sortedProducts.slice().sort((a, b) => b.price - a.price);
@@ -64,7 +64,7 @@ const ProductList = () => {
           </div>
           <div>
             <span>Sort by price</span>
-            <select onChange={handleChange} id="sort">
+            <select onChange={sortByPrice} id="sort">
               <option>Sort products</option>
               <option value="price-down">From highest price</option>
               <option value="price-up">From lowest price</option>

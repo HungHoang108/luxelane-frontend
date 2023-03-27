@@ -54,6 +54,7 @@ export const createProduct = createAsyncThunk("createProduct", async ({ file, pr
       formData.append("file", imgFile);
     }
     formData.append("upload_preset", "luxelane");
+    //Cloud name is public because for some reason the deployed app cannot access it in .env file
     await axios
       .post(`https://api.cloudinary.com/v1_1/dpmgsws1u/image/upload`, formData)
       .then(async (res) => {
