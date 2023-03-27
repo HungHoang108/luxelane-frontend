@@ -55,7 +55,7 @@ export const createProduct = createAsyncThunk("createProduct", async ({ file, pr
     }
     formData.append("upload_preset", "luxelane");
     await axios
-      .post(`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/image/upload`, formData)
+      .post(`https://api.cloudinary.com/v1_1/dpmgsws1u/image/upload`, formData)
       .then(async (res) => {
         const imageUrl = res.data.secure_url;
         const newProduct = { ...product, images: [imageUrl] };
