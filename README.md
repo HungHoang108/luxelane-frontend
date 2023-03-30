@@ -1,4 +1,4 @@
-# Front-end Project
+# LuxeLane- FullStack
 
 ![React](https://img.shields.io/badge/React-v.18-blue)
 ![Redux toolkit](https://img.shields.io/badge/Redux-v.1.9-purple)
@@ -34,9 +34,10 @@ Tech: C#, .NET, PostgreSQL, Entity Framework, Azure
 
 ## Future features
 
-- Add favourite products
-- Create/update/delete categories
-- 
+
+- Add favorite products
+- Add new and delete categories
+- Add new and delete orders
 - Check out route and payment
 
 
@@ -66,7 +67,6 @@ Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
 ## Project Structure
-
 
 ```
 fs13-frontend-project
