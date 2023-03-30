@@ -4,29 +4,39 @@
 ![Redux toolkit](https://img.shields.io/badge/Redux-v.1.9-purple)
 ![TypeScript](https://img.shields.io/badge/TypeScript-v.4.9-green)
 ![SASS](https://img.shields.io/badge/SASS-v.4.9-hotpink)
+![MUI](https://img.shields.io/badge/MUI-v.5.11-yellow)
+![Jest Testing](https://img.shields.io/badge/Jest-v.27.5-orange)
 
 Live demo [here](https://luxelane.netlify.app/)
 
 ## Overview
 
-Backend: [https://luxelane.azurewebsites.net/swagger/index.html](https://luxelane.azurewebsites.net/swagger/index.html)
+Backend [link](https://luxelane.azurewebsites.net/swagger/index.html)
+Tech: C#, .NET, PostgreSQL, Entity Framework, Azure
 
 ## Features
 
-1. Get all products, find a single products, sort products by categories and price
-2. Register for a new account, login with Email and password
-3. Customer account can create new product
-4. Admin can create, delete and edit product. Testing account:
-   - Email: admin@mail.com
-   - Password: admin123
-5. Add product to cart, remove products, update products's quantity in cart
-6. Light/Dark mode
-7. Backend is built with C# and .Net core API
+1. Get all products or a single product
+2. Sort products by categories and price
+3. Search for a product based on title
+4. Register for a new account
+5. Login with Email and password
+6. Customer account can create new products
+<!-- 5. In the profile page, customer will see their information, address and past orders -->
+7. Admin can create, delete and update products. Testing account:
+   - Email: admin@example.com
+   - Password: Hello.World1
+<!-- 5. Addmin can see a list of users account, delete, and update them -->
+8. Add products to cart, remove products, update quantity and total price in cart
+9. Light/Dark mode
+10. Input/Login/Register validation
+11. Delete confirmation, loading sign while waiting to create a new product, login or register for new account
 
 ## Future features
 
-
-- Favourite
+- Add favourite products
+- Create/update/delete categories
+- 
 - Check out route and payment
 
 
@@ -57,10 +67,6 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 ## Project Structure
 
-```
-
-
-```
 
 ```
 fs13-frontend-project

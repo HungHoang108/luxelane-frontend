@@ -1,20 +1,21 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
-import { Category, fetchCategory } from "../types/Category";
+import axios, { AxiosError } from "axios";
+import { Category } from "../types/Category";
 
 const initialState: Category[] = [];
 
 export const fetchCategories = createAsyncThunk("fetchAllCategories", async () => {
   try {
     localStorage.setItem("loadingCategory", "loading");
-    const categories = await axios.get("https://luxelane.azurewebsites.net/api/v1/category");
-    const data = categories.data;
-    if (data) {
+    await axios.get("https://luxelane.azurewebsites.net/api/v1/category").then((res) => {
       localStorage.setItem("loadingCategory", "completed");
-    }
-    return data;
+      const data = res.data;
+      console.log(data)
+      return data;
+    });
   } catch (error) {
-    console.log(error);
+    const err = error as AxiosError;
+    return err;
   }
 });
 
