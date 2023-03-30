@@ -26,7 +26,9 @@ Backend: [https://luxelane.azurewebsites.net/swagger/index.html](https://luxelan
 ## Future features
 
 
-- Favourite
+- Add favourite products
+- Add new and delete categories
+- Add new and delete orders
 - Check out route and payment
 
 
