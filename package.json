@@ -19,6 +19,7 @@
     "cloudinary-react": "^1.8.1",
     "dotenv": "^16.0.3",
     "filelist": "^1.0.4",
+    "immutable": "^3.8.2",
     "jsonwebtoken": "^9.0.0",
     "moment": "^2.29.4",
     "msw": "^0.49.2",

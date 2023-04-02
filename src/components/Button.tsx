@@ -1,12 +1,9 @@
 import { useAppDispatch } from "../hooks/reduxHook";
-import { addItem } from "../redux/cartItemsReducer";
+import { addItem } from "../redux/cartReducer";
 import { CartItemType } from "../types/CartItemType";
 
 const Button_ = ({ id, itemName, price, image, amount }: CartItemType) => {
-  
   const dispatch = useAppDispatch();
-
- 
 
   const addProduct = () => {
     const cartItem = {

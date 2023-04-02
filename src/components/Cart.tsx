@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useAppSelector } from "../hooks/reduxHook";
 
 const Cart = () => {
-  const cartItem = useAppSelector((state) => state.CartItemReducer);
+  const cartItem = useAppSelector((state) => state.CartReducer);
   localStorage.setItem("cartItems", JSON.stringify(cartItem));
   const getCartItems = localStorage.getItem("cartItems");
   if (getCartItems) {

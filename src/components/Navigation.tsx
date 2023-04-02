@@ -16,7 +16,7 @@ const Navigation = () => {
 
   const nav = useNavigate();
   const dispatch = useAppDispatch();
-  const cartItem = useAppSelector((state) => state.CartItemReducer);
+  const cartItem = useAppSelector((state) => state.CartReducer);
   const currentDarkMode = useAppSelector((state) => state.DarkModeReducer);
 
   let access_token = localStorage.getItem("userToken");
